@@ -8,7 +8,7 @@ import {
     FaShoppingBag,
     FaThList,
 
-}from "react-icons/fa";
+}from "react-icons/fa"; 
 import { NavLink } from 'react-router-dom';
 
 
