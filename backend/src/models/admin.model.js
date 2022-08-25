@@ -1,4 +1,6 @@
 "use strict";
+var dbConn = require('./../../config/db.config');
+
 
 const db = require("../../config/db.config");
 var Admin = function (Admin) {
@@ -28,3 +30,4 @@ Admin.findAll = function (result) {
     }
   });
 };
+module.exports= Admin;
