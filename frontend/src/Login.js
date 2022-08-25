@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -8,7 +8,7 @@ function Login() {
 
     const [password,setPassword]=useState("");
     const [passworderror,setPasswordError]=useState(false);
-    //const navigate=useNavigate();
+    const navigate=useNavigate();
 
     useEffect(() => {
         const auth = localStorage.getItem('user');
@@ -41,20 +41,18 @@ function Login() {
           setUsernameError(false)
           setPasswordError(false)
           
-          axios.post("http://localhost:5000/api/v1/user/login", 
-          { username: username, password: password,
+          axios.post("http://localhost:5000/api/v1/admin/login", 
+          { username: username, admin_password: password,
            method: "POST",
           body: JSON.stringify({username, password }),
-          header: {
-              "Content-type":"application/json"
-              }
+         
           }).then(respone =>{
               
                 console.warn(respone.data);
                 if(respone.data.length > 0){
                   setPasswordError(false)
                   localStorage.setItem('user', JSON.stringify(respone));
-                  //navigate("/dashboard"); 
+                  navigate("/maincategory"); 
                   return respone.json();
                 }
                 else {
@@ -81,7 +79,6 @@ function Login() {
 
               <div className="card-body login-card-body">
                 <p className="login-box-msg">Sign in to start your session</p>
-                <form action="../../index3.html" method="post">
                   <div className="input-group mb-3">
                     <input type="email" className="form-control" placeholder="Email" value={username} id="username" autoComplete="off" onChange={(e)=>setUsername(e.target.value)}/>
                     <div className="input-group-append">
@@ -117,7 +114,6 @@ function Login() {
                     </div>
                     {/* /.col */}
                   </div>
-                </form>
                 <div className="social-auth-links text-center mb-3">
                   <p>- OR -</p>
                   {/* <a href="#" className="btn btn-block btn-primary">

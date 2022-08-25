@@ -9,3 +9,17 @@ exports.findAll = function (req, res) {
     res.send(Admin);
   });
 };
+exports.login =  function(req, res) {
+  
+  // let username;
+  // let password;
+   Admin.userlogin(new Admin(req.body), function(err, Admin) {
+    
+      if (err)
+    res.send("user not found");
+
+      res.send(Admin); 
+      //console.log("hello")
+
+  });
+  };

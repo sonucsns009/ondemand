@@ -28,4 +28,21 @@ Admin.findAll = function (result) {
     }
   });
 };
+Admin.userlogin =  function (Admin, result) {
+ // console.log(Admin);
+  dbConn.query("SELECT * from ond_admin where username=? and admin_password=?", [Admin.username, Admin.admin_password], function (err, res) {
+    
+    //console.log(res);
+    
+    if(res!=="")
+      {
+        result(null, res);
+        //console.log(res);
+      } else 
+      {
+        result(null, err);
+      }
+      //result(null, res);
+  });
+}
 module.exports = Admin;
