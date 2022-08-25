@@ -16,5 +16,4 @@ router.put("/:id", adminControllers.update);
 // Delete a admin with id
 router.delete("/:id", adminControllers.delete);
 
-// >>>>>>> Stashed changes
 module.exports = router;

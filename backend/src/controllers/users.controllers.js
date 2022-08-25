@@ -33,9 +33,8 @@ exports.login = function (req, res) {
   //console.log(req.body);
   // let username;
   // let password;
-  Users.userlogin(new User(req.body), function (err, Users) {
+  Users.userlogin(new Users(req.body), function (err, Users) {
     if (err) res.send("user not found");
-
     res.send(Users);
     //console.log("hello")
   });

@@ -57,8 +57,8 @@ Users.findById = function (id, result) {
 
 Users.userlogin = function (Users, result) {
   dbConn.query(
-    "SELECT * from ond_users where username=? and password=?",
-    [Users.emailaddress, Users.upassword],
+    "SELECT * from ond_users where fullname=? and upassword=?",
+    [Users.fullname, Users.upassword],
     function (err, res) {
       console.log(res);
 
