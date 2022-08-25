@@ -41,21 +41,53 @@ Admin.findAll = function (result) {
     }
   });
 };
-Admin.userlogin =  function (Admin, result) {
- // console.log(Admin);
-  dbConn.query("SELECT * from ond_admin where username=? and admin_password=?", [Admin.username, Admin.admin_password], function (err, res) {
-    
-    //console.log(res);
-    
-    if(res!=="")
-      {
+
+Admin.findById = function (id, result) {
+  dbConn.query(
+    "Select * from ond_admin where admin_id=? ",
+    id,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
+Admin.adminlogin = function (Admin, result) {
+  // console.log(Admin);
+  dbConn.query(
+    "SELECT * from ond_admin where username=? and admin_password=?",
+    [Admin.username, Admin.admin_password],
+    function (err, res) {
+      //console.log(res);
+
+      if (res !== "") {
         result(null, res);
         //console.log(res);
-      } else 
-      {
+      } else {
         result(null, err);
       }
       //result(null, res);
-  });
-}
+    }
+  );
+};
+
+Admin.delete = function (id, Admin, result) {
+  dbConn.query(
+    "UPDATE ond_admin SET status=? WHERE admin_id  = ?",
+    [Admin.status, id],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
 module.exports = Admin;

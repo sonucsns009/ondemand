@@ -9,22 +9,16 @@ exports.findAll = function (req, res) {
     res.send(Admin);
   });
 };
-<<<<<<< Updated upstream
-exports.login =  function(req, res) {
-  
+exports.login = function (req, res) {
   // let username;
   // let password;
-   Admin.userlogin(new Admin(req.body), function(err, Admin) {
-    
-      if (err)
-    res.send("user not found");
+  Admin.adminlogin(new Admin(req.body), function (err, Admin) {
+    if (err) res.send("user not found");
 
-      res.send(Admin); 
-      //console.log("hello")
-
+    res.send(Admin);
+    //console.log("hello")
   });
-  };
-=======
+};
 
 exports.create = function (req, res) {
   const new_Admin = new Admin(req.body);
@@ -43,18 +37,6 @@ exports.create = function (req, res) {
       });
     });
   }
-};
-
-exports.login = function (req, res) {
-  //console.log(req.body);
-  // let username;
-  // let password;
-  Admin.adminlogin(new Admin(req.body), function (err, Admin) {
-    if (err) res.send("user not found");
-
-    res.send(Admin);
-    //console.log("hello")
-  });
 };
 
 exports.findById = function (req, res) {
@@ -83,4 +65,3 @@ exports.delete = function (req, res) {
     res.json({ error: false, message: "Admin successfully deleted" });
   });
 };
->>>>>>> Stashed changes
