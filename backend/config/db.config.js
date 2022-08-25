@@ -6,7 +6,7 @@ const dbConn = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "nodecrm",
+  database: "csns_ondemand",
 });
 dbConn.connect(function (err) {
   if (err) throw err;
