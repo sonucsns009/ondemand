@@ -9,6 +9,7 @@ exports.findAll = function (req, res) {
     res.send(Admin);
   });
 };
+<<<<<<< Updated upstream
 exports.login =  function(req, res) {
   
   // let username;
@@ -23,3 +24,63 @@ exports.login =  function(req, res) {
 
   });
   };
+=======
+
+exports.create = function (req, res) {
+  const new_Admin = new Admin(req.body);
+  //handles null error
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Admin.create(new_Admin, function (err, Admin) {
+      if (err) res.send(err);
+      res.json({
+        error: false,
+        message: "User added successfully!",
+        data: Admin,
+      });
+    });
+  }
+};
+
+exports.login = function (req, res) {
+  //console.log(req.body);
+  // let username;
+  // let password;
+  Admin.adminlogin(new Admin(req.body), function (err, Admin) {
+    if (err) res.send("user not found");
+
+    res.send(Admin);
+    //console.log("hello")
+  });
+};
+
+exports.findById = function (req, res) {
+  Admin.findById(req.params.id, function (err, Admin) {
+    if (err) res.send(err);
+    res.json(Admin);
+  });
+};
+
+exports.update = function (req, res) {
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Admin.update(req.params.id, new Admin(req.body), function (err, Admin) {
+      if (err) res.send(err);
+      res.json({ error: false, message: "Admin successfully updated" });
+    });
+  }
+};
+
+exports.delete = function (req, res) {
+  Admin.delete(req.params.id, new Admin(req.body), function (err, Admin) {
+    if (err) res.send(err);
+    res.json({ error: false, message: "Admin successfully deleted" });
+  });
+};
+>>>>>>> Stashed changes

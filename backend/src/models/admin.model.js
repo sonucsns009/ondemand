@@ -17,13 +17,26 @@ var Admin = function (Admin) {
   this.dateupdated = new Date();
 };
 
+Admin.create = function (newAdmin, result) {
+  console.log(newAdmin);
+  dbConn.query("INSERT INTO ond_admin set ?", newAdmin, function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      console.log(res.insertId);
+      result(null, res.insertId);
+    }
+  });
+};
+
 Admin.findAll = function (result) {
   dbConn.query("Select * from ond_admin", function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("tbl_company : ", res);
+      console.log("ond_admin : ", res);
       result(null, res);
     }
   });
