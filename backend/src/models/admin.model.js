@@ -1,21 +1,18 @@
+"use strict";
+
 const db = require("../../config/db.config");
+var Admin = function (Admin) {
+  this.admin_id = Admin.admin_id;
+};
 
-module.exports = class Admin{
-    constructor(
-        admin_id,
-        admin_name,
-        username,
-        admin_password,
-        mobile_number,
-        admin_email,
-        user_type,
-        status,
-        subroles,
-        admin_address,
-        address_let,
-        address_long,
-        dateadded,
-        dateupdated,
-
-        )
-}
+Admin.findAll = function (result) {
+  dbConn.query("Select * from ond_admin", function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
+      console.log("tbl_company : ", res);
+      result(null, res);
+    }
+  });
+};
