@@ -19,12 +19,12 @@ var Users = function (Users) {
   this.mobile_otp = Users.mobile_otp;
   this.email_code_verify = Users.email_code_verify;
   this.otp_forgot_code = Users.otp_forgot_code;
-  this.user_status = Users.user_status;
+  this.user_status = Users.user_status ? Users.user_status : 1;
   this.reg_step = Users.reg_step;
   this.utoken = Users.utoken;
   this.fcm_token = Users.fcm_token;
-  this.dateadded = Users.dateadded;
-  this.dateupdated = Users.dateadded;
+  this.dateadded = new Date();
+  this.dateupdated = new Date();
 };
 
 Users.findAll = function (result) {

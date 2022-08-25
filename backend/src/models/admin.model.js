@@ -1,8 +1,6 @@
 "use strict";
-var dbConn = require('./../../config/db.config');
+var dbConn = require("./../../config/db.config");
 
-
-const db = require("../../config/db.config");
 var Admin = function (Admin) {
   this.admin_name = Admin.admin_name;
   this.username = Admin.username;
@@ -10,7 +8,7 @@ var Admin = function (Admin) {
   this.mobile_number = Admin.mobile_number;
   this.admin_email = Admin.admin_email;
   this.user_type = Admin.user_type;
-  this.status = Admin.status;
+  this.status = Admin.status ? Admin.status : 1;
   this.subroles = Admin.subroles;
   this.admin_address = Admin.admin_address;
   this.address_lat = Admin.address_lat;
@@ -30,4 +28,4 @@ Admin.findAll = function (result) {
     }
   });
 };
-module.exports= Admin;
+module.exports = Admin;
