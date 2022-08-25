@@ -1,10 +1,15 @@
-const mysql = require("mysql2");
+"use strict";
 
-const pool = mysql.createPool({
+const mysql = require("mysql");
+//local mysql db connection
+const dbConn = mysql.createConnection({
   host: "localhost",
   user: "root",
-  database: "csns_ondemand",
-  password: "1234",
+  password: "",
+  database: "nodecrm",
 });
-
-module.exports = pool.promise();
+dbConn.connect(function (err) {
+  if (err) throw err;
+  console.log("Database Connected!");
+});
+module.exports = dbConn;
