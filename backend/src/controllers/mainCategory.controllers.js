@@ -3,10 +3,10 @@
 const mainCategory = require("../models/mainCategory.models");
 
 exports.findAll = function (req, res) {
-  mainCategory.findAll(function (err, Users) {
-    console.log("controller");
+  mainCategory.findAll(function (err, mainCategory) {
+    console.log("mainCategory controller");
     if (err) res.send(err);
-    res.send(Users);
+    res.send(mainCategory);
   });
 };
 
@@ -22,7 +22,7 @@ exports.create = function (req, res) {
       if (err) res.send(err);
       res.json({
         error: false,
-        message: "User added successfully!",
+        message: "Main Category added successfully!",
         data: mainCategory,
       });
     });
@@ -30,9 +30,9 @@ exports.create = function (req, res) {
 };
 
 exports.findById = function (req, res) {
-  mainCategory.findById(req.params.id, function (err, Users) {
+  mainCategory.findById(req.params.id, function (err, mainCategory) {
     if (err) res.send(err);
-    res.json(Users);
+    res.json(mainCategory);
   });
 };
 
@@ -47,7 +47,10 @@ exports.update = function (req, res) {
       new mainCategory(req.body),
       function (err, mainCategory) {
         if (err) res.send(err);
-        res.json({ error: false, message: "User successfully updated" });
+        res.json({
+          error: false,
+          message: "Main Category successfully updated",
+        });
       }
     );
   }
@@ -58,7 +61,7 @@ exports.delete = function (req, res) {
     new mainCategory(req.body),
     function (err, mainCategory) {
       if (err) res.send(err);
-      res.json({ error: false, message: "successfully deleted" });
+      res.json({ error: false, message: "Main Category successfully deleted" });
     }
   );
 };

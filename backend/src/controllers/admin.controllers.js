@@ -4,7 +4,7 @@ const Admin = require("../models/admin.model");
 
 exports.findAll = function (req, res) {
   Admin.findAll(function (err, Admin) {
-    console.log("controller");
+    console.log("admin controller");
     if (err) res.send(err);
     res.send(Admin);
   });
@@ -13,7 +13,7 @@ exports.login = function (req, res) {
   // let username;
   // let password;
   Admin.adminlogin(new Admin(req.body), function (err, Admin) {
-    if (err) res.send("user not found");
+    if (err) res.send("admin not found");
 
     res.send(Admin);
     //console.log("hello")
@@ -32,7 +32,7 @@ exports.create = function (req, res) {
       if (err) res.send(err);
       res.json({
         error: false,
-        message: "User added successfully!",
+        message: "admin added successfully!",
         data: Admin,
       });
     });

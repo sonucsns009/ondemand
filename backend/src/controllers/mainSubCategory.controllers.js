@@ -24,7 +24,7 @@ exports.create = function (req, res) {
         if (err) res.send(err);
         res.json({
           error: false,
-          message: "User added successfully!",
+          message: "Main sub category added successfully!",
           data: mainSubCategory,
         });
       }
@@ -64,7 +64,10 @@ exports.delete = function (req, res) {
     new mainSubCategory(req.body),
     function (err, mainSubCategory) {
       if (err) res.send(err);
-      res.json({ error: false, message: "successfully deleted" });
+      res.json({
+        error: false,
+        message: "Main sub category successfully deleted",
+      });
     }
   );
 };
