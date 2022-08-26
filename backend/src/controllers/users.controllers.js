@@ -1,6 +1,6 @@
 "use strict";
 
-const Users = require("../models/users.model");
+const Users = require("../models/users.models");
 
 exports.findAll = function (req, res) {
   Users.findAll(function (err, Users) {

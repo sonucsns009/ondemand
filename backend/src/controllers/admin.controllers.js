@@ -1,6 +1,6 @@
 "use strict";
 
-const Admin = require("../models/admin.model");
+const Admin = require("../models/admin.models");
 
 exports.findAll = function (req, res) {
   Admin.findAll(function (err, Admin) {
