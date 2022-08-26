@@ -1,33 +1,47 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Header';
-import PrivateComponent from './PrivateComponent';
+import Login from './components/Login';
+import Sidebar from './components/Sidebar';
+import Maincategory from './pages/Maincategory';
+import Mainsubcategory from './pages/Mainsubcategory';
+import Dashboard from './pages/Dashboard';
+import About from './pages/About';
+import Analytics from './pages/Analytics';
+import Comment from './pages/Comment';
+import Product from './pages/Product';
+import ProductList from './pages/ProductList';
 
-import { BrowserRouter,Routes, Route } from "react-router-dom";
-import Login from './Login';
-import Maincategory from './components/maincategory/Maincategory';
-
-function App() {
+function App () {
   const auth = localStorage.getItem('user');
   console.warn(auth);
   return (
-    <div className="page-wrapper">
+    
+    <div className="row">
+       
+          
+    <BrowserRouter>
+    
       
-     { auth!==null?<Header/>:<Login/>}
-      <BrowserRouter>
         <Routes>
-
-          <Route element={<PrivateComponent />}>
-
-            <Route path="maincategory" element={<Maincategory />} />
-
-          </Route>
-          <Route path="login" element={<Login />} />
+          <Route exact path="/" element={<Login/>} />
+          <Route path="/Sidebar" element={<Sidebar />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/maincategory" element={<Maincategory/>} />
+          <Route path="/mainsubcategory" element={<Mainsubcategory/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/comment" element={<Comment />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/productList" element={<ProductList />} />
+          
         </Routes>
-      </BrowserRouter>
-
+      
+    </BrowserRouter>
     </div>
+    
   );
-}
+};
 
 export default App;

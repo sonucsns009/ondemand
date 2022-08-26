@@ -41,11 +41,11 @@ function Login() {
       } else{
           setUsernameError(false)
           setPasswordError(false)
-          
-          axios.post("http://localhost:5000/api/v1/user/login", 
-          { username: username, password: password,
+          let admin_password;
+          axios.post("http://localhost:5000/api/v1/admin/login", 
+          { username: username, admin_password: password,
            method: "POST",
-          body: JSON.stringify({username, password }),
+          body: JSON.stringify({username, admin_password }),
           header: {
               "Content-type":"application/json"
               }
@@ -72,7 +72,7 @@ function Login() {
       <div className="hold-transition login-page">
         <div className="login-box text-center">
           <div className="login-logo">
-            <a href="#"><img src={Logo} alt="AdminLTE Logo" className=""  style={{height:"100px", marginLeft:"10px",width:"300px"}}/></a>
+             <img src={Logo} />           
             {/* <a href="../../index2.html"><b>On Demand System</b>CSNS</a> */}
           </div>
           {/* /.login-logo */}
@@ -82,7 +82,6 @@ function Login() {
 
               <div className="card-body login-card-body">
                 <p className="login-box-msg">Sign in to start your session</p>
-                <form action="../../index3.html" method="post">
                   <div className="input-group mb-3">
                     <input type="email" className="form-control" placeholder="Email" value={username} id="username" autoComplete="off" onChange={(e)=>setUsername(e.target.value)}/>
                     <div className="input-group-append">
@@ -118,7 +117,6 @@ function Login() {
                     </div>
                     {/* /.col */}
                   </div>
-                </form>
                 <div className="social-auth-links text-center mb-3">
                   <p>- OR -</p>
                   {/* <a href="#" className="btn btn-block btn-primary">
