@@ -32,12 +32,14 @@ const usersRoutes = require("./src/routes/users.routes");
 const maincategoryRoutes = require("./src/routes/mainCategory.routes");
 const mainSubCategoryRoutes = require("./src/routes/mainSubCategory.routes");
 const serviceCategoryRoutes = require("./src/routes/serviceCategory.routes");
+const serviceSubCategoryRoutes = require("./src/routes/serviceSubCategory.routes");
 
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/mainCategory", maincategoryRoutes);
 app.use("/api/v1/mainSubCategory", mainSubCategoryRoutes);
 app.use("/api/v1/serviceCategory", serviceCategoryRoutes);
+app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 
 app.use((req, res, next) => {
   res.status(404).send("page not found");

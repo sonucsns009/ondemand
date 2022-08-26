@@ -76,6 +76,23 @@ Admin.adminlogin = function (Admin, result) {
   );
 };
 
+Admin.update = function (id, Admin, result) {
+  // console.log(Admin);
+
+  dbConn.query(
+    "UPDATE ond_admin SET username=?,admin_password=? WHERE admin_id  = ?",
+    [Admin.username, Admin.admin_password, id],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 Admin.delete = function (id, Admin, result) {
   dbConn.query(
     "UPDATE ond_admin SET status=? WHERE admin_id  = ?",

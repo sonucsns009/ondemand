@@ -86,6 +86,7 @@ Users.findAll = function (result) {
 };
 
 Users.update = function (id, Users, result) {
+  console.log(Users);
   dbConn.query(
     "UPDATE ond_users SET fullname=?,upassword=? WHERE user_id  = ?",
     [Users.fullname, Users.upassword, id],
