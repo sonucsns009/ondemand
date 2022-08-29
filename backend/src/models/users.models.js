@@ -28,7 +28,7 @@ var Users = function (Users) {
 };
 
 Users.create = function (newUsers, result) {
-  console.log(newUsers);
+  // console.log(newUsers);
   dbConn.query("INSERT INTO ond_users set ?", newUsers, function (err, res) {
     if (err) {
       console.log("error: ", err);
@@ -86,10 +86,10 @@ Users.findAll = function (result) {
 };
 
 Users.update = function (id, Users, result) {
-  console.log(Users);
+  // console.log(Users);
   dbConn.query(
-    "UPDATE ond_users SET fullname=?,upassword=? WHERE user_id  = ?",
-    [Users.fullname, Users.upassword, id],
+    "UPDATE ond_users SET fullname=?,upassword=?,dateupdated=? WHERE user_id  = ?",
+    [Users.fullname, Users.upassword, Users.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -103,8 +103,8 @@ Users.update = function (id, Users, result) {
 
 Users.delete = function (id, Users, result) {
   dbConn.query(
-    "UPDATE ond_users SET user_status=? WHERE user_id  = ?",
-    [Users.user_status, id],
+    "UPDATE ond_users SET user_status=?,dateupdated=? WHERE user_id  = ?",
+    [Users.user_status, Users.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
