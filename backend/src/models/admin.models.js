@@ -18,7 +18,7 @@ var Admin = function (Admin) {
 };
 
 Admin.create = function (newAdmin, result) {
-  console.log(newAdmin);
+  // console.log(newAdmin);
   dbConn.query("INSERT INTO ond_admin set ?", newAdmin, function (err, res) {
     if (err) {
       console.log("error: ", err);
@@ -78,10 +78,10 @@ Admin.adminlogin = function (Admin, result) {
 
 Admin.update = function (id, Admin, result) {
   // console.log(Admin);
-
+  // console.log(Admin.dateupdated);
   dbConn.query(
-    "UPDATE ond_admin SET username=?,admin_password=? WHERE admin_id  = ?",
-    [Admin.username, Admin.admin_password, id],
+    "UPDATE ond_admin SET username=?,admin_password=?,dateupdated=? WHERE admin_id  = ?",
+    [Admin.username, Admin.admin_password, Admin.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -95,8 +95,8 @@ Admin.update = function (id, Admin, result) {
 
 Admin.delete = function (id, Admin, result) {
   dbConn.query(
-    "UPDATE ond_admin SET status=? WHERE admin_id  = ?",
-    [Admin.status, id],
+    "UPDATE ond_admin SET status=?,dateupdated=? WHERE admin_id=?",
+    [Admin.status, Admin.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
