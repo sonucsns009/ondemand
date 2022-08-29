@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 // multer file
 const multer = require("multer");
+const usersUpload = multer({ dest: "uploads/users" });
 const mainCategoryUpload = multer({ dest: "uploads/mainCategory" });
 const mainSubCategoryUpload = multer({ dest: "uploads/mainSubCategory" });
 
@@ -46,9 +47,18 @@ app.use("/api/v1/mainSubCategory", mainSubCategoryRoutes);
 app.use("/api/v1/serviceCategory", serviceCategoryRoutes);
 app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 
-// file uploads
+// file uploads starts
 
-// 1. main category file upload
+// 1. users file upload
+app.post("/api/v1/users/upload_files", usersUpload.array("files"), usersFiles);
+
+function usersFiles(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: "Successfully uploaded files" });
+}
+
+// 2. main category file upload
 app.post(
   "/api/v1/mainCategory/upload_files",
   mainCategoryUpload.array("files"),
@@ -61,7 +71,7 @@ function mainCategoryFiles(req, res) {
   res.json({ message: "Successfully uploaded files" });
 }
 
-// 2. main sub category file upload
+// 3. main sub category file upload
 app.post(
   "/api/v1/mainSubCategory/upload_files",
   mainSubCategoryUpload.array("files"),
@@ -73,6 +83,8 @@ function mainSubCategoryFiles(req, res) {
   console.log(req.files);
   res.json({ message: "Successfully uploaded files" });
 }
+// file uploads ends
+
 app.use((req, res, next) => {
   res.status(404).send("page not found");
 });
