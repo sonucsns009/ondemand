@@ -9,6 +9,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+// multer file
+const multer = require("multer");
+const mainCategoryUpload = multer({ dest: "uploads/mainCategory" });
+const mainSubCategoryUpload = multer({ dest: "uploads/mainSubCategory" });
+
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -41,6 +46,33 @@ app.use("/api/v1/mainSubCategory", mainSubCategoryRoutes);
 app.use("/api/v1/serviceCategory", serviceCategoryRoutes);
 app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 
+// file uploads
+
+// 1. main category file upload
+app.post(
+  "/api/v1/mainCategory/upload_files",
+  mainCategoryUpload.array("files"),
+  mainCategoryFiles
+);
+
+function mainCategoryFiles(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: "Successfully uploaded files" });
+}
+
+// 2. main sub category file upload
+app.post(
+  "/api/v1/mainSubCategory/upload_files",
+  mainSubCategoryUpload.array("files"),
+  mainSubCategoryFiles
+);
+
+function mainSubCategoryFiles(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: "Successfully uploaded files" });
+}
 app.use((req, res, next) => {
   res.status(404).send("page not found");
 });
