@@ -57,8 +57,13 @@ mainSubCategory.findById = function (id, result) {
 
 mainSubCategory.update = function (id, mainSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=? WHERE subcategory_id  = ?",
-    [mainSubCategory.subcategory_name, mainSubCategory.subcategory_image, id],
+    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=?,updated_date=? WHERE subcategory_id  = ?",
+    [
+      mainSubCategory.subcategory_name,
+      mainSubCategory.subcategory_image,
+      mainSubCategory.updated_date,
+      id,
+    ],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -72,8 +77,8 @@ mainSubCategory.update = function (id, mainSubCategory, result) {
 
 mainSubCategory.delete = function (id, mainSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_subcategory SET status=? WHERE subcategory_id  = ?",
-    [mainSubCategory.status, id],
+    "UPDATE ond_main_subcategory SET status=?,updated_date=? WHERE subcategory_id  = ?",
+    [mainSubCategory.status, mainSubCategory.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
