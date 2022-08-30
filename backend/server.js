@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // multer
 const multer = require("multer");
 const usersUpload = multer({ dest: "uploads/users" });
-const servicesUpload = multer({ dest: "uploads/servicesdata" });
+const servicesUpload = multer({ dest: "uploads/services_img" });
 const mainCategoryUpload = multer({ dest: "uploads/mainCategory" });
 const mainSubCategoryUpload = multer({ dest: "uploads/mainsubCategory" });
 
@@ -38,6 +38,7 @@ const usersRoutes = require("./src/routes/users.routes");
 const maincategoryRoutes = require("./src/routes/mainCategory.routes");
 const mainSubCategoryRoutes = require("./src/routes/mainSubCategory.routes");
 const servicesRoutes = require("./src/routes/services.routes");
+const servicePackagesRoutes = require("./src/routes/servicePackages.routes");
 const serviceCategoryRoutes = require("./src/routes/serviceCategory.routes");
 const serviceSubCategoryRoutes = require("./src/routes/serviceSubCategory.routes");
 
@@ -46,6 +47,7 @@ app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/mainCategory", maincategoryRoutes);
 app.use("/api/v1/mainSubCategory", mainSubCategoryRoutes);
 app.use("/api/v1/services", servicesRoutes);
+app.use("/api/v1/servicePackages", servicePackagesRoutes);
 app.use("/api/v1/serviceCategory", serviceCategoryRoutes);
 app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 
