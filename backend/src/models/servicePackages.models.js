@@ -3,8 +3,12 @@
 var dbConn = require("./../../config/db.config");
 
 var servicePackages = function (servicePackages) {
-  this.category_name = servicePackages.category_name;
-  this.category_image = servicePackages.category_image;
+  this.service_id = servicePackages.service_id;
+  this.service_provider_id = servicePackages.service_provider_id;
+  this.store_id = servicePackages.store_id;
+  this.package_name = servicePackages.package_name;
+  this.package_amount = servicePackages.package_amount;
+  this.package_desc = servicePackages.package_desc;
   this.status = servicePackages.status ? servicePackages.status : 1;
   this.added_date = new Date();
   this.updated_date = new Date();
