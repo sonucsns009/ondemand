@@ -2,7 +2,7 @@
 var dbConn = require("../../config/db.config");
 
 var Users = function (Users) {
-  this.profile_id = Users.profile_id;
+  this.profile_id = Math.floor(Math.random() * 1000000000000000 + Date.now());
   this.fullname = Users.fullname;
   this.emailaddress = Users.emailaddress;
   this.address = Users.address;
@@ -57,8 +57,8 @@ Users.findById = function (id, result) {
 
 Users.userlogin = function (Users, result) {
   dbConn.query(
-    "SELECT * from ond_users where fullname=? and upassword=?",
-    [Users.fullname, Users.upassword],
+    "SELECT * from ond_users where mobilenumber=? and upassword=?",
+    [Users.mobilenumber, Users.upassword],
     function (err, res) {
       console.log(res);
 
