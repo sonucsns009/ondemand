@@ -73,6 +73,24 @@ Users.userlogin = function (Users, result) {
     }
   );
 };
+Users.verification = function (Users, result) {
+  console.log(Users);
+  dbConn.query(
+    "SELECT * from ond_users where mobilenumber=? and mobile_otp=?",
+    [Users.mobilenumber, Users.mobile_otp],
+    function (err, res) {
+      console.log(res);
+
+      if (res !== "") {
+        result(null, res);
+        console.log(res);
+      } else {
+        result(null, err);
+      }
+      //result(null, res);
+    }
+  );
+};
 
 Users.findAll = function (result) {
   dbConn.query("Select * from ond_users", function (err, res) {

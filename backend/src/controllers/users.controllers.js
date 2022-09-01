@@ -29,6 +29,15 @@ exports.create = function (req, res) {
   }
 };
 
+exports.verification = function (req, res) {
+  //console.log(req.body);
+  Users.verification(new Users(req.body), function (err, Users) {
+    if (err) res.send("user not found");
+    res.send(Users);
+    //console.log("hello")
+  });
+};
+
 exports.login = function (req, res) {
   //console.log(req.body);
   // let username;
