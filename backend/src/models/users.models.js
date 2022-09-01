@@ -2,7 +2,8 @@
 var dbConn = require("../../config/db.config");
 
 var Users = function (Users) {
-  this.profile_id = Math.floor(Math.random() * 1000000000000000 + Date.now());
+  this.profile_id =
+    "ond_" + Math.floor(Math.random() * 1000000000000000 + Date.now());
   this.fullname = Users.fullname;
   this.emailaddress = Users.emailaddress;
   this.address = Users.address;
@@ -16,9 +17,9 @@ var Users = function (Users) {
   this.user_photo = Users.user_photo;
   this.country = Users.country;
   this.city = Users.city;
-  this.mobile_otp = Users.mobile_otp;
-  this.email_code_verify = Users.email_code_verify;
-  this.otp_forgot_code = Users.otp_forgot_code;
+  this.mobile_otp = Math.floor(Math.random() * 1000000);
+  this.email_code_verify = Math.floor(Math.random() * 1000000);
+  this.otp_forgot_code = Math.floor(Math.random() * 1000000);
   this.user_status = Users.user_status ? Users.user_status : 1;
   this.reg_step = Users.reg_step;
   this.utoken = Users.utoken;
