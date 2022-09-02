@@ -28,19 +28,19 @@ mainSubCategory.create = function (newMainSubCategory, result) {
   );
 };
 
-// mainSubCategory.findAll = function (result) {
-//   dbConn.query("Select * from ond_main_subcategory", function (err, res) {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//     } else {
-//       console.log("ond_main_subcategory : ", res);
-//       result(null, res);
-//     }
-//   });
-// };
+mainSubCategory.findAll = function (result) {
+  dbConn.query("Select * from ond_main_subcategory", function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
+      console.log("ond_main_subcategory : ", res);
+      result(null, res);
+    }
+  });
+};
 
-mainSubCategory.findAll = function (id, result) {
+mainSubCategory.findAllSubCategories = function (id, result) {
   dbConn.query(
     "Select * from ond_main_subcategory where category_id=? ",
     id,
