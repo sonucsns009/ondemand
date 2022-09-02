@@ -1,6 +1,17 @@
 "use strict";
+// var nodemailer = require("nodemailer");
+// var sendgridTransport = require("nodemailer-sendgrid-transport");
 
 const Users = require("../models/users.models");
+
+// const transporter = nodemailer.createTransport(
+//   sendgridTransport({
+//     auth: {
+//       api_key:
+//         "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",
+//     },
+//   })
+// );
 
 exports.findAll = function (req, res) {
   Users.findAll(function (err, Users) {
@@ -18,6 +29,11 @@ exports.create = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
+    // transporter.sendMail({
+    //   to: "mrkamleshmore41@gmail.com",
+    //   from: "self@kamleshmore.com",
+    //   subject: "abcd",
+    // });
     Users.create(new_User, function (err, Users) {
       if (err) res.send(err);
       res.json({

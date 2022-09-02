@@ -1,5 +1,6 @@
 "use strict";
 var dbConn = require("../../config/db.config");
+var nodemailer = require("nodemailer");
 
 var Users = function (Users) {
   this.profile_id =
