@@ -5,7 +5,7 @@ const routes = express.Router();
 const mainSubCategoryControllers = require("./../controllers/mainSubCategory.controllers");
 
 // find all main sub categories
-routes.get("/", mainSubCategoryControllers.findAll);
+routes.get("/allSubCategory/:id", mainSubCategoryControllers.findAll);
 
 // create new main sub category
 routes.post("/", mainSubCategoryControllers.create);

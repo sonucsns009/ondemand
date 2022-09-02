@@ -2,11 +2,17 @@
 
 const mainSubCategory = require("../models/mainSubCategory.models");
 
+// exports.findAll = function (req, res) {
+//   mainSubCategory.findAll(function (err, mainSubCategory) {
+//     console.log("controller");
+//     if (err) res.send(err);
+//     res.send(mainSubCategory);
+//   });
+// };
 exports.findAll = function (req, res) {
-  mainSubCategory.findAll(function (err, mainSubCategory) {
-    console.log("controller");
+  mainSubCategory.findAll(req.params.id, function (err, mainSubCategory) {
     if (err) res.send(err);
-    res.send(mainSubCategory);
+    res.json(mainSubCategory);
   });
 };
 
