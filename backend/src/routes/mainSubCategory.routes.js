@@ -7,7 +7,7 @@ const mainSubCategoryControllers = require("./../controllers/mainSubCategory.con
 // find all main sub categorires
 routes.get("/", mainSubCategoryControllers.findAll);
 
-// find main category have main sub categories
+// find main sub categories by main categorires
 routes.get(
   "/allSubCategory/:id",
   mainSubCategoryControllers.findAllSubCategories
