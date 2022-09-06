@@ -13,6 +13,9 @@ router.post("/login", userControllers.login);
 // Create a new users
 router.post("/", userControllers.create);
 
+// new user verigication
+router.get("/verification", userControllers.verification);
+
 // Retrieve a single user with id
 router.get("/:id", userControllers.findById);
 

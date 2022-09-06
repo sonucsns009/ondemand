@@ -9,6 +9,15 @@ exports.findAll = function (req, res) {
     res.send(mainSubCategory);
   });
 };
+exports.findAllSubCategories = function (req, res) {
+  mainSubCategory.findAllSubCategories(
+    req.params.id,
+    function (err, mainSubCategory) {
+      if (err) res.send(err);
+      res.json(mainSubCategory);
+    }
+  );
+};
 
 exports.create = function (req, res) {
   const new_mainSubCategory = new mainSubCategory(req.body);

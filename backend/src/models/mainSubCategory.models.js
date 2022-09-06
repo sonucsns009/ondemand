@@ -40,6 +40,21 @@ mainSubCategory.findAll = function (result) {
   });
 };
 
+mainSubCategory.findAllSubCategories = function (id, result) {
+  dbConn.query(
+    "Select * from ond_main_subcategory where category_id=? ",
+    id,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 mainSubCategory.findById = function (id, result) {
   dbConn.query(
     "Select * from ond_main_subcategory where subcategory_id=? ",

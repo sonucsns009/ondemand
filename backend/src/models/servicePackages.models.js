@@ -17,7 +17,7 @@ var servicePackages = function (servicePackages) {
 servicePackages.create = function (newServiceCategory, result) {
   console.log(newServiceCategory);
   dbConn.query(
-    "INSERT INTO ond_service_category set ?",
+    "INSERT INTO ond_service_packages set ?",
     newServiceCategory,
     function (err, res) {
       if (err) {
@@ -32,20 +32,23 @@ servicePackages.create = function (newServiceCategory, result) {
 };
 
 servicePackages.findAll = function (result) {
-  dbConn.query("Select * from ond_service_category", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_service_category : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_service_packages,ond_services where ond_service_packages.service_id = ond_services.service_id",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_service_packages : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 servicePackages.findById = function (id, result) {
   dbConn.query(
-    "Select * from ond_service_category where category_id=? ",
+    "Select * from ond_service_packages,ond_services where ond_service_packages.service_id = ond_services.service_id and package_id=?",
     id,
     function (err, res) {
       if (err) {
@@ -60,8 +63,13 @@ servicePackages.findById = function (id, result) {
 
 servicePackages.update = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_category SET category_name=?,category_image=? WHERE category_id  = ?",
-    [servicePackages.category_name, servicePackages.category_image, id],
+    "UPDATE ond_service_packages SET  package_name=?,package_amount=?,package_desc=? WHERE package_id  = ?",
+    [
+      servicePackages.package_name,
+      servicePackages.package_amount,
+      servicePackages.package_desc,
+      id,
+    ],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -75,7 +83,7 @@ servicePackages.update = function (id, servicePackages, result) {
 
 servicePackages.delete = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_category SET status=? WHERE category_id  = ?",
+    "UPDATE ond_service_packages SET status=? WHERE package_id  = ?",
     [servicePackages.status, id],
     function (err, res) {
       if (err) {

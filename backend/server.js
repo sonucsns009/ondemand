@@ -7,6 +7,45 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// // email starts
+
+// var nodemailer = require("nodemailer");
+
+// var transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false,
+//   requireTLS: true,
+//   tls: {
+//     ciphers: "SSLv3",
+//     rejectUnauthorized: false,
+//   },
+
+//   auth: {
+//     user: "kamleshmore141414@gmail.com",
+//     pass: "@1234@1234",
+//   },
+// });
+
+// var mailOptions = {
+//   from: "doris.anderson0@ethereal.email",
+//   to: "kamleshmore41@gmail.com",
+//   subject: "Sending Email using Node.js",
+//   text: `Hi Smartherd, thank you for your nice Node.js tutorials.
+//           I will donate 50$ for this course. Please send me payment options.`,
+//   html: "<h1>Hi Smartherd</h1><p>Your Messsage</p>",
+// };
+//
+// transporter.sendMail(mailOptions, function (error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Email sent: " + info.response);
+//   }
+// });
+
+// // email ends
+
 app.use(bodyParser.json());
 // multer
 const multer = require("multer");
