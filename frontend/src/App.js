@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Header';
 import Login from './components/Login';
+import Registration from './components/Registration';
 import Sidebar from './components/Sidebar';
 import Maincategory from './pages/Maincategory';
 import Mainsubcategory from './pages/Mainsubcategory';
@@ -18,14 +19,20 @@ function App () {
   console.warn(auth);
   return (
     
-    <div className="row">
-       
-          
+    <div className="page-wrapper">
+             
+            { auth!==null?<Header/>:""}
+             {/*{auth!==null?<Header/>:<Registration/>}*/}
+              <div className="page-body-wrapper">             
     <BrowserRouter>
-    
+         
       
         <Routes>
-          <Route exact path="/" element={<Login/>} />
+        
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          {/* <Route exact path="/login" element={<Login/>} /> */}
+          <Route path="/registration" element={<Registration />} />
           <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/maincategory" element={<Maincategory/>} />
@@ -40,7 +47,7 @@ function App () {
       
     </BrowserRouter>
     </div>
-    
+    </div>
   );
 };
 
