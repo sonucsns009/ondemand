@@ -16,7 +16,7 @@ var services = function (services) {
 };
 
 services.create = function (newservices, result) {
-  console.log(newservices);
+  // console.log(newservices);
   dbConn.query(
     "INSERT INTO ond_services set ?",
     newservices,
@@ -60,7 +60,7 @@ services.findById = function (id, result) {
 };
 
 services.update = function (id, services, result) {
-  console.log(services);
+  // console.log(services);
   dbConn.query(
     "UPDATE ond_services SET service_name=?,service_desc=?,service_image=?,price=?,discount=?,coupon_code=?,status=?,updated_date=? WHERE service_id  = ?",
     [

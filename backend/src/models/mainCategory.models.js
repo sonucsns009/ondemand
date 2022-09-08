@@ -11,7 +11,7 @@ var mainCategory = function (mainCategory) {
 };
 
 mainCategory.create = function (newMainCategory, result) {
-  console.log(newMainCategory);
+  // console.log(newMainCategory);
   dbConn.query(
     "INSERT INTO ond_main_category set ?",
     newMainCategory,

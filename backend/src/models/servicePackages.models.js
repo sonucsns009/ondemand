@@ -15,7 +15,7 @@ var servicePackages = function (servicePackages) {
 };
 
 servicePackages.create = function (newServiceCategory, result) {
-  console.log(newServiceCategory);
+  // console.log(newServiceCategory);
   dbConn.query(
     "INSERT INTO ond_service_packages set ?",
     newServiceCategory,

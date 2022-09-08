@@ -11,7 +11,7 @@ var serviceCategory = function (serviceCategory) {
 };
 
 serviceCategory.create = function (newServiceCategory, result) {
-  console.log(newServiceCategory);
+  // console.log(newServiceCategory);
   dbConn.query(
     "INSERT INTO ond_service_category set ?",
     newServiceCategory,

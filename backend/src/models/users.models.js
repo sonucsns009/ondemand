@@ -1,6 +1,5 @@
 "use strict";
 var dbConn = require("../../config/db.config");
-var nodemailer = require("nodemailer");
 
 var Users = function (Users) {
   this.profile_id =
@@ -75,7 +74,7 @@ Users.userlogin = function (Users, result) {
   );
 };
 Users.verification = function (Users, result) {
-  console.log(Users);
+  // console.log(Users);
   dbConn.query(
     "SELECT * from ond_users where mobilenumber=? and mobile_otp=?",
     [Users.mobilenumber, Users.mobile_otp],
@@ -99,7 +98,7 @@ Users.findAll = function (result) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("ond_users : ", res);
+      // console.log("ond_users : ", res);
       result(null, res);
     }
   });

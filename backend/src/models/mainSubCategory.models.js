@@ -12,7 +12,7 @@ var mainSubCategory = function (mainSubCategory) {
 };
 
 mainSubCategory.create = function (newMainSubCategory, result) {
-  console.log(newMainSubCategory);
+  // console.log(newMainSubCategory);
   dbConn.query(
     "INSERT INTO ond_main_subcategory set ?",
     newMainSubCategory,
