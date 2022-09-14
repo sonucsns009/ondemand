@@ -25,4 +25,10 @@ router.put("/:id", userControllers.update);
 // Delete a user with id
 router.delete("/:id", userControllers.delete);
 
+// android apis
+
+router.post("/regstration", userControllers.createRegstration);
+
+router.post("/otp_check", userControllers.userOtpCheck);
+
 module.exports = router;

@@ -2,8 +2,7 @@
 var dbConn = require("../../config/db.config");
 
 var Users = function (Users) {
-  this.profile_id =
-    "ond_" + Math.floor(Math.random() * 1000000000000000 + Date.now());
+  this.profile_id = Users.profile_id;
   this.fullname = Users.fullname;
   this.emailaddress = Users.emailaddress;
   this.address = Users.address;
@@ -17,19 +16,25 @@ var Users = function (Users) {
   this.user_photo = Users.user_photo;
   this.country = Users.country;
   this.city = Users.city;
-  this.mobile_otp = Math.floor(Math.random() * 1000000);
+  this.mobile_otp = Users.mobile_otp;
   this.email_code_verify = Math.floor(Math.random() * 1000000);
   this.otp_forgot_code = Math.floor(Math.random() * 1000000);
   this.user_status = Users.user_status ? Users.user_status : 1;
-  this.reg_step = Users.reg_step;
-  this.utoken = Users.utoken;
-  this.fcm_token = Users.fcm_token;
+  this.reg_step = "1234";
+  this.utoken = "1234";
+  this.fcm_token = "1234";
   this.dateadded = new Date();
   this.dateupdated = new Date();
 };
 
 Users.create = function (newUsers, result) {
   // console.log(newUsers);
+
+  let profile_id = "ond_" + Math.floor(Math.random() * 1000000);
+  newUsers.profile_id = profile_id;
+  let mobile_otp = "123456";
+  newUsers.mobile_otp = mobile_otp;
+
   dbConn.query("INSERT INTO ond_users set ?", newUsers, function (err, res) {
     if (err) {
       console.log("error: ", err);
@@ -130,6 +135,41 @@ Users.delete = function (id, Users, result) {
         result(null, err);
       } else {
         result(null, res);
+      }
+    }
+  );
+};
+
+// android models
+Users.createRegestration = function (newUsers, result) {
+  let profile_id = "ond_" + Math.floor(Math.random() * 1000000);
+  newUsers.profile_id = profile_id;
+  let mobile_otp = "123456";
+  newUsers.mobile_otp = mobile_otp;
+  dbConn.query("INSERT INTO ond_users set ?", newUsers, function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      console.log(res.insertId);
+      result(null, res.insertId);
+    }
+  });
+};
+
+Users.otp_check = function (Users, result) {
+  dbConn.query(
+    "SELECT * from ond_users where mobilenumber=? and mobile_otp=?",
+    [Users.mobilenumber, Users.mobile_otp],
+    function (err, res) {
+      console.log(res);
+
+      if (res !== "") {
+        result(null, res);
+        console.log(res);
+      } else {
+        console.log("{}", res);
+        result(null, err);
       }
     }
   );

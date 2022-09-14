@@ -1,17 +1,6 @@
 "use strict";
-// var nodemailer = require("nodemailer");
-// var sendgridTransport = require("nodemailer-sendgrid-transport");
 
 const Users = require("../models/users.models");
-
-// const transporter = nodemailer.createTransport(
-//   sendgridTransport({
-//     auth: {
-//       api_key:
-//         "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",
-//     },
-//   })
-// );
 
 exports.findAll = function (req, res) {
   Users.findAll(function (err, Users) {
@@ -23,17 +12,14 @@ exports.findAll = function (req, res) {
 
 exports.create = function (req, res) {
   const new_User = new Users(req.body);
+
+  console.log(new_User);
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    // transporter.sendMail({
-    //   to: "mrkamleshmore41@gmail.com",
-    //   from: "self@kamleshmore.com",
-    //   subject: "abcd",
-    // });
     Users.create(new_User, function (err, Users) {
       if (err) res.send(err);
       res.json({
@@ -87,5 +73,62 @@ exports.delete = function (req, res) {
   Users.delete(req.params.id, new Users(req.body), function (err, Users) {
     if (err) res.send(err);
     res.json({ error: false, message: "User successfully deleted" });
+  });
+};
+
+// android controllers
+
+exports.createRegstration = function (req, res) {
+  const new_User = new Users({
+    fullname: req.body.fullname,
+    emailaddress: req.body.emailaddress,
+    address: "",
+    state: "",
+    ugender: "",
+    dob: "",
+    age: "",
+    country_code: req.body.country_code,
+    mobilenumber: req.body.mobilenumber,
+    upassword: "",
+    user_photo: "",
+    country: "",
+    city: "",
+  });
+  console.log(new_User);
+
+  //handles null error
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.createRegestration(new_User, function (err, Users) {
+      if (err) res.send(err);
+      res.json({
+        error: false,
+        message: "User added successfully!",
+        data: Users,
+      });
+    });
+  }
+};
+
+exports.userOtpCheck = function (req, res) {
+  Users.otp_check(new Users(req.body), function (err, Users) {
+    console.log("arara" + Users);
+    if (Users.length > 0) {
+      if (err) res.send("user not found");
+
+      res.json({
+        error: false,
+        message: "Otp matched",
+      });
+    } else {
+      res.json({
+        error: false,
+        message: "Otp Not Matched",
+      });
+    }
+    // res.send(Users);
   });
 };
