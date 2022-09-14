@@ -1,54 +1,40 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './Header';
-import Login from './components/Login';
-import Registration from './components/Registration';
-import Sidebar from './components/Sidebar';
-import Maincategory from './pages/Maincategory';
-import Mainsubcategory from './pages/Mainsubcategory';
-import Dashboard from './pages/Dashboard';
-import About from './pages/About';
-import Analytics from './pages/Analytics';
-import Comment from './pages/Comment';
-import Product from './pages/Product';
-import ProductList from './pages/ProductList';
+import { Route, Routes } from 'react-router-dom';
 
-function App () {
+import Header from './Header';
+import Login from './Login';
+import Sidebar from './Sidebar';
+import Maincategory from './components/maincategory/Maincategory';
+import AddMainCategory from './components/maincategory/AddMainCategory';
+
+import Dashboard from './components/admin/Dashboard';
+import PrivateComponent from './PrivateComponent';
+import EditMainCategory from './components/maincategory/EditMainCategory';
+
+function App() {
   const auth = localStorage.getItem('user');
-  console.warn(auth);
   return (
-    
     <div className="page-wrapper">
-             
-            { auth!==null?<Header/>:""}
-             {/*{auth!==null?<Header/>:<Registration/>}*/}
-              <div className="page-body-wrapper">             
-    <BrowserRouter>
+      {  auth ? <Header />:<Login />}
+       <div class="page-body-wrapper">
          
-      
         <Routes>
-        
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route exact path="/login" element={<Login/>} /> */}
-          <Route path="/registration" element={<Registration />} />
+          
+         <Route element={<PrivateComponent />}>
+         
           <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/maincategory" element={<Maincategory/>} />
-          <Route path="/mainsubcategory" element={<Mainsubcategory/>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/comment" element={<Comment />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/productList" element={<ProductList />} />
+          <Route path="/addmaincategory" element={<AddMainCategory/>} />
+          <Route path="/editmaincategory/:id" element={<EditMainCategory/>} />
           
+        </Route>
+       
         </Routes>
-      
-    </BrowserRouter>
-    </div>
-    </div>
+       </div>
+     </div>
   );
-};
+}
 
 export default App;
