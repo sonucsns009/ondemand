@@ -56,11 +56,12 @@ mainCategory.findById = function (id, result) {
 
 mainCategory.update = function (id, mainCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_category SET category_name=?,category_image=?,updated_date=? WHERE category_id  = ?",
+    "UPDATE ond_main_category SET category_name=?,category_image=?,updated_date=?,status=? WHERE category_id  = ?",
     [
       mainCategory.category_name,
       mainCategory.category_image,
       mainCategory.updated_date,
+      mainCategory.status,
       id,
     ],
     function (err, res) {

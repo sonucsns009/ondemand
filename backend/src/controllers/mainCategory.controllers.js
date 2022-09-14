@@ -31,6 +31,7 @@ exports.create = function (req, res) {
 
 exports.findById = function (req, res) {
   mainCategory.findById(req.params.id, function (err, mainCategory) {
+    console.log("data------>"+mainCategory);
     if (err) res.send(err);
     res.json(mainCategory);
   });
@@ -42,15 +43,15 @@ exports.update = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    mainCategory.update(
-      req.params.id,
-      new mainCategory(req.body),
-      function (err, mainCategory) {
+    console.log("id---->"+req.params.id);
+    mainCategory.update(req.params.id,new mainCategory(req.body),function (err, mainCategory) {
+      
         if (err) res.send(err);
         res.json({
           error: false,
           message: "Main Category successfully updated",
         });
+        
       }
     );
   }
