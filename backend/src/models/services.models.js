@@ -4,6 +4,8 @@ var dbConn = require("./../../config/db.config");
 
 var services = function (services) {
   this.service_id = services.service_id;
+  this.category_id = services.category_id;
+  this.subcategory_id = services.subcategory_id;
   this.service_name = services.service_name;
   this.service_desc = services.service_desc;
   this.service_image = services.service_image;
@@ -62,8 +64,10 @@ services.findById = function (id, result) {
 services.update = function (id, services, result) {
   // console.log(services);
   dbConn.query(
-    "UPDATE ond_services SET service_name=?,service_desc=?,service_image=?,price=?,discount=?,coupon_code=?,status=?,updated_date=? WHERE service_id  = ?",
+    "UPDATE ond_services SET  category_id=?,subcategory_id=?,service_name=?,service_desc=?,service_image=?,price=?,discount=?,coupon_code=?,status=?,updated_date=? WHERE service_id  = ?",
     [
+      services.category_id,
+      services.subcategory_id,
       services.service_name,
       services.service_desc,
       services.service_image,
