@@ -28,15 +28,17 @@ router.delete("/:id", userControllers.delete);
 // forgot user password
 router.post("/forgotPassword", userControllers.forgotPassword);
 
-// update password
+// update user password
 router.post("/updateUserPassword", userControllers.updateUserPassword);
 
 // android apis
-
+// user regestration
 router.post("/regstration", userControllers.createRegstration);
 
+// user otp verification
 router.post("/otp_check", userControllers.userOtpCheck);
 
+// resend otp to user
 router.post("/otpForgotCode", userControllers.otpForgotCode);
 
 module.exports = router;
