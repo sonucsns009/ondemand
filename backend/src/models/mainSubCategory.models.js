@@ -72,10 +72,11 @@ mainSubCategory.findById = function (id, result) {
 
 mainSubCategory.update = function (id, mainSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=?,updated_date=? WHERE subcategory_id  = ?",
+    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=?,status=? ,updated_date=? WHERE subcategory_id  = ?",
     [
       mainSubCategory.subcategory_name,
       mainSubCategory.subcategory_image,
+      mainSubCategory.status,
       mainSubCategory.updated_date,
       id,
     ],
