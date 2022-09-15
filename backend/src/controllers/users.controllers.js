@@ -130,7 +130,7 @@ exports.createRegstration = function (req, res) {
     age: "",
     country_code: req.body.country_code,
     mobilenumber: req.body.mobilenumber,
-    upassword: "",
+    upassword: req.body.upassword,
     user_photo: "",
     country: "",
     city: "",
@@ -194,6 +194,44 @@ exports.otpForgotCode = function (req, res) {
     Users.resendOtp(new Users(req.body), function (err, Users) {
       if (err) res.send(err);
       res.json({ error: false, message: "Otp Sended successfully" });
+    });
+  }
+};
+
+exports.profileUpdate = function (req, res) {
+  const new_User = new Users(req.body);
+
+  console.log(new_User);
+  //handles null error
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.profileUpdate(req.params.id, new_User, function (err, Users) {
+      if (err) res.send(err);
+      res.json({
+        error: false,
+        message: "User Profile Updated successfully!",
+        data: Users,
+      });
+    });
+  }
+};
+
+// pending
+exports.profilePicUpdate = function (req, res) {
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.profilePicUpdate(req.params.id, newUser, function (err, Users) {
+      if (err) res.send(err);
+      res.json({
+        error: false,
+        message: "Profile Photo Updated successfully",
+      });
     });
   }
 };

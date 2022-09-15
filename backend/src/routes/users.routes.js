@@ -41,4 +41,10 @@ router.post("/otp_check", userControllers.userOtpCheck);
 // resend otp to user
 router.post("/otpForgotCode", userControllers.otpForgotCode);
 
+// users profile update // pending
+router.post("/profileUpdate/:id", userControllers.profileUpdate);
+
+// users profile pic update
+router.post("/profilePicUpdate/:id", userControllers.profilePicUpdate);
+
 module.exports = router;

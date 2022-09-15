@@ -30,7 +30,7 @@ var Users = function (Users) {
 Users.create = function (newUsers, result) {
   // console.log(newUsers);
 
-  let profile_id = "ond_" + Math.floor(Math.random() * 1000000);
+  let profile_id = "ond_" + Math.floor(Math.random() * 10000000000000000);
   newUsers.profile_id = profile_id;
   let mobile_otp = "123456";
   newUsers.mobile_otp = mobile_otp;
@@ -157,7 +157,7 @@ Users.updateUserPassword = function (Users, result) {
 
 // android models
 Users.createRegestration = function (newUsers, result) {
-  let profile_id = "ond_" + Math.floor(Math.random() * 1000000);
+  let profile_id = "ond_" + Math.floor(Math.random() * 10000000000000000);
   newUsers.profile_id = profile_id;
   let mobile_otp = "123456";
   newUsers.mobile_otp = mobile_otp;
@@ -209,6 +209,40 @@ Users.mobileNumber_check = function (Users, result) {
   dbConn.query(
     "SELECT * FROM ond_users where mobilenumber = ?",
     [Users.mobilenumber],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
+Users.profileUpdate = function (id, newUsers, result) {
+  // console.log(newUsers);
+
+  dbConn.query(
+    "UPDATE ond_users SET set ? where user_id =?",
+    [newUsers, id],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        // console.log(res.insertId);
+        result(null, res);
+      }
+    }
+  );
+};
+
+Users.profilePicUpdate = function (id, Users, result) {
+  // console.log(Users);
+  dbConn.query(
+    "UPDATE ond_users SET user_photo=?,dateupdated=? WHERE user_id  = ?",
+    [Users.user_photo, Users.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
