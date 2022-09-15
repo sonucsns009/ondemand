@@ -57,10 +57,12 @@ serviceSubCategory.findById = function (id, result) {
 
 serviceSubCategory.update = function (id, serviceSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_service_subcategory SET subcategory_name=?,subcategory_image=? WHERE subcategory_id  = ?",
+    "UPDATE ond_service_subcategory SET subcategory_name=?,subcategory_image=?,status=?,updated_date=? WHERE subcategory_id  = ?",
     [
       serviceSubCategory.subcategory_name,
       serviceSubCategory.subcategory_image,
+      serviceSubCategory.status,
+      serviceSubCategory.updated_date,
       id,
     ],
     function (err, res) {
@@ -76,8 +78,8 @@ serviceSubCategory.update = function (id, serviceSubCategory, result) {
 
 serviceSubCategory.delete = function (id, serviceSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_service_subcategory SET status=? WHERE subcategory_id  = ?",
-    [serviceSubCategory.status, id],
+    "UPDATE ond_service_subcategory SET status=?,updated_date=? WHERE subcategory_id  = ?",
+    [serviceSubCategory.status, serviceSubCategory.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);

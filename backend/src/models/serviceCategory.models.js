@@ -56,8 +56,14 @@ serviceCategory.findById = function (id, result) {
 
 serviceCategory.update = function (id, serviceCategory, result) {
   dbConn.query(
-    "UPDATE ond_service_category SET category_name=?,category_image=? WHERE category_id  = ?",
-    [serviceCategory.category_name, serviceCategory.category_image, id],
+    "UPDATE ond_service_category SET category_name=?,category_image=?,status=?,added_date=? WHERE category_id  = ?",
+    [
+      serviceCategory.category_name,
+      serviceCategory.category_image,
+      serviceCategory.status,
+      serviceCategory.added_date,
+      id,
+    ],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -71,8 +77,8 @@ serviceCategory.update = function (id, serviceCategory, result) {
 
 serviceCategory.delete = function (id, serviceCategory, result) {
   dbConn.query(
-    "UPDATE ond_service_category SET status=? WHERE category_id  = ?",
-    [serviceCategory.status, id],
+    "UPDATE ond_service_category SET status=?,added_date=? WHERE category_id  = ?",
+    [serviceCategory.status, serviceCategory.added_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);

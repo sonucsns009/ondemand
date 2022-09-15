@@ -63,11 +63,13 @@ servicePackages.findById = function (id, result) {
 
 servicePackages.update = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_packages SET  package_name=?,package_amount=?,package_desc=? WHERE package_id  = ?",
+    "UPDATE ond_service_packages SET  package_name=?,package_amount=?,package_desc=?,status=?,updated_date=? WHERE package_id  = ?",
     [
       servicePackages.package_name,
       servicePackages.package_amount,
       servicePackages.package_desc,
+      servicePackages.status,
+      servicePackages.updated_date,
       id,
     ],
     function (err, res) {
@@ -83,8 +85,8 @@ servicePackages.update = function (id, servicePackages, result) {
 
 servicePackages.delete = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_packages SET status=? WHERE package_id  = ?",
-    [servicePackages.status, id],
+    "UPDATE ond_service_packages SET status=?,updated_date=? WHERE package_id  = ?",
+    [servicePackages.status, servicePackages.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
