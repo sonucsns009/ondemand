@@ -76,6 +76,47 @@ exports.delete = function (req, res) {
   });
 };
 
+exports.forgotPassword = function (req, res) {
+  //handles null error
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.mobileNumber_check(new Users(req.body), function (err, UsersData) {
+      if (err) req.send(err);
+
+      if (UsersData.length > 0) {
+        Users.resendOtp(new Users(req.body), function (err, UsersData1) {
+          if (err) res.send(err);
+          res.json({ error: false, message: "Otp Sended successfully" });
+        });
+      } else {
+        res.json({
+          error: false,
+          message: "Mobile number Not Exists",
+        });
+      }
+    });
+  }
+};
+
+exports.updateUserPassword = function (req, res) {
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.updateUserPassword(new Users(req.body), function (err, Users) {
+      if (err) res.send(err);
+      res.json({
+        error: false,
+        message: "User Pasword successfully updated",
+      });
+    });
+  }
+};
+
 // android controllers
 
 exports.createRegstration = function (req, res) {
@@ -102,13 +143,24 @@ exports.createRegstration = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Users.createRegestration(new_User, function (err, Users) {
-      if (err) res.send(err);
-      res.json({
-        error: false,
-        message: "User added successfully!",
-        data: Users,
-      });
+    Users.mobileNumber_check(new_User, function (err, UsersData) {
+      if (err) req.send(err);
+
+      if (UsersData.length > 0) {
+        res.json({
+          error: false,
+          message: "User Already Exists",
+        });
+      } else {
+        Users.createRegestration(new_User, function (err, UsersData) {
+          if (err) res.send(err);
+          res.json({
+            error: false,
+            message: "User added successfully!",
+            data: UsersData,
+          });
+        });
+      }
     });
   }
 };
@@ -122,6 +174,7 @@ exports.userOtpCheck = function (req, res) {
       res.json({
         error: false,
         message: "Otp matched",
+        data: Users,
       });
     } else {
       res.json({
@@ -129,6 +182,18 @@ exports.userOtpCheck = function (req, res) {
         message: "Otp Not Matched",
       });
     }
-    // res.send(Users);
   });
+};
+
+exports.otpForgotCode = function (req, res) {
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .send({ error: true, message: "Please provide all required field" });
+  } else {
+    Users.resendOtp(new Users(req.body), function (err, Users) {
+      if (err) res.send(err);
+      res.json({ error: false, message: "Otp Sended successfully" });
+    });
+  }
 };

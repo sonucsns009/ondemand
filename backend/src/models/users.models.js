@@ -140,6 +140,21 @@ Users.delete = function (id, Users, result) {
   );
 };
 
+Users.updateUserPassword = function (Users, result) {
+  dbConn.query(
+    "UPDATE ond_users SET upassword=?,dateupdated=? WHERE mobilenumber  = ?",
+    [Users.upassword, Users.dateupdated, Users.mobilenumber],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 // android models
 Users.createRegestration = function (newUsers, result) {
   let profile_id = "ond_" + Math.floor(Math.random() * 1000000);
@@ -168,8 +183,38 @@ Users.otp_check = function (Users, result) {
         result(null, res);
         console.log(res);
       } else {
-        console.log("{}", res);
         result(null, err);
+      }
+    }
+  );
+};
+
+Users.resendOtp = function (Users, result) {
+  let mobile_otp = "000000";
+  dbConn.query(
+    "UPDATE ond_users SET mobile_otp=?,dateupdated=? WHERE mobilenumber  = ?",
+    [mobile_otp, Users.dateupdated, Users.mobilenumber],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
+Users.mobileNumber_check = function (Users, result) {
+  dbConn.query(
+    "SELECT * FROM ond_users where mobilenumber = ?",
+    [Users.mobilenumber],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
       }
     }
   );
