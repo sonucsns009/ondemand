@@ -166,7 +166,7 @@ Users.createRegestration = function (newUsers, result) {
       console.log("error: ", err);
       result(err, null);
     } else {
-      console.log(res.insertId);
+      console.log("inc" + res.insertId);
       result(null, res.insertId);
     }
   });
@@ -190,7 +190,7 @@ Users.otp_check = function (Users, result) {
 };
 
 Users.resendOtp = function (Users, result) {
-  let mobile_otp = "000000";
+  let mobile_otp = "123456";
   dbConn.query(
     "UPDATE ond_users SET mobile_otp=?,dateupdated=? WHERE mobilenumber  = ?",
     [mobile_otp, Users.dateupdated, Users.mobilenumber],

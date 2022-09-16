@@ -29,17 +29,17 @@ router.delete("/:id", userControllers.delete);
 router.post("/forgotPassword", userControllers.forgotPassword);
 
 // update user password
-router.post("/updateUserPassword", userControllers.updateUserPassword);
+router.post("/changepassword", userControllers.updateUserPassword);
 
 // android apis
 // user regestration
 router.post("/regstration", userControllers.createRegstration);
 
 // user otp verification
-router.post("/otp_check", userControllers.userOtpCheck);
+router.post("/confirmOTP", userControllers.userOtpCheck);
 
 // resend otp to user
-router.post("/otpForgotCode", userControllers.otpForgotCode);
+router.post("/resendOTP", userControllers.otpForgotCode);
 
 // users profile update // pending
 router.post("/profileUpdate/:id", userControllers.profileUpdate);

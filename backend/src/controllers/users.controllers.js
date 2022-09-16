@@ -89,7 +89,7 @@ exports.forgotPassword = function (req, res) {
       if (UsersData.length > 0) {
         Users.resendOtp(new Users(req.body), function (err, UsersData1) {
           if (err) res.send(err);
-          res.json({ error: false, message: "Otp Sended successfully" });
+          res.json({ error: false, message: "Otp Send successfully" });
         });
       } else {
         res.json({
@@ -111,7 +111,7 @@ exports.updateUserPassword = function (req, res) {
       if (err) res.send(err);
       res.json({
         error: false,
-        message: "User Pasword successfully updated",
+        message: "User Password successfully updated",
       });
     });
   }
@@ -135,7 +135,6 @@ exports.createRegstration = function (req, res) {
     country: "",
     city: "",
   });
-  console.log(new_User);
 
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
@@ -193,7 +192,7 @@ exports.otpForgotCode = function (req, res) {
   } else {
     Users.resendOtp(new Users(req.body), function (err, Users) {
       if (err) res.send(err);
-      res.json({ error: false, message: "Otp Sended successfully" });
+      res.json({ error: false, message: "Otp Send successfully" });
     });
   }
 };
@@ -201,7 +200,6 @@ exports.otpForgotCode = function (req, res) {
 exports.profileUpdate = function (req, res) {
   const new_User = new Users(req.body);
 
-  console.log(new_User);
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
@@ -226,12 +224,16 @@ exports.profilePicUpdate = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Users.profilePicUpdate(req.params.id, newUser, function (err, Users) {
-      if (err) res.send(err);
-      res.json({
-        error: false,
-        message: "Profile Photo Updated successfully",
-      });
-    });
+    Users.profilePicUpdate(
+      req.params.id,
+      new Users(req.body),
+      function (err, Users) {
+        if (err) res.send(err);
+        res.json({
+          error: false,
+          message: "Profile Photo Updated successfully",
+        });
+      }
+    );
   }
 };

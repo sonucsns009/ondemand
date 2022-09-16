@@ -102,7 +102,7 @@ app.post(
 function usersUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully uploaded files" });
+  res.json({ message: "Successfully upload file" });
 }
 
 //  services
@@ -115,7 +115,7 @@ app.post(
 function servicesUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully uploaded files" });
+  res.json({ message: "Successfully upload file" });
 }
 
 //  main category
@@ -128,7 +128,7 @@ app.post(
 function mainCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully uploaded files" });
+  res.json({ message: "Successfully upload file" });
 }
 
 //  main sub category
@@ -141,7 +141,7 @@ app.post(
 function mainSubCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully uploaded files" });
+  res.json({ message: "Successfully upload file" });
 }
 
 // file upload ends
