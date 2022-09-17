@@ -224,8 +224,20 @@ Users.profileUpdate = function (id, newUsers, result) {
   // console.log(newUsers);
 
   dbConn.query(
-    "UPDATE ond_users SET set ? where user_id =?",
-    [newUsers, id],
+    "UPDATE ond_users SET fullname=?,emailaddress=?,address=?,state=?,ugender=?,dob=?,age=?,mobilenumber=?,city=?,dateupdated=?  where user_id =?",
+    [
+      newUsers.fullname,
+      newUsers.emailaddress,
+      newUsers.address,
+      newUsers.state,
+      newUsers.ugender,
+      newUsers.dob,
+      newUsers.age,
+      newUsers.mobilenumber,
+      newUsers.city,
+      newUsers.dateupdated,
+      id,
+    ],
     function (err, res) {
       if (err) {
         console.log("error: ", err);

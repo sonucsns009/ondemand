@@ -41,7 +41,7 @@ router.post("/confirmOTP", userControllers.userOtpCheck);
 // resend otp to user
 router.post("/resendOTP", userControllers.otpForgotCode);
 
-// users profile update // pending
+// users profile update
 router.post("/profileUpdate/:id", userControllers.profileUpdate);
 
 // users profile pic update

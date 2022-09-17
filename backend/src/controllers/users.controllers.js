@@ -198,7 +198,7 @@ exports.otpForgotCode = function (req, res) {
 };
 
 exports.profileUpdate = function (req, res) {
-  const new_User = new Users(req.body);
+  const profileUpdates = new Users(req.body);
 
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
@@ -206,12 +206,11 @@ exports.profileUpdate = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Users.profileUpdate(req.params.id, new_User, function (err, Users) {
+    Users.profileUpdate(req.params.id, profileUpdates, function (err, Users) {
       if (err) res.send(err);
       res.json({
         error: false,
         message: "User Profile Updated successfully!",
-        data: Users,
       });
     });
   }
