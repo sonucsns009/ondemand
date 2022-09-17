@@ -12,6 +12,12 @@ import Dashboard from './components/admin/Dashboard';
 import PrivateComponent from './PrivateComponent';
 import EditMainCategory from './components/maincategory/EditMainCategory';
 
+import Mainsubcategory from './components/mainsubcategory/Mainsubcategory';
+import AddMainSubCategory from './components/mainsubcategory/AddMainSubCategory';
+import EditMainSubCategory from './components/mainsubcategory/EditMainSubCategory';
+import Services from './components/services/Services';
+import AddServices from './components/services/addservices';
+import EditServices from './components/services/editservices';
 function App() {
   const auth = localStorage.getItem('user');
   return (
@@ -28,7 +34,12 @@ function App() {
           <Route path="/maincategory" element={<Maincategory/>} />
           <Route path="/addmaincategory" element={<AddMainCategory/>} />
           <Route path="/editmaincategory/:id" element={<EditMainCategory/>} />
-          
+          <Route path="/mainsubcategory" element={<Mainsubcategory/>} />
+          <Route path="/addmainsubcategory" element={<AddMainSubCategory/>} />
+          <Route path="/editmainsubcategory/:id" element={<EditMainSubCategory/>}/>
+          <Route path="/services" element={<Services/>}/>
+          <Route path="/addservices" element={<AddServices/>}/>
+          <Route path="/editservices/:id" element={<EditServices/>}/>
         </Route>
        
         </Routes>

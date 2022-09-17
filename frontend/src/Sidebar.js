@@ -17,8 +17,9 @@ class Sidebar extends Component {
                             
                                     <li  className="  nav-expanded nav-active">
                                             <Link className="sidebar-header" to="/maincategory">Main Category</Link>
-                                            <Link className="sidebar-header" to="/company">Company</Link>
-                                            <Link className="sidebar-header" to="/customer">Customer</Link>
+                                            <Link className="sidebar-header" to="/mainsubcategory">Main Subcategory</Link>
+                                            <Link className="sidebar-header" to="/services">Services</Link>
+                                                                                        
                                             <Link className="sidebar-header" to="/call">Call</Link>
                                              <Link className="sidebar-header" to="/meeting">Meeting</Link>
                                              <Link className="sidebar-header" to="/requirement">Requirement</Link>
