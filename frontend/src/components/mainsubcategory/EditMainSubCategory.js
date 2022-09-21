@@ -14,9 +14,7 @@ function EditMainSubCategory(props) {
 
     const [status,setstatus]=useState("");
 
-    const navigate = useNavigate();
-
-    
+    const navigate = useNavigate(); 
 
     useEffect(()=>{
         getCategoryDeatils();
@@ -78,7 +76,7 @@ function EditMainSubCategory(props) {
                         <div className="card tab2-card">
                             <div className="card-header">
                                 
-                            <h5>Update Category</h5>
+                            <h5>Update Sub Category</h5>
                             <div className="card-header-right">
                                 <div className="row">
                                     <div className="col-lg-12">

@@ -36,8 +36,8 @@ function AddServices(props) {
         setMaincategory(result);
         }
     
-          const getMainSubCategory = async() => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory");
+          const getMainSubCategory = async(category_id) => {
+            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/"+category_id);
             result = await result.json();
             setMainSubCategory(result);
             }
@@ -108,7 +108,7 @@ function AddServices(props) {
                                 Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                <select className="form-control"  onChange={(e)=>setCategory_Id(e.target.value)}>Select Category
+                                <select className="form-control"  onChange={(e)=>getMainSubCategory(e.target.value)}>Select Category
                                     {
                                         maincategory.map((item, index) => {
                                         //cnt++;

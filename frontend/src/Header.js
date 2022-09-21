@@ -17,7 +17,8 @@ class Header extends Component {
                     <div className="page-main-header">
                       <div className="main-header-right row">
                         <div className="main-header-left d-lg-none">
-                          <div className="logo-wrapper"><Link to=""><img className="blur-up lazyloaded" src="./images/manager.png"  style={{width: 179, height: 79}} alt="tlogo"/></Link>				</div>
+                          <div className="logo-wrapper"><Link to=""><img className="blur-up lazyloaded" src="./images/manager.png"  style={{width: 179, height: 79}} alt="tlogo"/></Link>
+                          </div>
                         </div>
                         {/*<div class="mobile-sidebar">
                         <div class="media-body text-right switch-sm">

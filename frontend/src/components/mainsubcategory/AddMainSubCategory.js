@@ -72,7 +72,7 @@ function AddMainSubCategory(props) {
                         <div className="card tab2-card">
                             <div className="card-header">
                                 
-                            <h5>Add Sub Category</h5>
+                            <h5>Add MainSub Category</h5>
                             <div className="card-header-right">
                                 <div className="row">
                                     <div className="col-lg-12">

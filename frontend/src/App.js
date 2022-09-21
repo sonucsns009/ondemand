@@ -18,6 +18,11 @@ import EditMainSubCategory from './components/mainsubcategory/EditMainSubCategor
 import Services from './components/services/Services';
 import AddServices from './components/services/addservices';
 import EditServices from './components/services/editservices';
+import ServicePackages from './components/servicePackages/ServicePackage';
+import AddservicePackages from './components/servicePackages/AddServicePackages';
+import EditServicePackages from './components/servicePackages/EditServicePackages';
+
+import Banner from './components/Banner/banner';
 function App() {
   const auth = localStorage.getItem('user');
   return (
@@ -40,6 +45,10 @@ function App() {
           <Route path="/services" element={<Services/>}/>
           <Route path="/addservices" element={<AddServices/>}/>
           <Route path="/editservices/:id" element={<EditServices/>}/>
+          <Route path="/servicepackages" element={<ServicePackages/>}/>
+          <Route path="/addservicePackages" element={<AddservicePackages/>}/>
+          <Route path="/editservicePackages/:id" element={<EditServicePackages/>}/>
+          <Route path="/banner" element={<Banner/>}/>
         </Route>
        
         </Routes>

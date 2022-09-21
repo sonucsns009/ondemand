@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {  Link } from "react-router-dom";
 
-
 function Services(props) {
     const [services, setServices] = useState([]);
     //var check="test";
@@ -84,7 +83,7 @@ function Services(props) {
                         <td>{item.status}</td>  
                         <td>
                         <Link to={"/editservices/"+item.service_id}><button className='btn btn-primary' >
-                                <i className='fa fa-edit'></i> </button></Link> | 
+                                <i className='fa fa-edit'></i> </button></Link> <br/><br/> 
                                 <button className='btn btn-primary' onClick={()=>service_delete(item.service_id)}>
                                 <i className='fa fa-trash'></i> </button>
                         </td> 

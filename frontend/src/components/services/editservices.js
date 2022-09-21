@@ -4,7 +4,7 @@ import {  useParams,useNavigate,Link } from "react-router-dom";
 function EditServices(props) {
     const [category_id, setCategory_Id]= useState("");
     const [subcategory_id, setSubCategory_Id] = useState("");
-    const [subcategory_name,setsubcategory_name]=useState("");
+    const [subcategory_name,setSubcategory_name]=useState("");
     const [maincategory, setMaincategory] = useState([]);    
     const [mainsubcategory, setMainSubCategory] = useState([]);
     const [service_name, setService_name]=useState("");
@@ -18,13 +18,11 @@ function EditServices(props) {
     const [discounterror, setService_DiscountError]=useState(false);
     const [coupon_code, setService_Coupon_Code]=useState("");
     const [coupon_codeerror, setService_Coupon_CodeError]=useState(false);
-
-
     
-     const params = useParams();
+    const params = useParams();
     console.warn(params.id);
 
-    const [status,setstatus]=useState("");
+    const [status,setStatus]=useState("");
     const navigate = useNavigate();
     useEffect(()=>{
         getServiceDeatils();
@@ -42,8 +40,6 @@ function EditServices(props) {
         setMaincategory(result);
         }
 
-
-    
           const getMainSubCategory = async() => {
             let result = await fetch("http://localhost:5000/api/v1/mainSubCategory");
             result = await result.json();
@@ -63,7 +59,7 @@ function EditServices(props) {
        setService_Price(result[0].price);
        setService_Coupon_Code(result[0].coupon_code);
 
-       setstatus(result[0].status);
+       setStatus(result[0].status);
     }
 
 
@@ -208,10 +204,10 @@ function EditServices(props) {
                                                     className='form-control'
                                                     name="status"
                                                     value={status}
-                                                    onChange={(e)=>setstatus(e.target.value)}>
+                                                    onChange={(e)=>setStatus(e.target.value)}>
                                                     <option>Select Status</option>
-                                                    <option value="active">active</option>
-                                                    <option value="inactive">inactive</option>
+                                                    <option value="Active">active</option>
+                                                    <option value="Inactive">inactive</option>
                                                 </select>
                                     </div>
                                 </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Logo from "./images/CSNS_logo2.png";
 import axios from 'axios';
 
 function Login() {
@@ -78,18 +79,27 @@ function Login() {
             <div className="container">
               <div className="row">
                 <div className="col-md-5 p-0 card-left">
+                
+                    <div className="card-body">
                   <div className="card bg-primary bg-color">
                     <div className="svg-icon" style={{padding: '16px !important'}}>
-                      <img className="blur-up lazyloaded" src="./uploads/flaticon/crm.png"  alt="" style={{width: 230, height: 183,marginLeft:-30}} />
-                    </div>
-                    <div className="single-item slick-initialized slick-slider"><div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: 271, transform: 'translate3d(0px, 0px, 0px)'}}><div className="slick-slide slick-current slick-active" data-slick-index={0} aria-hidden="false" style={{width: 271}}><div><div style={{width: '100%', display: 'inline-block'}}>
+                      <img className="blur-up lazyloaded" src={Logo}  alt="" style={{marginLeft:-30}} />
+                    <br/>
+                    <div className="single-item slick-initialized slick-slider" style={{paddingTop: 50}}>
+                      <div className="slick-list draggable">
+                        <div className="slick-track" style={{opacity: 1, transform: 'translate3d(0px, 0px, 0px)'}}>
+                          <div className="slick-slide slick-current slick-active" data-slick-index={0} aria-hidden="false" style={{width: 220}}>
+                            <div>
+                              <div style={{width: '100%', display: 'inline-block'}}>
                                 <div>
-                                  <h3>Welcome to CRM System</h3>
+                                  <h3>Welcome to OnDemand System</h3>
                                 </div>
                               </div></div></div></div></div></div>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-7 p-0 card-right">
+                </div>
+                <div className="col-md-5 p-0 card-right">
                   <div className="card tab2-card">
                     <div className="card-body">
                       <ul className="nav nav-tabs nav-material" id="top-tab" role="tablist">
