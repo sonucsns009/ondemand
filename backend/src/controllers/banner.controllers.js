@@ -11,14 +11,14 @@ exports.findAll = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  const new_mainSubCategory = new banner(req.body);
+  const new_banner = new banner(req.body);
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    banner.create(new_mainSubCategory, function (err, banner) {
+    banner.create(new_banner, function (err, banner) {
       if (err) res.send(err);
       res.json({
         error: false,

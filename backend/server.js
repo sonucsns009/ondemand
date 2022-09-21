@@ -53,6 +53,7 @@ const usersUpload = multer({ dest: "uploads/users" });
 const servicesUpload = multer({ dest: "uploads/services_img" });
 const mainCategoryUpload = multer({ dest: "uploads/mainCategory" });
 const mainSubCategoryUpload = multer({ dest: "uploads/mainsubCategory" });
+const bannerUpload = multer({ dest: "uploads/banner" });
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -81,6 +82,7 @@ const servicePackagesRoutes = require("./src/routes/servicePackages.routes");
 const serviceCategoryRoutes = require("./src/routes/serviceCategory.routes");
 const serviceSubCategoryRoutes = require("./src/routes/serviceSubCategory.routes");
 const bannerRoutes = require("./src/routes/banner.routes");
+const bannerDetailsRoutes = require("./src/routes/bannerDetails.routes");
 
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/users", usersRoutes);
@@ -91,6 +93,7 @@ app.use("/api/v1/servicePackages", servicePackagesRoutes);
 app.use("/api/v1/serviceCategory", serviceCategoryRoutes);
 app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 app.use("/api/v1/banner", bannerRoutes);
+app.use("/api/v1/bannerDetails", bannerDetailsRoutes);
 
 // file upload starts
 
@@ -141,6 +144,19 @@ app.post(
 );
 
 function mainSubCategoryUploadFiles(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: "Successfully upload file" });
+}
+
+// bannerUpload
+app.post(
+  "/api/v1/banner/upload_files",
+  bannerUpload.array("files"),
+  bannerUploadFiles
+);
+
+function bannerUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
   res.json({ message: "Successfully upload file" });

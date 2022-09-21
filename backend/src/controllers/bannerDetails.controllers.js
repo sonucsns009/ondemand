@@ -1,38 +1,38 @@
 "use strict";
 
-const servicesCategory = require("../models/services.models");
+const bannerDetails = require("../models/bannerDetails.models");
 
 exports.findAll = function (req, res) {
-  servicesCategory.findAll(function (err, servicesCategory) {
+  bannerDetails.findAll(function (err, bannerDetails) {
     console.log("controller");
     if (err) res.send(err);
-    res.send(servicesCategory);
+    res.send(bannerDetails);
   });
 };
 
 exports.create = function (req, res) {
-  const new_services = new servicesCategory(req.body);
+  const new_bannerDetails = new bannerDetails(req.body);
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    servicesCategory.create(new_services, function (err, servicesCategory) {
+    bannerDetails.create(new_bannerDetails, function (err, bannerDetails) {
       if (err) res.send(err);
       res.json({
         error: false,
-        message: "service added successfully!",
-        data: servicesCategory,
+        message: "Banner Details added successfully!",
+        data: bannerDetails,
       });
     });
   }
 };
 
 exports.findById = function (req, res) {
-  servicesCategory.findById(req.params.id, function (err, servicesCategory) {
+  bannerDetails.findById(req.params.id, function (err, bannerDetails) {
     if (err) res.send(err);
-    res.json(servicesCategory);
+    res.json(bannerDetails);
   });
 };
 
@@ -42,28 +42,28 @@ exports.update = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    servicesCategory.update(
+    bannerDetails.update(
       req.params.id,
-      new servicesCategory(req.body),
-      function (err, servicesCategory) {
+      new bannerDetails(req.body),
+      function (err, bannerDetails) {
         if (err) res.send(err);
         res.json({
           error: false,
-          message: "service successfully updated",
+          message: "Banner Details successfully updated",
         });
       }
     );
   }
 };
 exports.delete = function (req, res) {
-  servicesCategory.delete(
+  bannerDetails.delete(
     req.params.id,
-    new servicesCategory(req.body),
-    function (err, servicesCategory) {
+    new bannerDetails(req.body),
+    function (err, bannerDetails) {
       if (err) res.send(err);
       res.json({
         error: false,
-        message: "service successfully deleted",
+        message: "Banner Details successfully Deleted",
       });
     }
   );
