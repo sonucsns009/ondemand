@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {  Link } from "react-router-dom";
 
 
-function Banner(props) {
+function BannerDetails(props) {
         //   const [banner_id, setBanner_Id] = useState("");
         //   const [category_id, setCategory_Id] = useState("");
         //   const [subcategory_id, setSubCategory_Id] = useState("");
@@ -11,33 +11,33 @@ function Banner(props) {
         //   const [banner_type, setBanner_Type] = useState("");
         //   const [banner_url, setBanner_Url] = useState("");
         //   const [banner_status, setBanner_Status] = useState("");
-      const [banner, setBanner] = useState([]);
+      const [bannerdetails, setBannerDetails] = useState([]);
      var check="test";
      useEffect(()=>{
-         getBanner();
+         getBannerDetails();
        },[]);
 
-       const getBanner = async() => {
-         let result = await fetch("http://localhost:5000/api/v1/banner");
+       const getBannerDetails = async() => {
+         let result = await fetch("http://localhost:5000/api/v1/bannerDetails");
          result = await result.json();
          console.warn(result)
-         setBanner(result);
+         setBannerDetails(result);
          }
 
-         console.warn(Banner);
-         const banner_delete = async(id) => {
-             let banner_status="delete";
+         console.warn(BannerDetails);
+         const banner_details_delete = async(id) => {
+             let banner_detail_status="delete";
              // alert("Do You Want to delete", id);
-             await fetch (`http://localhost:5000/api/v1/banner/${id}`, {
+             await fetch (`http://localhost:5000/api/v1/bannerDetails/${id}`, {
                method: 'DELETE',
-                         body: JSON.stringify({ banner_status}),
+                         body: JSON.stringify({ banner_detail_status}),
                          headers: {
                              'Content-Type': 'Application/json'
                          }
                          }).then((result)=>{
                result.json().then((resp)=>{
                  console.warn(resp);
-                 getBanner();
+                 getBannerDetails();
                })
              })
           }
@@ -54,7 +54,7 @@ function Banner(props) {
         <div className="card-header-right">
             <div className="row">
                 <div className="col-lg-12">
-                    <Link className="sidebar-header btn btn-primary" to="/addBanner">Add Banner</Link>
+                    <Link className="sidebar-header btn btn-primary" to="/addBannerdetails">Add Banner Details</Link>
                 </div>
                 
               </div>
@@ -66,38 +66,34 @@ function Banner(props) {
              <table className='table table-hover'>
                 <tr>
                   <th>Sr No</th>
-                  <th>Banner Id</th>
-                  <th>Category Id</th>
-                  <th>Subcategory Id</th>
-                  <th>Banner Title</th>
-                  <th>Banner Image</th>
-                  <th>Banner Type</th>
-                  <th>Banner URL</th>
+                  <th>Banner Detail Id</th>
+                  <th>Banner Detail Title</th>
+                  <th>Banner Detail Description</th>
+                  <th>Banner Detail Image</th>
+                  <th>Banner Detail URL</th>
                   {/* <th>Comapny Contact</th> */}
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
                 {
-                banner.map((item, index) => {
+                bannerdetails.map((item, index) => {
                 
                     return(
                         <tr key={index}>
                         <td>{cnt}</td>
-                        <td>{item.banner_id}</td>
-                        <td>{item.category_id}</td>
-                        <td>{item.subcategory_id}</td>
-                        <td>{item.banner_title}</td>
-                        <td>{item.banner_image}</td>
-                        <td>{item.banner_type}</td> 
-                        <td>{item.banner_url}</td>
+                        <td>{item.banner_detail_id}</td>
+                        <td>{item.banner_detail_title}</td>
+                        <td>{item.banner_detail_desc}</td>
+                        <td>{item.banner_detail_image}</td>
+                        <td>{item.banner_detail_url}</td>
                         {/* <td>{item.company_contact}</td> */}
-                         <td>{item.banner_status}</td>
+                         <td>{item.banner_detail_status}</td>
                         <td>
-                        <Link to={"/editBanner/"+item.banner_id }>
+                        <Link to={"/EditBannerdetails/"+item.banner_detail_id }>
                             <button className='btn btn-primary' >
                                 <i className='fa fa-edit'></i> </button>
                                 </Link><br/><br/>
-                                <button className='btn btn-primary' onClick={()=>banner_delete(item.banner_id)}>
+                                <button className='btn btn-primary' onClick={()=>banner_details_delete(item.banner_detail_id)}>
                                 <i className='fa fa-trash'></i> </button>
                         </td> 
                     </tr>
@@ -118,4 +114,4 @@ function Banner(props) {
     );
 }
 
-export default Banner;
+export default BannerDetails;

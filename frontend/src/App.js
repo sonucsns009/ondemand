@@ -23,6 +23,11 @@ import AddservicePackages from './components/servicePackages/AddServicePackages'
 import EditServicePackages from './components/servicePackages/EditServicePackages';
 
 import Banner from './components/Banner/banner';
+import AddBanner from './components/Banner/addBanner';
+import EditBanner from './components/Banner/EditBanner';
+import BannerDetails from './components/BannerDetails/bannerdetails';
+import AddBannerDetails from './components/BannerDetails/AddBannerdetails';
+import EditBannerDetails from './components/BannerDetails/EditBannerdetails';
 function App() {
   const auth = localStorage.getItem('user');
   return (
@@ -49,6 +54,11 @@ function App() {
           <Route path="/addservicePackages" element={<AddservicePackages/>}/>
           <Route path="/editservicePackages/:id" element={<EditServicePackages/>}/>
           <Route path="/banner" element={<Banner/>}/>
+          <Route path="/AddBanner" element={<AddBanner/>}/>
+          <Route path="/editBanner/:id" element={<EditBanner/>}/>
+          <Route path="/bannerdetails" element={<BannerDetails/>}/>
+          <Route path="/addBannerDetails" element={<AddBannerDetails/>}/>
+          <Route path="/editbannerdetails/:id" element={<EditBannerDetails/>}/>
         </Route>
        
         </Routes>

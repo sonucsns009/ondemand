@@ -2,26 +2,23 @@ import React,{useState, useEffect} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
 
-function AddServices(props) {
+function AddBanner(props) {
     // const [service_id, setService_Id]=useState("");
-    const [category_id, setCategory_Id]= useState("");
+    const [category_id, setCategory_Id]= useState("");  
     const [subcategory_id, setSubCategory_Id] = useState("");    
     const [maincategory, setMaincategory] = useState([]);    
     const [mainsubcategory, setMainSubCategory] = useState([]);
   
     // const [service_iderror, setService_IdError]=useState(false);
-    const [service_name, setService_name]=useState("");
-    const [service_nameerror, setService_NameError] = useState(false);
-    const [service_desc, setService_Desc]=useState("");
-    const [service_descerror, setService_DescError]=useState(false);    
-    const [service_image, setService_image]=useState("");
-    const [price, setService_Price]=useState("");
-    const [priceerror, setService_PriceError]=useState(false);
-    const [discount, setService_Discount]=useState("");
-    const [discounterror, setService_DiscountError]=useState(false);
-    const [coupon_code, setService_Coupon_Code]=useState("");
-    const [coupon_codeerror, setService_Coupon_CodeError]=useState(false);
-    const [status,setstatus]=useState("");
+    const [banner_title, setBanner_Title]=useState("");
+    const [banner_titleerror, setBanner_TitleError] = useState("");
+    const [banner_image, setBanner_Image]=useState("");
+    const [banner_type, setBanner_Type] = useState("");
+    const [banner_typeerror, setBanner_TypeError] = useState("");
+    const [banner_url, setBanner_URL] = useState("");
+    const [banner_urlerror, setBanner_URLError] = useState("");
+    const [banner_status,setBanner_Status]=useState("");
+    const [banner, setBanner] = useState("");
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -37,11 +34,10 @@ function AddServices(props) {
         }
     
           const getMainSubCategory = async(category_id) => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/"+category_id);
+            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/allSubCategory/"+category_id);
             result = await result.json();
             setMainSubCategory(result);
             }
-
     //const [companynameerror, setCompanyNameError] = useState(false);
 
     // const [company_email,setCompany_Email]=useState("");
@@ -52,21 +48,21 @@ function AddServices(props) {
     {
             e.preventDefault();
         // const {...data} =values;
-        if(service_name==='')
+        if(banner_title==='')
         {
-            setService_NameError('Service Name is required');
+            setBanner_TitleError('Banner Title is required');
             
-        } else if (!/^[A-Za-z]+/.test(service_name.trim())) {
-            setService_NameError('Enter a valid name');
+        } else if (!/^[A-Za-z]+/.test(banner_title.trim())) {
+            setBanner_TitleError('Enter a valid name');
         }
         else
         {
 
-            setService_NameError(false)
-            axios.post("http://localhost:5000/api/v1/services", 
-            {category_id ,service_name, subcategory_id,service_desc, service_image, price, discount, coupon_code, status,
+            setBanner_TitleError(false)
+            axios.post("http://localhost:5000/api/v1/banner", 
+            {category_id, subcategory_id, banner_title, banner_image, banner_type, banner_url, banner_status,
             method: "Post",
-            body: JSON.stringify({category_id,subcategory_id,service_name, service_desc, service_image, price, discount, coupon_code, status}),
+            body: JSON.stringify({category_id, subcategory_id, banner_title, banner_image, banner_type, banner_url, banner_status}),
             header: {
                 "Content-type":"application/json"
                 }
@@ -78,9 +74,9 @@ function AddServices(props) {
             }).catch((error)=>{
                 console.log(error);
             });
-            setService_name("");
-            setstatus("");
-            navigate("/services");
+            setBanner_Title("");
+            setBanner_Status("");
+            navigate("/banner");
         }
     }
     return (
@@ -90,11 +86,11 @@ function AddServices(props) {
                         <div className="card tab2-card">
                             <div className="card-header">
                                 
-                            <h5>Add Services</h5>
+                            <h5>Add Banner</h5>
                             <div className="card-header-right">
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <Link className="sidebar-header btn btn-primary" to="/services">Back</Link>
+                                        <Link className="sidebar-header btn btn-primary" to="/banner">Back</Link>
                                     </div>    
                                     </div>
                                 </div>	
@@ -108,7 +104,9 @@ function AddServices(props) {
                                 Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control"  onChange={(e)=>getMainSubCategory(e.target.value)}>Select Category
+                                <select className="form-control"  onChange={(e)=>getMainSubCategory(e.target.value)}>
+                                <option disabled selected value> Select Category</option> 
+                                    
                                     {
                                         maincategory.map((item, index) => {
                                         //cnt++;
@@ -127,7 +125,7 @@ function AddServices(props) {
                                 Sub Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control" onChange={(e)=>setSubCategory_Id(e.target.value)}>Select Sub Category
+                                    <select className="form-control" onChange={(e)=>setSubCategory_Id(e.target.value)}>
                                     {
                                         mainsubcategory.map((item, index) => {
                                         //cnt++;
@@ -142,54 +140,40 @@ function AddServices(props) {
                                 </div>
 
                             <div className="row form-group">     
-                                    <div className='col-sm-3 '>Service Name :- </div>
+                                    <div className='col-sm-3 '>Banner Title :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="text" value={service_name} onChange={(e)=>setService_name(e.target.value)} className='form-control'/>
-                                        {service_nameerror&& <div className="error-msg" style={{color:"red"}}>{service_nameerror}</div>}
+                                        <input type="text" value={banner_title} onChange={(e)=>setBanner_Title(e.target.value)} className='form-control'/>
+                                        {banner_titleerror&& <div className="error-msg" style={{color:"red"}}>{banner_titleerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3 '>Service Description :- </div>
+                                    <div className='col-sm-3 '>Banner Image :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="text" value={service_desc} onChange={(e)=>setService_Desc(e.target.value)} className='form-control'/>
-                                        {service_descerror&& <div className="error-msg" style={{color:"red"}}>{service_descerror}</div>}
+                                        <input type="file" value={banner_image} onChange={(e)=>setBanner_Image(e.target.value)} className='form-control'/>
+                                        {/* {banner_imageerror&& <div className="error-msg" style={{color:"red"}}>{banner_imageerror}</div>} */}
+                                    </div>
+                                </div>
+                                 <div className="row form-group">     
+                                    <div className='col-sm-3 '>Banner Type :- </div>
+                                    <div className='col-sm-6'>
+                                        <input type="text" value={banner_type} onChange={(e)=>setBanner_Type(e.target.value)} className='form-control'/>
+                                        {banner_typeerror&& <div className="error-msg" style={{color:"red"}}>{banner_typeerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Service Image :- </div>
+                                  <div className='col-sm-3 '>Banner URL :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="file" onChange={(e)=>setService_image(e.target.value)} className='form-control'/>
-                                        {/* {service_imageerror&& <div className="error-msg" style={{color:"red"}}>{service_imageerror}</div>} */}
-                                     </div>
-                                </div>
-                                <div className="row form-group">     
-                                    <div className='col-sm-3 '>Service Price :- </div>
-                                    <div className='col-sm-6'>
-                                        <input type="text" value={price} onChange={(e)=>setService_Price(e.target.value)} className='form-control'/>
-                                        {priceerror&& <div className="error-msg" style={{color:"red"}}>{priceerror}</div>}
+                                        <input type="text" value={banner_url} onChange={(e)=>setBanner_URL(e.target.value)} className='form-control'/>
+                                        {banner_urlerror&& <div className="error-msg" style={{color:"red"}}>{banner_urlerror}</div>}
                                     </div>
                                 </div>
-                                <div className="row form-group">     
-                                    <div className='col-sm-3 '>Service Discount :- </div>
-                                    <div className='col-sm-6'>
-                                        <input type="text" value={discount} onChange={(e)=>setService_Discount(e.target.value)} className='form-control'/>
-                                        {discounterror&& <div className="error-msg" style={{color:"red"}}>{discounterror}</div>}
-                                    </div>
-                                </div>
-                                <div className="row form-group">     
-                                    <div className='col-sm-3 '>Coupone Code :- </div>
-                                    <div className='col-sm-6'>
-                                        <input type="text" value={coupon_code} onChange={(e)=>setService_Coupon_Code(e.target.value)} className='form-control'/>
-                                        {coupon_codeerror&& <div className="error-msg" style={{color:"red"}}>{coupon_codeerror}</div>}
-                                    </div>
-                                </div>
-                                <div className="row form-group">     
-                                    <div className='col-sm-3'>Service Status :- </div>
+                                 <div className="row form-group">     
+                                    <div className='col-sm-3'>Banner Status :- </div>
                                     <div className='col-sm-6'>
                                         <select type="text" 
                                                     className='form-control'
                                                     name="status"
-                                                    onChange={(e)=>setstatus(e.target.value)}>
+                                                    onChange={(e)=>setBanner_Status(e.target.value)}>
                                                     <option>Select Status</option>
                                                     <option value="active">active</option>
                                                     <option value="inactive">inactive</option>
@@ -202,7 +186,7 @@ function AddServices(props) {
                                 <div className="row form-group"> 
                                     <div className='col-sm-2'>
                                     
-                                    </div>    
+                                        </div>    
                                     <div className='col-sm-6'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
@@ -218,4 +202,4 @@ function AddServices(props) {
     );
 }
 
-export default AddServices;
+export default AddBanner;
