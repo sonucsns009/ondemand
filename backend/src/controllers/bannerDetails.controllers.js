@@ -36,6 +36,13 @@ exports.findById = function (req, res) {
   });
 };
 
+exports.findBanner = function (req, res) {
+  bannerDetails.findBanner(req.params.id, function (err, bannerDetails) {
+    if (err) res.send(err);
+    res.json(bannerDetails);
+  });
+};
+
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res

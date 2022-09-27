@@ -19,4 +19,7 @@ routes.put("/:id", bannerDetailsControllers.update);
 // delete single banner details
 routes.delete("/:id", bannerDetailsControllers.delete);
 
+// banner details by banner id
+routes.get("/bannerDetailById/:id", bannerDetailsControllers.findBanner);
+
 module.exports = routes;

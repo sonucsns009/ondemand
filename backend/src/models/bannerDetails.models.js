@@ -60,6 +60,21 @@ bannerDetails.findById = function (id, result) {
   );
 };
 
+bannerDetails.findBanner = function (id, result) {
+  dbConn.query(
+    "Select * from ond_banner_details,ond_banner where  ond_banner.banner_id =  ond_banner_details.banner_id ",
+    id,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 bannerDetails.update = function (id, bannerDetails, result) {
   // console.log(bannerDetails);
   dbConn.query(
