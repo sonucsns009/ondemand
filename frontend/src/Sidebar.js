@@ -27,8 +27,8 @@ class Sidebar extends Component {
                                             <Link className="sidebar-header" to="/servicepackages">Service Packages</Link>                                                  
                                             <Link className="sidebar-header" to="/banner">Banner</Link>
                                             <Link className="sidebar-header" to="/bannerdetails">Banner Details</Link>
-                                             <Link className="sidebar-header" to="/meeting">Meeting</Link>
-                                             <Link className="sidebar-header" to="/requirement">Requirement</Link>
+                                             {/* <Link className="sidebar-header" to="/meeting">Meeting</Link>
+                                             <Link className="sidebar-header" to="/requirement">Requirement</Link> */}
                                             {/* <Link className="sidebar-header" to="/branch">Branch</Link>
                                             <Link className="sidebar-header" to="/department">Department</Link>
                                             <Link className="sidebar-header" to="/employee">Employee</Link>
