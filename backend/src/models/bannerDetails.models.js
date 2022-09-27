@@ -34,15 +34,18 @@ bannerDetails.create = function (newservices, result) {
 };
 
 bannerDetails.findAll = function (result) {
-  dbConn.query("Select * from ond_banner_details", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_banner_details : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_banner_details,ond_banner where  ond_banner.banner_id =  ond_banner_details.banner_id ",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_banner_details : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 bannerDetails.findById = function (id, result) {
