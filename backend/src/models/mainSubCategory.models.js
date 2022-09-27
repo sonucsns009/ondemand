@@ -29,15 +29,18 @@ mainSubCategory.create = function (newMainSubCategory, result) {
 };
 
 mainSubCategory.findAll = function (result) {
-  dbConn.query("Select * from ond_main_subcategory", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_main_subcategory : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_main_subcategory,ond_main_category where ond_main_subcategory.category_id= ond_main_category.category_id ",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_main_subcategory : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 mainSubCategory.findAllSubCategories = function (id, result) {
