@@ -63,8 +63,9 @@ servicePackages.findById = function (id, result) {
 
 servicePackages.update = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_packages SET  package_name=?,package_amount=?,package_desc=?,status=?,updated_date=? WHERE package_id  = ?",
+    "UPDATE ond_service_packages SET  service_id=?, package_name=?,package_amount=?,package_desc=?,status=?,updated_date=? WHERE package_id  = ?",
     [
+      servicePackages.service_id,
       servicePackages.package_name,
       servicePackages.package_amount,
       servicePackages.package_desc,
