@@ -9,7 +9,7 @@ var servicePackages = function (servicePackages) {
   this.package_name = servicePackages.package_name;
   this.package_amount = servicePackages.package_amount;
   this.package_desc = servicePackages.package_desc;
-  this.status = servicePackages.status ? servicePackages.status : 1;
+  this.p_status = servicePackages.p_status ? servicePackages.p_status : 1;
   this.added_date = new Date();
   this.updated_date = new Date();
 };
@@ -63,13 +63,13 @@ servicePackages.findById = function (id, result) {
 
 servicePackages.update = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_packages SET  service_id=?, package_name=?,package_amount=?,package_desc=?,status=?,updated_date=? WHERE package_id  = ?",
+    "UPDATE ond_service_packages SET  service_id=?, package_name=?,package_amount=?,package_desc=?,p_status=?,updated_date=? WHERE package_id  = ?",
     [
       servicePackages.service_id,
       servicePackages.package_name,
       servicePackages.package_amount,
       servicePackages.package_desc,
-      servicePackages.status,
+      servicePackages.p_status,
       servicePackages.updated_date,
       id,
     ],
@@ -86,8 +86,8 @@ servicePackages.update = function (id, servicePackages, result) {
 
 servicePackages.delete = function (id, servicePackages, result) {
   dbConn.query(
-    "UPDATE ond_service_packages SET status=?,updated_date=? WHERE package_id  = ?",
-    [servicePackages.status, servicePackages.updated_date, id],
+    "UPDATE ond_service_packages SET p_status=?,updated_date=? WHERE package_id  = ?",
+    [servicePackages.p_status, servicePackages.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
