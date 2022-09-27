@@ -6,7 +6,7 @@ var mainSubCategory = function (mainSubCategory) {
   this.category_id = mainSubCategory.category_id;
   this.subcategory_name = mainSubCategory.subcategory_name;
   this.subcategory_image = mainSubCategory.subcategory_image;
-  this.status = mainSubCategory.status ? mainSubCategory.status : 1;
+  this.sub_status = mainSubCategory.sub_status ? mainSubCategory.sub_status : 1;
   this.added_date = new Date();
   this.updated_date = new Date();
 };
@@ -75,11 +75,11 @@ mainSubCategory.findById = function (id, result) {
 
 mainSubCategory.update = function (id, mainSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=?,status=? ,updated_date=? WHERE subcategory_id  = ?",
+    "UPDATE ond_main_subcategory SET subcategory_name=?,subcategory_image=?,sub_status=? ,updated_date=? WHERE subcategory_id  = ?",
     [
       mainSubCategory.subcategory_name,
       mainSubCategory.subcategory_image,
-      mainSubCategory.status,
+      mainSubCategory.sub_status,
       mainSubCategory.updated_date,
       id,
     ],
@@ -96,8 +96,8 @@ mainSubCategory.update = function (id, mainSubCategory, result) {
 
 mainSubCategory.delete = function (id, mainSubCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_subcategory SET status=?,updated_date=? WHERE subcategory_id  = ?",
-    [mainSubCategory.status, mainSubCategory.updated_date, id],
+    "UPDATE ond_main_subcategory SET sub_status=?,updated_date=? WHERE subcategory_id  = ?",
+    [mainSubCategory.sub_status, mainSubCategory.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
