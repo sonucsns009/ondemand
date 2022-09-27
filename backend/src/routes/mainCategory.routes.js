@@ -19,4 +19,7 @@ routes.put("/:id", mainCategoryControllers.update);
 // delete single main category
 routes.delete("/:id", mainCategoryControllers.delete);
 
+// user panel main categorys
+routes.get("/all/Category", mainCategoryControllers.findAllActive);
+
 module.exports = routes;

@@ -90,4 +90,19 @@ mainCategory.delete = function (id, mainCategory, result) {
   );
 };
 
+mainCategory.findAllActive = function (result) {
+  dbConn.query(
+    "Select * from ond_main_category where status='active'",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_users : ", res);
+        result(null, res);
+      }
+    }
+  );
+};
+
 module.exports = mainCategory;

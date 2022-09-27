@@ -10,6 +10,14 @@ exports.findAll = function (req, res) {
   });
 };
 
+exports.findAllAbc = function (req, res) {
+  mainCategory.findAll(function (err, mainCategory) {
+    console.log("mainCategory controller");
+    if (err) res.send(err);
+    res.send(mainCategory);
+  });
+};
+
 exports.create = function (req, res) {
   const new_mainCategory = new mainCategory(req.body);
   //handles null error
@@ -31,7 +39,7 @@ exports.create = function (req, res) {
 
 exports.findById = function (req, res) {
   mainCategory.findById(req.params.id, function (err, mainCategory) {
-    console.log("data------>"+mainCategory);
+    console.log("data------>" + mainCategory);
     if (err) res.send(err);
     res.json(mainCategory);
   });
@@ -43,15 +51,16 @@ exports.update = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    console.log("id---->"+req.params.id);
-    mainCategory.update(req.params.id,new mainCategory(req.body),function (err, mainCategory) {
-      
+    console.log("id---->" + req.params.id);
+    mainCategory.update(
+      req.params.id,
+      new mainCategory(req.body),
+      function (err, mainCategory) {
         if (err) res.send(err);
         res.json({
           error: false,
           message: "Main Category successfully updated",
         });
-        
       }
     );
   }
@@ -65,4 +74,13 @@ exports.delete = function (req, res) {
       res.json({ error: false, message: "Main Category successfully deleted" });
     }
   );
+};
+
+// user panel
+exports.findAllActive = function (req, res) {
+  mainCategory.findAllActive(function (err, mainCategory) {
+    console.log("mainCategory controller");
+    if (err) res.send(err);
+    res.send(mainCategory);
+  });
 };
