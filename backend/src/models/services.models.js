@@ -94,7 +94,7 @@ services.delete = function (id, services, result) {
     "UPDATE ond_services SET status=?,updated_date=? WHERE service_id  = ?",
     [services.status, services.updated_date, id],
     function (err, res) {
-      if (err) {  
+      if (err) {
         console.log("error: ", err);
         result(null, err);
       } else {

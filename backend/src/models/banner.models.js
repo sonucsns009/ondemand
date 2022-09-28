@@ -33,15 +33,18 @@ banner.create = function (newservices, result) {
 };
 
 banner.findAll = function (result) {
-  dbConn.query("Select * from ond_banner", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_banner : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_banner,ond_main_category,ond_main_subCategory where ond_banner.category_id = ond_main_category.category_id and ond_banner.subcategory_id = ond_main_subcategory.subcategory_id ",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_banner : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 banner.findById = function (id, result) {
