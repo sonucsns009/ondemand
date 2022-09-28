@@ -12,7 +12,7 @@ var services = function (services) {
   this.price = services.price;
   this.discount = services.discount;
   this.coupon_code = services.coupon_code;
-  this.status = services.status ? services.status : 1;
+  this.service_status = services.service_status ? services.service_status : 1;
   this.added_date = new Date();
   this.updated_date = new Date();
 };
@@ -35,15 +35,18 @@ services.create = function (newservices, result) {
 };
 
 services.findAll = function (result) {
-  dbConn.query("Select * from ond_services", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_services : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_services ,ond_main_category,ond_main_subCategory where ond_services.category_id = ond_main_category.category_id and ond_services.subcategory_id = ond_main_subcategory.subcategory_id",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_services : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 services.findById = function (id, result) {
@@ -64,7 +67,7 @@ services.findById = function (id, result) {
 services.update = function (id, services, result) {
   // console.log(services);
   dbConn.query(
-    "UPDATE ond_services SET  category_id=?,subcategory_id=?,service_name=?,service_desc=?,service_image=?,price=?,discount=?,coupon_code=?,status=?,updated_date=? WHERE service_id  = ?",
+    "UPDATE ond_services SET  category_id=?,subcategory_id=?,service_name=?,service_desc=?,service_image=?,price=?,discount=?,coupon_code=?,service_status=?,updated_date=? WHERE service_id  = ?",
     [
       services.category_id,
       services.subcategory_id,
@@ -74,7 +77,7 @@ services.update = function (id, services, result) {
       services.price,
       services.discount,
       services.coupon_code,
-      services.status,
+      services.service_status,
       services.updated_date,
       id,
     ],
@@ -91,8 +94,8 @@ services.update = function (id, services, result) {
 
 services.delete = function (id, services, result) {
   dbConn.query(
-    "UPDATE ond_services SET status=?,updated_date=? WHERE service_id  = ?",
-    [services.status, services.updated_date, id],
+    "UPDATE ond_services SET service_status=?,updated_date=? WHERE service_id  = ?",
+    [services.service_status, services.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);

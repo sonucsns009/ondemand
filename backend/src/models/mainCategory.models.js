@@ -5,7 +5,7 @@ var dbConn = require("./../../config/db.config");
 var mainCategory = function (mainCategory) {
   this.category_name = mainCategory.category_name;
   this.category_image = mainCategory.category_image;
-  this.status = mainCategory.status ? mainCategory.status : 1;
+  this.cat_status = mainCategory.cat_status ? mainCategory.cat_status : 1;
   this.added_date = new Date();
   this.updated_date = new Date();
 };
@@ -56,12 +56,12 @@ mainCategory.findById = function (id, result) {
 
 mainCategory.update = function (id, mainCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_category SET category_name=?,category_image=?,updated_date=?,status=? WHERE category_id  = ?",
+    "UPDATE ond_main_category SET category_name=?,category_image=?,updated_date=?,cat_status=? WHERE category_id  = ?",
     [
       mainCategory.category_name,
       mainCategory.category_image,
       mainCategory.updated_date,
-      mainCategory.status,
+      mainCategory.cat_status,
       id,
     ],
     function (err, res) {
@@ -77,8 +77,8 @@ mainCategory.update = function (id, mainCategory, result) {
 
 mainCategory.delete = function (id, mainCategory, result) {
   dbConn.query(
-    "UPDATE ond_main_category SET status=?,updated_date=? WHERE category_id  = ?",
-    [mainCategory.status, mainCategory.updated_date, id],
+    "UPDATE ond_main_category SET cat_status=?,updated_date=? WHERE category_id  = ?",
+    [mainCategory.cat_status, mainCategory.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
@@ -92,7 +92,7 @@ mainCategory.delete = function (id, mainCategory, result) {
 
 mainCategory.findAllActive = function (result) {
   dbConn.query(
-    "Select * from ond_main_category where status='active'",
+    "Select * from ond_main_category where cat_status='active'",
     function (err, res) {
       if (err) {
         console.log("error: ", err);
