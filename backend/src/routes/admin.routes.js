@@ -22,4 +22,7 @@ router.put("/:id", adminControllers.update);
 // Delete a admin with id
 router.delete("/:id", adminControllers.delete);
 
+// tax update
+router.put("/updateTax/:id", adminControllers.updateTax);
+
 module.exports = router;
