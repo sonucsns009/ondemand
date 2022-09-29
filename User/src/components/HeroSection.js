@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Banner from "./Banner";
+import server from "../Server";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
@@ -9,9 +10,7 @@ const HeroSection = () => {
   }, []);
 
   const getData = async () => {
-    const d1 = await fetch(
-      "http://localhost:5000/api/v1/mainCategory/all/Category"
-    );
+    const d1 = await fetch(`${server}api/v1/mainCategory/all/Category`);
     const res = await d1.json();
     setData(res);
   };
