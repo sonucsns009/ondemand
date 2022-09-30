@@ -16,8 +16,7 @@ import Faq from "./Faq";
 import Contant from "./Contact";
 import Footer from "./Footer";
 import RecentPost from "./RecentPost";
-import Main from "./Main";
-import server from "../Server";
+import server from "../Const";
 
 const Section = () => {
   const [data, setData] = useState([]);
@@ -44,8 +43,6 @@ const Section = () => {
         <div className="row">
           <Sidebar />
           <div className="col-sm-10 scrollDiv">
-            <br />
-            <br />
             <main id="main">
               <HeroSection />
               <Services />

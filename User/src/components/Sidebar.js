@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import server from "../Server";
+import server from "../Const";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [data, setData] = useState([]);
@@ -17,14 +18,17 @@ const Sidebar = () => {
   return (
     <div className="col-sm-2 shadow-lg scrollDiv ">
       <div className="Slider  slid-cl">
+        <br></br>
+        <br></br>
+        <br></br>
         <div class="sidebar">
-          <br />
-          <br />
           <ul>
             {data.map((val) => {
               return (
                 <li>
-                  <a href="#services">{val.category_name}</a>
+                  <Link to={`/mainsubservices/${val.category_id}`}>
+                    {val.category_name}
+                  </Link>
                 </li>
               );
             })}

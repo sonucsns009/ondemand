@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Contant = () => {
+const Contact = () => {
   return (
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
@@ -115,4 +115,4 @@ const Contant = () => {
   );
 };
 
-export default Contant;
+export default Contact;
