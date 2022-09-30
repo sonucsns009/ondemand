@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import server from "../Server";
+import server from "../Const";
 
 const Banner = () => {
   const [data, setData] = useState([]);
@@ -10,7 +10,7 @@ const Banner = () => {
   }, []);
 
   const getData = async () => {
-    const d1 = await fetch(`${server}api/v1/banner`);
+    const d1 = await fetch(`${server}/api/v1/banner`);
     const res = await d1.json();
     console.log(res);
     setData(res);

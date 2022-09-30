@@ -31,7 +31,7 @@ const Section = () => {
   }, []);
 
   const getData = async () => {
-    const d1 = await fetch(`${server}api/v1/mainCategory/all/Category`);
+    const d1 = await fetch(`${server}/api/v1/mainCategory/all/Category`);
     const res = await d1.json();
     setData(res);
   };
