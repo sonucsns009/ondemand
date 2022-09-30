@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddBanner(props) {
     // const [service_id, setService_Id]=useState("");
     const [category_id, setCategory_Id]= useState("");  
@@ -28,15 +28,16 @@ function AddBanner(props) {
       },[]);
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setMaincategory(result);
         }
     
           const getMainSubCategory = async(category_id) => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/allSubCategory/"+category_id);
+            let result = await fetch(`${server}api/v1/mainSubCategory/allSubCategory/`+category_id);
             result = await result.json();
             setMainSubCategory(result);
+            setCategory_Id(category_id)
             }
     //const [companynameerror, setCompanyNameError] = useState(false);
 
@@ -59,7 +60,7 @@ function AddBanner(props) {
         {
 
             setBanner_TitleError(false)
-            axios.post("http://localhost:5000/api/v1/banner", 
+            axios.post(`${server}api/v1/banner`, 
             {category_id, subcategory_id, banner_title, banner_image, banner_type, banner_url, banner_status,
             method: "Post",
             body: JSON.stringify({category_id, subcategory_id, banner_title, banner_image, banner_type, banner_url, banner_status}),
@@ -120,7 +121,7 @@ function AddBanner(props) {
                                 </div>
                                 </div>
       
-                                <div className="row form-group">  
+                          <div className="row form-group">  
                             <div className="col-sm-3">
                                 Sub Category Name:-
                                 </div>   

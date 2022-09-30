@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {  Link } from "react-router-dom";
-
+import server from '../../const';
 
 function Banner(props) {
         //   const [banner_id, setBanner_Id] = useState("");
@@ -18,7 +18,7 @@ function Banner(props) {
        },[]);
 
        const getBanner = async() => {
-         let result = await fetch("http://localhost:5000/api/v1/banner");
+         let result = await fetch(`${server}api/v1/banner`);
          result = await result.json();
          console.warn(result)
          setBanner(result);
@@ -28,7 +28,7 @@ function Banner(props) {
          const banner_delete = async(id) => {
              let banner_status="delete";
              // alert("Do You Want to delete", id);
-             await fetch (`http://localhost:5000/api/v1/banner/${id}`, {
+             await fetch (`${server}api/v1/banner/${id}`, {
                method: 'DELETE',
                          body: JSON.stringify({ banner_status}),
                          headers: {
@@ -41,7 +41,7 @@ function Banner(props) {
                })
              })
           }
-         let cnt=0;
+         let cnt=1;
 
     return (
 <>
@@ -66,9 +66,9 @@ function Banner(props) {
              <table className='table table-hover'>
                 <tr>
                   <th>Sr No</th>
-                  <th>Banner Id</th>
-                  <th>Category Id</th>
-                  <th>Subcategory Id</th>
+                  {/* <th>Banner Id</th> */}
+                  <th>Category Name</th>
+                  <th>Subcategory Name</th>
                   <th>Banner Title</th>
                   <th>Banner Image</th>
                   <th>Banner Type</th>
@@ -82,10 +82,10 @@ function Banner(props) {
                 
                     return(
                         <tr key={index}>
-                        <td>{cnt}</td>
-                        <td>{item.banner_id}</td>
-                        <td>{item.category_id}</td>
-                        <td>{item.subcategory_id}</td>
+                        <td>{cnt++}</td>
+                        {/* <td>{item.banner_id}</td> */}
+                        <td>{item.category_name}</td>
+                        <td>{item.subcategory_name}</td>
                         <td>{item.banner_title}</td>
                         <td>{item.banner_image}</td>
                         <td>{item.banner_type}</td> 

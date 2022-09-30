@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {  Link } from "react-router-dom";
-
+import server from '../../const';
 
 function ServicePackages(props) {
   const [servicePackages, setServicePackages] = useState([]);
@@ -10,7 +10,7 @@ function ServicePackages(props) {
       },[]);
 
       const getservicePackages = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/servicePackages");
+        let result = await fetch(`${server}api/v1/servicePackages`);
         result = await result.json();
         console.log(result)
         setServicePackages(result);
@@ -20,7 +20,7 @@ function ServicePackages(props) {
         const servicePackages_delete = async(id) => {
             let p_status="3";
             // alert("Do You Want to delete", id);
-            await fetch (`http://localhost:5000/api/v1/servicePackages/${id}`, {
+            await fetch (`${server}api/v1/servicePackages/${id}`, {
               method: 'DELETE',
                         body: JSON.stringify({ p_status}),
                         headers: {
@@ -56,8 +56,8 @@ return (
       <table className='table table-hover'>
           <tr>
                <th>Sr No</th>
-               <th>Package Id</th>
-               <th>Service Id</th>
+               {/* <th>Package Id</th> */}
+               <th>Service Name</th>
                <th>Package Name</th>
                <th>Package Amount</th>
                <th>Package Description</th>
@@ -70,8 +70,8 @@ return (
                           return(
                                  <tr key={index}>
                                  <td>{cnt}</td>
-                                 <td>{item.package_id}</td>
-                                 <td>{item.service_id}</td>
+                                 {/* <td>{item.package_id}</td> */}
+                                 <td>{item.service_name}</td>
                                  <td>{item.package_name}</td>
                                  <td>{item.package_amount}</td> 
                                  <td>{item.package_desc}</td>

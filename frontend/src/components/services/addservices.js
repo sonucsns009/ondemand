@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddServices(props) {
     // const [service_id, setService_Id]=useState("");
     const [category_id, setCategory_Id]= useState("");
-    const [subcategory_id, setSubCategory_Id] = useState("");    
+    const [subcategory_id, setMainSubCategory_Id] = useState("");    
     const [maincategory, setMaincategory] = useState([]);    
     const [mainsubcategory, setMainSubCategory] = useState([]);
   
@@ -16,30 +16,34 @@ function AddServices(props) {
     const [service_descerror, setService_DescError]=useState(false);    
     const [service_image, setService_image]=useState("");
     const [price, setService_Price]=useState("");
-    const [priceerror, setService_PriceError]=useState(false);
+    const [service_priceerror, setService_PriceError]=useState(false);
     const [discount, setService_Discount]=useState("");
-    const [discounterror, setService_DiscountError]=useState(false);
+    const [service_discounterror, setService_DiscountError]=useState(false);
     const [coupon_code, setService_Coupon_Code]=useState("");
-    const [coupon_codeerror, setService_Coupon_CodeError]=useState(false);
-    const [status,setstatus]=useState("");
+    const [service_coupon_codeerror, setService_Coupon_CodeError]=useState(false);
+    const [service_status,setservice_status]=useState("");
     const navigate = useNavigate();
 
     useEffect(()=>{
         getMainCategory();
         getMainSubCategory();
+        // setMainSubCategory_Id(mainsubcategory);
+
+
 
       },[]);
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setMaincategory(result);
         }
     
           const getMainSubCategory = async(category_id) => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/"+category_id);
+            let result = await fetch(`${server}api/v1/mainSubCategory/allSubCategory/`+category_id);
             result = await result.json();
             setMainSubCategory(result);
+            setCategory_Id(category_id);
             }
 
     //const [companynameerror, setCompanyNameError] = useState(false);
@@ -63,10 +67,10 @@ function AddServices(props) {
         {
 
             setService_NameError(false)
-            axios.post("http://localhost:5000/api/v1/services", 
-            {category_id ,service_name, subcategory_id,service_desc, service_image, price, discount, coupon_code, status,
+            axios.post(`${server}api/v1/services`, 
+            {category_id, subcategory_id, service_name, service_desc, service_image, price, discount, coupon_code, service_status,
             method: "Post",
-            body: JSON.stringify({category_id,subcategory_id,service_name, service_desc, service_image, price, discount, coupon_code, status}),
+            body: JSON.stringify({category_id, subcategory_id, service_name, service_desc, service_image, price, discount, coupon_code, service_status}),
             header: {
                 "Content-type":"application/json"
                 }
@@ -79,7 +83,7 @@ function AddServices(props) {
                 console.log(error);
             });
             setService_name("");
-            setstatus("");
+            setservice_status("");
             navigate("/services");
         }
     }
@@ -127,12 +131,14 @@ function AddServices(props) {
                                 Sub Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control" onChange={(e)=>setSubCategory_Id(e.target.value)}>Select Sub Category
+                                    <select className="form-control"  onChange={(e)=>setMainSubCategory_Id(e.target.value)}>
+                                    {/* <option disabled selected value >Select Sub Category</option> */}
+
                                     {
                                         mainsubcategory.map((item, index) => {
                                         //cnt++;
                                             return(
-                                                <option value={item.subcategory_id}>{item.subcategory_name}</option>
+                                                <option value={item.subcategory_id}  selected  >{item.subcategory_name}</option>
 
                                             )
                                         })
@@ -166,31 +172,31 @@ function AddServices(props) {
                                     <div className='col-sm-3 '>Service Price :- </div>
                                     <div className='col-sm-6'>
                                         <input type="text" value={price} onChange={(e)=>setService_Price(e.target.value)} className='form-control'/>
-                                        {priceerror&& <div className="error-msg" style={{color:"red"}}>{priceerror}</div>}
+                                        {service_priceerror&& <div className="error-msg" style={{color:"red"}}>{service_priceerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
                                     <div className='col-sm-3 '>Service Discount :- </div>
                                     <div className='col-sm-6'>
                                         <input type="text" value={discount} onChange={(e)=>setService_Discount(e.target.value)} className='form-control'/>
-                                        {discounterror&& <div className="error-msg" style={{color:"red"}}>{discounterror}</div>}
+                                        {service_discounterror&& <div className="error-msg" style={{color:"red"}}>{service_discounterror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
                                     <div className='col-sm-3 '>Coupone Code :- </div>
                                     <div className='col-sm-6'>
                                         <input type="text" value={coupon_code} onChange={(e)=>setService_Coupon_Code(e.target.value)} className='form-control'/>
-                                        {coupon_codeerror&& <div className="error-msg" style={{color:"red"}}>{coupon_codeerror}</div>}
+                                        {service_coupon_codeerror&& <div className="error-msg" style={{color:"red"}}>{service_coupon_codeerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Service Status :- </div>
+                                    <div className='col-sm-3'>Service status :- </div>
                                     <div className='col-sm-6'>
                                         <select type="text" 
                                                     className='form-control'
-                                                    name="status"
-                                                    onChange={(e)=>setstatus(e.target.value)}>
-                                                    <option>Select Status</option>
+                                                    name="service_status"
+                                                    onChange={(e)=>setservice_status(e.target.value)}>
+                                                    <option>Select status</option>
                                                     <option value="active">active</option>
                                                     <option value="inactive">inactive</option>
                                                 </select>

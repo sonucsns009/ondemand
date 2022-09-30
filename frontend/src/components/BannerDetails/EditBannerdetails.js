@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditBannerDetails(props) {
     const [banner_id, setBanner_Id]= useState("");
     const [banner_detail_title, setBanner_Detail_Title]=useState("");
@@ -29,7 +29,7 @@ function EditBannerDetails(props) {
       },[]);
 
       const getBanner = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/banner");
+        let result = await fetch(`${server}api/v1/banner`);
         result = await result.json();
         setBanner(result);
         }
@@ -41,7 +41,7 @@ function EditBannerDetails(props) {
         //     }
 
     const getBanner_Deatil = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/bannerDetails/${params.id}`);
+        let result = await fetch(`${server}api/v1/bannerDetails/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setBanner_Id(result[0].banner_id);
@@ -73,7 +73,7 @@ function EditBannerDetails(props) {
         {
 
             setBanner_Detail_TitleError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/bannerDetails/${params.id}`, {
+            let result = await fetch(`${server}api/v1/bannerDetails/${params.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({banner_id, banner_detail_title, banner_detail_image, banner_detail_desc, banner_detail_url, banner_detail_status, }),
                 headers: {

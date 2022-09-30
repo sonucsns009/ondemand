@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditBanner(props) {
     const [category_id, setCategory_Id]= useState("");
     const [subcategory_id, setSubCategory_Id] = useState("");
@@ -32,19 +32,19 @@ function EditBanner(props) {
       },[]);
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setMaincategory(result);
         }
     
           const getMainSubCategory = async(category_id) => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory/allSubCategory/"+category_id);
+            let result = await fetch(`${server}api/v1/mainSubCategory/allSubCategory/`+category_id);
             result = await result.json();
             setMainSubCategory(result);
             }
 
     const getBannerDeatils = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/banner/${params.id}`);
+        let result = await fetch(`${server}api/v1/banner/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setCategory_Id(result[0].category_id);
@@ -76,9 +76,9 @@ function EditBanner(props) {
         {
 
             setBanner_TitleError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/banner/${params.id}`, {
+            let result = await fetch(`${server}api/v1/banner/${params.id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ banner_title, banner_image, banner_type, banner_url, banner_status, }),
+                body: JSON.stringify({ category_id,subcategory_id, banner_title, banner_image, banner_type, banner_url, banner_status, }),
                 headers: {
                     'Content-Type': 'Application/json'
                 }
@@ -116,7 +116,7 @@ function EditBanner(props) {
                                 Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                <select className="form-control"   onChange={(e)=>getMainSubCategory(e.target.value)}>
+                                <select className="form-control"  value={category_id}  onChange={(e)=>getMainSubCategory(e.target.value)}>
                                 <option disabled selected value> Select Category</option> 
                                     
                                     {
@@ -137,7 +137,7 @@ function EditBanner(props) {
                                 Sub Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control"  onChange={(e)=>setSubCategory_Id(e.target.value)}>
+                                    <select className="form-control" value={subcategory_id}  onChange={(e)=>setSubCategory_Id(e.target.value)}>
                                     {
                                         mainsubcategory.map((item, index) => {
                                         //cnt++;

@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {  Link } from "react-router-dom";
-
+import server from '../../const';
 
 function Maincategory(props) {
     const [maincategory, setmaincategory] = useState([]);
@@ -10,18 +10,18 @@ function Maincategory(props) {
       },[]);
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setmaincategory(result);
         }
 
         console.warn(maincategory);
         const category_delete = async(id) => {
-            let status="delete";
+            let cat_status="delete";
             // alert("Do You Want to delete", id);
-            await fetch (`http://localhost:5000/api/v1/mainCategory/${id}`, {
+            await fetch (`${server}api/v1/mainCategory/${id}`, {
               method: 'DELETE',
-                        body: JSON.stringify({ status}),
+                        body: JSON.stringify({ cat_status}),
                         headers: {
                             'Content-Type': 'Application/json'
                         }
@@ -60,7 +60,7 @@ function Maincategory(props) {
                   <th>Category Name</th>
                   <th>Image</th>
                   {/* <th>Comapny Contact</th> */}
-                  <th>Status</th>
+                  <th>cat_Status</th>
                   <th>Action</th>
                 </tr>
                 {
@@ -72,7 +72,7 @@ function Maincategory(props) {
                         <td>{item.category_name}</td>
                         <td>{item.category_image}</td> 
                         {/* <td>{item.company_contact}</td> */}
-                        <td>{item.status}</td>
+                        <td>{item.cat_status}</td>
                         <td>
                         <Link to={"/editmaincategory/"+item.category_id }><button className='btn btn-primary' >
                                 <i className='fa fa-edit'></i> </button></Link> | 

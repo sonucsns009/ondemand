@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditMainSubCategory(props) {
     const [category_id, setCategory_Id]= useState("");
     const [maincategory, setmaincategory] = useState([]);
@@ -12,7 +12,7 @@ function EditMainSubCategory(props) {
     const params = useParams();
     console.warn(params.id);
 
-    const [status,setstatus]=useState("");
+    const [sub_status,setsub_status]=useState("");
 
     const navigate = useNavigate(); 
 
@@ -22,16 +22,16 @@ function EditMainSubCategory(props) {
 
     }, [])
     const getCategoryDeatils = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/mainsubcategory/${params.id}`);
+        let result = await fetch(`${server}api/v1/mainsubcategory/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setSubcategory_name(result[0].subcategory_name);
        setSubcategory_image(result[0].subcategory_image);
-       setstatus(result[0].status);
+       setsub_status(result[0].sub_status);
     }
 
     const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setmaincategory(result);
         }
@@ -54,9 +54,9 @@ function EditMainSubCategory(props) {
         {
 
             setSubcategory_nameError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/mainsubcategory/${params.id}`, {
+            let result = await fetch(`${server}api/v1/mainsubcategory/${params.id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ subcategory_name, subcategory_image, status }),
+                body: JSON.stringify({ subcategory_name, subcategory_image, sub_status }),
                 headers: {
                     'Content-Type': 'Application/json'
                 }
@@ -121,14 +121,14 @@ function EditMainSubCategory(props) {
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Sub Category Status :- </div>
+                                    <div className='col-sm-3'>Sub Category sub_Status :- </div>
                                     <div className='col-sm-6'>
                                     <select type="text" 
                                                     className='form-control'
-                                                    name="status"
-                                                    value={status}
-                                                    onChange={(e)=>setstatus(e.target.value)}>
-                                                    <option>Select Status</option>
+                                                    name="sub_status"
+                                                    value={sub_status}
+                                                    onChange={(e)=>setsub_status(e.target.value)}>
+                                                    <option>Select sub_Status</option>
                                                     <option value="active">active</option>
                                                     <option value="inactive">inactive</option>
                                                 </select>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {  Link } from "react-router-dom";
-
+import server from '../../const';
 
 function BannerDetails(props) {
         //   const [banner_id, setBanner_Id] = useState("");
@@ -18,7 +18,7 @@ function BannerDetails(props) {
        },[]);
 
        const getBannerDetails = async() => {
-         let result = await fetch("http://localhost:5000/api/v1/bannerDetails");
+         let result = await fetch(`${server}api/v1/bannerDetails`);
          result = await result.json();
          console.warn(result)
          setBannerDetails(result);
@@ -28,7 +28,7 @@ function BannerDetails(props) {
          const banner_details_delete = async(id) => {
              let banner_detail_status="delete";
              // alert("Do You Want to delete", id);
-             await fetch (`http://localhost:5000/api/v1/bannerDetails/${id}`, {
+             await fetch (`${server}api/v1/bannerDetails/${id}`, {
                method: 'DELETE',
                          body: JSON.stringify({ banner_detail_status}),
                          headers: {
@@ -66,7 +66,7 @@ function BannerDetails(props) {
              <table className='table table-hover'>
                 <tr>
                   <th>Sr No</th>
-                  <th>Banner Detail Id</th>
+                  <th>Banner Title</th>
                   <th>Banner Detail Title</th>
                   <th>Banner Detail Description</th>
                   <th>Banner Detail Image</th>
@@ -80,8 +80,8 @@ function BannerDetails(props) {
                 
                     return(
                         <tr key={index}>
-                        <td>{cnt}</td>
-                        <td>{item.banner_detail_id}</td>
+                        <td>{cnt++}</td>
+                        <td>{item.banner_title}</td>
                         <td>{item.banner_detail_title}</td>
                         <td>{item.banner_detail_desc}</td>
                         <td>{item.banner_detail_image}</td>

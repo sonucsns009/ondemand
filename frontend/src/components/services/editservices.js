@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditServices(props) {
     const [category_id, setCategory_Id]= useState("");
     const [subcategory_id, setSubCategory_Id] = useState("");
@@ -22,32 +22,36 @@ function EditServices(props) {
     const params = useParams();
     console.warn(params.id);
 
-    const [status,setStatus]=useState("");
+    const [service_status,setservice_status]=useState("");
     const navigate = useNavigate();
-    useEffect(()=>{
-        getServiceDeatils();
-    }, []);
-
+   
+    
     useEffect(()=>{
         getMainCategory();
         getMainSubCategory();
+        
+    },[]);
+    
+    useEffect(()=>{
+          getServiceDeatils();
 
-      },[]);
+      },[])
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setMaincategory(result);
         }
-
-          const getMainSubCategory = async() => {
-            let result = await fetch("http://localhost:5000/api/v1/mainSubCategory");
+    
+          const getMainSubCategory = async(category_id) => {
+            let result = await fetch(`${server}api/v1/mainSubCategory/allSubCategory/`+category_id);
             result = await result.json();
             setMainSubCategory(result);
+            setCategory_Id(category_id);
             }
 
     const getServiceDeatils = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/services/${params.id}`);
+        let result = await fetch(`${server}api/v1/services/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setCategory_Id(result[0].category_id);
@@ -59,7 +63,7 @@ function EditServices(props) {
        setService_Price(result[0].price);
        setService_Coupon_Code(result[0].coupon_code);
 
-       setStatus(result[0].status);
+       setservice_status(result[0].service_status);
     }
 
 
@@ -82,9 +86,9 @@ function EditServices(props) {
         {
 
             setService_NameError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/services/${params.id}`, {
+            let result = await fetch(`${server}api/v1/services/${params.id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ service_name, service_desc, service_image, discount, price, coupon_code, status }),
+                body: JSON.stringify({ category_id,subcategory_id,  service_name, service_desc, service_image, discount, price, coupon_code, service_status }),
                 headers: {
                     'Content-Type': 'Application/json'
                 }
@@ -117,12 +121,13 @@ function EditServices(props) {
                                 {/* <div style={{color:"#28a828"}}>{success ? success :""}</div>    */}
                             <form onSubmit={handleSubmit}>                              
 
+                                      
                             <div className="row form-group">  
                             <div className="col-sm-3">
                                 Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                <select className="form-control" onChange={(e)=>setCategory_Id(e.target.value)}>Select Category
+                                    <select className="form-control" value={category_id}  onChange={(e)=>getMainSubCategory(e.target.value)}>Select Category
                                     {
                                         maincategory.map((item, index) => {
                                         //cnt++;
@@ -141,7 +146,7 @@ function EditServices(props) {
                                 Sub Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control" onChange={(e)=>setSubCategory_Id(e.target.value)}>Select Sub Category
+                                    <select className="form-control" value={subcategory_id} onChange={(e)=>setSubCategory_Id(e.target.value)}>Select Sub Category
                                     {
                                         mainsubcategory.map((item, index) => {
                                         //cnt++;
@@ -153,8 +158,7 @@ function EditServices(props) {
                                     }
                                     </select>
                                 </div>
-                                </div>                          
-
+                                </div>
                             <div className="row form-group">     
                                     <div className='col-sm-3 '>Service Name :- </div>
                                     <div className='col-sm-6'>
@@ -178,34 +182,34 @@ function EditServices(props) {
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Service Price :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="text"  value={price} className='form-control'/>
+                                        <input type="text"  value={price} onChange={(e)=>setService_Price(e.target.value)} className='form-control'/>
                                         {priceerror&& <div className="error-msg" style={{color:"red"}}>{priceerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Service Discount :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="text"value={discount}  className='form-control'/>
+                                        <input type="text"value={discount} onChange={(e)=>setService_Discount(e.target.value)} className='form-control'/>
                                         {discounterror&& <div className="error-msg" style={{color:"red"}}>{discounterror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Coupon Code :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="text" value={coupon_code}  className='form-control'/>
+                                        <input type="text" value={coupon_code} onChange={(e)=>setService_Coupon_Code(e.target.value)} className='form-control'/>
                                         {coupon_codeerror&& <div className="error-msg" style={{color:"red"}}>{coupon_codeerror}</div>}
                                     </div>
                                 </div>
                                 
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Service Status :- </div>
+                                    <div className='col-sm-3'>Service service_status :- </div>
                                     <div className='col-sm-6'>
                                     <select type="text" 
                                                     className='form-control'
-                                                    name="status"
-                                                    value={status}
-                                                    onChange={(e)=>setStatus(e.target.value)}>
-                                                    <option>Select Status</option>
+                                                    name="service_status"
+                                                    value={service_status}
+                                                    onChange={(e)=>setservice_status(e.target.value)}>
+                                                    <option>Select service_status</option>
                                                     <option value="Active">active</option>
                                                     <option value="Inactive">inactive</option>
                                                 </select>

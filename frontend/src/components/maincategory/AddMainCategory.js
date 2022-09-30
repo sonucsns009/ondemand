@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddMainCategory(props) {
     const [category_name,setcategory_name]=useState("");
     const [category_nameerror, setcategory_nameError] = useState(false);
@@ -9,7 +9,7 @@ function AddMainCategory(props) {
     const [category_image,setcategory_image]=useState("");
     //const [companyemailerror,setCompanyEmailError]=useState(false);
 
-    const [status,setstatus]=useState("");
+    const [cat_status,setcat_status]=useState("");
     const navigate = useNavigate();
 
     //const [companynameerror, setCompanyNameError] = useState(false);
@@ -33,10 +33,10 @@ function AddMainCategory(props) {
         {
 
             setcategory_nameError(false)
-            axios.post("http://localhost:5000/api/v1/mainCategory", 
-            { category_name, category_image, status,
+            axios.post(`${server}api/v1/mainCategory`, 
+            { category_name, category_image, cat_status,
             method: "Post",
-            body: JSON.stringify({category_name, category_image, status}),
+            body: JSON.stringify({category_name, category_image, cat_status}),
             header: {
                 "Content-type":"application/json"
                 }
@@ -49,7 +49,7 @@ function AddMainCategory(props) {
                 console.log(error);
             });
             setcategory_name("");
-            setstatus("");
+            setcat_status("");
             navigate("/maincategory");
         }
     }
@@ -87,13 +87,13 @@ function AddMainCategory(props) {
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Category Status :- </div>
+                                    <div className='col-sm-3'>Category cat status :- </div>
                                     <div className='col-sm-6'>
                                     <select type="text" 
                                                     className='form-control'
-                                                    name="status"
-                                                    onChange={(e)=>setstatus(e.target.value)}>
-                                                    <option>Select Status</option>
+                                                    name="cat_status"
+                                                    onChange={(e)=>setcat_status(e.target.value)}>
+                                                    <option>Select cat status</option>
                                                     <option value="active">active</option>
                                                     <option value="inactive">inactive</option>
                                                 </select>

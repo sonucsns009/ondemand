@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddServicePackages(props) {
      const [service_id, setService_Id]=useState("");
      const [service_provider_id, setService_provider_Id]=useState('0');
@@ -31,7 +31,7 @@ function AddServicePackages(props) {
       },[]);
 
       const getServicePackages = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/services");
+        let result = await fetch(`${server}api/v1/services`);
         result = await result.json();
         setServicePackages(result);
         }
@@ -63,7 +63,7 @@ function AddServicePackages(props) {
         {
 
             setService_NameError(false)
-            axios.post("http://localhost:5000/api/v1/servicePackages", 
+            axios.post(`${server}api/v1/servicePackages`, 
             {service_id ,service_provider_id,store_id,package_name, package_desc, package_amount, p_status,
             method: "Post",
             body: JSON.stringify({service_id,service_provider_id, store_id,package_name, package_desc, package_amount, p_status}),

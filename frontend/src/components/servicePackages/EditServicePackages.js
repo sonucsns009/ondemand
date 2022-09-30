@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditServicePackages(props) {
     const [service, setService] = useState([]);    
     const [service_id,setService_id] =useState("");
@@ -43,13 +43,13 @@ function EditServicePackages(props) {
       },[]);
 
       const getservices = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/services");
+        let result = await fetch(`${server}api/v1/services`);
         result = await result.json();
         setService(result);
         }
 
     const getServicePackagesDeatils = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/servicePackages/${params.id}`);
+        let result = await fetch(`${server}api/v1/servicePackages/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setService_id(result[0].service_id);
@@ -79,7 +79,7 @@ function EditServicePackages(props) {
         {
 
             setPackage_NameError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/servicePackages/${params.id}`, {
+            let result = await fetch(`${server}api/v1/servicePackages/${params.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({service_id, package_name, package_amount, package_desc,  p_status }),
                 headers: {

@@ -28,6 +28,8 @@ import EditBanner from './components/Banner/EditBanner';
 import BannerDetails from './components/BannerDetails/bannerdetails';
 import AddBannerDetails from './components/BannerDetails/AddBannerdetails';
 import EditBannerDetails from './components/BannerDetails/EditBannerdetails';
+import ServiceTax from './components/Tax/servicetax';
+import EditServiceTax from './components/Tax/editservicetax';
 function App() {
   const auth = localStorage.getItem('user');
   return (
@@ -59,6 +61,8 @@ function App() {
           <Route path="/bannerdetails" element={<BannerDetails/>}/>
           <Route path="/addBannerDetails" element={<AddBannerDetails/>}/>
           <Route path="/editbannerdetails/:id" element={<EditBannerDetails/>}/>
+          <Route path="/servicetax" element={<ServiceTax/>}/>
+          <Route path="/editservicetax/:id" element={<EditServiceTax/>}/>
         </Route>
        
         </Routes>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from "./images/CSNS_logo2.png";
 import axios from 'axios';
-
+import server from './const';
 function Login() {
 
     const [username,setUsername]=useState("");
@@ -44,7 +44,7 @@ function Login() {
           setPasswordError(false)
           let admin_password;
 
-          axios.post("http://localhost:5000/api/v1/admin/login", 
+          axios.post(`${server}api/v1/admin/login`, 
           { username: username, admin_password: password,
            method: "POST",
           body: JSON.stringify({username, admin_password }),

@@ -2,13 +2,13 @@ import React from 'react';
 import { Component } from 'react';
 import {  Link } from "react-router-dom";
 import Sidebar from './Sidebar';
-
+import {server, loginServer } from './const';
 class Header extends Component {
     render() {
       const auth = localStorage.getItem('user');
       const logout = () => {
         localStorage.clear();
-        window.location("http://localhost:3001/login");
+        window.location(`${loginServer}3001/login`);
     }
     
     return (

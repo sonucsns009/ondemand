@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddBannerDetails(props) {
     // const [service_id, setService_Id]=useState("");
     const [banner, setBanner]= useState([]);
@@ -28,7 +28,7 @@ function AddBannerDetails(props) {
       },[]);
 
       const getBanner = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/banner");
+        let result = await fetch(`${server}api/v1/banner`);
         result = await result.json();
         setBanner(result);
         }
@@ -59,7 +59,7 @@ function AddBannerDetails(props) {
         {
 
             setBanner_Detail_TitleError(false)
-            axios.post("http://localhost:5000/api/v1/bannerDetails", 
+            axios.post(`${server}api/v1/bannerDetails`, 
             {banner_id, banner_detail_title, banner_detail_desc, banner_detail_image, banner_detail_url, banner_detail_status,
             method: "Post",
             body: JSON.stringify({banner_id, banner_detail_title, banner_detail_desc, banner_detail_image, banner_detail_url, banner_detail_status}),

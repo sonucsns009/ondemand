@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import {  useNavigate,Link } from "react-router-dom";
 import axios from 'axios';
-
+import server from '../../const';
 function AddMainSubCategory(props) {
     const [category_id, setCategory_Id]= useState("");
     const [subcategory_name,setsubcategory_name]=useState("");
@@ -18,7 +18,7 @@ function AddMainSubCategory(props) {
       },[]);
 
       const getMainCategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainCategory");
+        let result = await fetch(`${server}api/v1/mainCategory`);
         result = await result.json();
         setmaincategory(result);
         }
@@ -44,7 +44,7 @@ function AddMainSubCategory(props) {
         {
 
             setsubcategory_nameError(false)
-            axios.post("http://localhost:5000/api/v1/mainSubCategory", 
+            axios.post(`${server}api/v1/mainSubCategory`, 
             {category_id, subcategory_name, subcategory_image, status,
             method: "Post",
             body: JSON.stringify({category_id, subcategory_name, subcategory_image, status}),

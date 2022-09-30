@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
-
+import server from '../../const';
 function EditMainCategory(props) {
     const [category_name,setcategory_name]=useState("");
     const [category_nameerror, setcategory_nameError] = useState(false);
@@ -10,18 +10,18 @@ function EditMainCategory(props) {
     const params = useParams();
     console.warn(params.id);
 
-    const [status,setstatus]=useState("");
+    const [cat_status,setcat_status]=useState("");
     const navigate = useNavigate();
     useEffect(()=>{
         getCategoryDeatils();
     }, [])
     const getCategoryDeatils = async() => {
-        let result = await fetch(`http://localhost:5000/api/v1/maincategory/${params.id}`);
+        let result = await fetch(`${server}api/v1/maincategory/${params.id}`);
         result = await result.json();
        // console.warn(result);
        setcategory_name(result[0].category_name);
        setcategory_image(result[0].category_image);
-       setstatus(result[0].status);
+       setcat_status(result[0].cat_status);
     }
     //const [companynameerror, setCompanyNameError] = useState(false);
 
@@ -42,9 +42,9 @@ function EditMainCategory(props) {
         {
 
             setcategory_nameError(false)
-            let result = await fetch(`http://localhost:5000/api/v1/maincategory/${params.id}`, {
+            let result = await fetch(`${server}api/v1/maincategory/${params.id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ category_name, category_image, status }),
+                body: JSON.stringify({ category_name, category_image, cat_status }),
                 headers: {
                     'Content-Type': 'Application/json'
                 }
@@ -91,14 +91,14 @@ function EditMainCategory(props) {
                                     </div>
                                 </div>
                                 <div className="row form-group">     
-                                    <div className='col-sm-3'>Category Status :- </div>
+                                    <div className='col-sm-3'>Category cat_status :- </div>
                                     <div className='col-sm-6'>
                                     <select type="text" 
                                                     className='form-control'
-                                                    name="status"
-                                                    value={status}
-                                                    onChange={(e)=>setstatus(e.target.value)}>
-                                                    <option>Select Status</option>
+                                                    name="cat_status"
+                                                    value={cat_status}
+                                                    onChange={(e)=>setcat_status(e.target.value)}>
+                                                    <option>Select cat_status</option>
                                                     <option value="active">active</option>
                                                     <option value="inactive">inactive</option>
                                                 </select>

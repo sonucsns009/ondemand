@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {  Link } from "react-router-dom";
-
+import server from '../../const';
 function Mainsubcategory(props) {
 
     const [mainsubcategory, setmainsubcategory] = useState([]);
@@ -10,18 +10,18 @@ function Mainsubcategory(props) {
       },[]);
 
       const getMainsubcategory = async() => {
-        let result = await fetch("http://localhost:5000/api/v1/mainSubCategory");
+        let result = await fetch(`${server}api/v1/mainSubCategory`);
         result = await result.json();
         setmainsubcategory(result);
         }
 
         console.warn(mainsubcategory);
         const subcategory_delete = async(id) => {
-            let status="3";
+            let sub_status="3";
             // alert("Do You Want to delete", id);
-            await fetch (`http://localhost:5000/api/v1/mainSubCategory/${id}`, {
+            await fetch (`${server}api/v1/mainSubCategory/${id}`, {
               method: 'DELETE',
-                        body: JSON.stringify({ status}),
+                        body: JSON.stringify({ sub_status}),
                         headers: {
                             'Content-Type': 'Application/json'
                         }
@@ -60,10 +60,11 @@ function Mainsubcategory(props) {
                   <table className='table table-hover'>
                     <tr>
                       <th>Sr No</th>
+                      <th>Category Name</th>
                       <th>SubCategory Name</th>
                       <th>Image</th>
                       {/* <th>Comapny Contact</th> */}
-                      <th>Status</th>
+                      <th>sub_Status</th>
                       <th>Action</th>
                     </tr>
                     {
@@ -72,9 +73,10 @@ function Mainsubcategory(props) {
                         return (
                           <tr key={index}>
                             <td>{cnt}</td>
+                            <td>{item.category_name}</td>
                             <td>{item.subcategory_name}</td>
                             <td>{item.subcategory_image}</td>
-                            <td>{item.status}</td>
+                            <td>{item.sub_status}</td>
                             <td>
                               <Link to={"/editmainsubcategory/" + item.subcategory_id}><button className='btn btn-primary' >
                                 <i className='fa fa-edit'></i> </button></Link> |
