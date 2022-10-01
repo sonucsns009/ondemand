@@ -19,4 +19,7 @@ routes.put("/:id", servicesControllers.update);
 // delete single services
 routes.delete("/:id", servicesControllers.delete);
 
+// user panel all services by sub category
+routes.get("/findByIdServ/:id", servicesControllers.findByIdServ);
+
 module.exports = routes;

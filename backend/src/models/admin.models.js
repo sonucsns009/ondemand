@@ -15,6 +15,7 @@ var Admin = function (Admin) {
   this.address_long = Admin.address_long;
   this.fix_tax_amt = Admin.fix_tax_amt;
   this.percent_tax_amt = Admin.percent_tax_amt;
+  this.tax_type = Admin.tax_type ? Admin.tax_type : 1;
   this.dateadded = new Date();
   this.dateupdated = new Date();
 };
@@ -116,6 +117,23 @@ Admin.updateTax = function (id, Admin, result) {
   dbConn.query(
     "UPDATE ond_admin SET fix_tax_amt=?,percent_tax_amt=?,dateupdated=? WHERE admin_id  = ?",
     [Admin.fix_tax_amt, Admin.percent_tax_amt, Admin.dateupdated, id],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
+Admin.updateTaxType = function (id, Admin, result) {
+  // console.log(Admin);
+  // console.log(Admin.dateupdated);
+  dbConn.query(
+    "UPDATE ond_admin SET tax_type=?,dateupdated=? WHERE admin_id  = ?",
+    [Admin.tax_type, Admin.dateupdated, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);

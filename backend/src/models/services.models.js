@@ -107,4 +107,19 @@ services.delete = function (id, services, result) {
   );
 };
 
+services.findByIdServ = function (id, result) {
+  dbConn.query(
+    "Select * from ond_services where subcategory_id=?",
+    id,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 module.exports = services;

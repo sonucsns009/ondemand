@@ -25,4 +25,7 @@ router.delete("/:id", adminControllers.delete);
 // tax update
 router.put("/updateTax/:id", adminControllers.updateTax);
 
+//  update tax type
+router.put("/update/taxType/:id", adminControllers.updateTaxType);
+
 module.exports = router;

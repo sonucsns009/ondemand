@@ -68,3 +68,13 @@ exports.delete = function (req, res) {
     }
   );
 };
+
+exports.findByIdServ = function (req, res) {
+  servicesCategory.findByIdServ(
+    req.params.id,
+    function (err, servicesCategory) {
+      if (err) res.send(err);
+      res.json(servicesCategory);
+    }
+  );
+};
