@@ -12,12 +12,12 @@ function BannerDetails(props) {
         //   const [banner_url, setBanner_Url] = useState("");
         //   const [banner_status, setBanner_Status] = useState("");
       const [bannerdetails, setBannerDetails] = useState([]);
-     var check="test";
-     useEffect(()=>{
+      var check="test";
+      useEffect(()=>{
          getBannerDetails();
        },[]);
 
-       const getBannerDetails = async() => {
+        const getBannerDetails = async() => {
          let result = await fetch(`${server}api/v1/bannerDetails`);
          result = await result.json();
          console.warn(result)
@@ -43,7 +43,7 @@ function BannerDetails(props) {
           }
          let cnt=0;
 
-    return (
+return (
 <>
 <div className='col-sm-10 offset-sm-2'>
 <div className="page-body">

@@ -50,7 +50,7 @@ function EditServices(props) {
             setCategory_Id(category_id);
             }
 
-    const getServiceDeatils = async() => {
+      const getServiceDeatils = async() => {
         let result = await fetch(`${server}api/v1/services/${params.id}`);
         result = await result.json();
        // console.warn(result);

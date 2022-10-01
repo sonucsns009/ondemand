@@ -78,7 +78,7 @@ return (
                                  <td>{item.p_status}</td>  
                                  <td>
                                      <Link to={"/editservicePackages/"+item.package_id}><button className='btn btn-primary'>
-                                        <i className='fa fa-edit'></i> </button></Link> | 
+                                        <i className='fa fa-edit'></i> </button></Link><br/><br/> 
                                          <button className='btn btn-primary' onClick={()=>servicePackages_delete(item.package_id)}>
                                              <i className='fa fa-trash'></i> </button>
                                        </td> 

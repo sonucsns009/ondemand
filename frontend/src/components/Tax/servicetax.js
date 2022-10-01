@@ -24,24 +24,24 @@ function servicetax(props) {
         setServiceTax(result);
         }
 
-        //console.warn(servicetax);
-        // const servicetax_delete = async(id) => {
-        //     let servicetax_status="3";
-        //     // alert("Do You Want to delete", id);
-        //     await fetch (`${server}api/v1/servicetax/${id}`, {
+        console.warn(servicetax);
+        const servicetax_delete = async(id) => {
+            let servicetax_status="3";
+            // alert("Do You Want to delete", id);
+            await fetch (`${server}api/v1/servicetax/${id}`, {
               
-        //       method: 'DELETE',
-        //                 body: JSON.stringify({ servicetax_status}),
-        //                 headers: {
-        //                     'Content-Type': 'Application/json'
-        //                 }
-        //                 }).then((result)=>{
-        //         result.json().then((resp)=>{
-        //         console.warn(resp);
-        //         getServiceTax();
-        //       })
-        //     })
-        //   }
+              method: 'DELETE',
+                        body: JSON.stringify({ servicetax_status}),
+                        headers: {
+                            'Content-Type': 'Application/json'
+                        }
+                        }).then((result)=>{
+                result.json().then((resp)=>{
+                console.warn(resp);
+                getServiceTax();
+              })
+            })
+          }
          let cnt=1;
   return (
     <div>
@@ -66,6 +66,8 @@ function servicetax(props) {
                   <th>Sr No</th>
                   <th>Fix Tax Amount</th>
                   <th>Percent Tax Amount</th>
+                  <th>Tax Type</th>
+
                   <th>Action</th>
                 </tr>
                 {
@@ -76,6 +78,8 @@ function servicetax(props) {
                         <td>{cnt++}</td>
                         <td>{item.fix_tax_amt}</td>
                         <td>{item.percent_tax_amt}</td>
+                        <td>{item.tax_type}</td>
+
                         <td>
                         <Link to={"/editservicetax/"+item.admin_id}><button className='btn btn-primary' >
                                 <i className='fa fa-edit'></i> </button></Link> <br/><br/> 
