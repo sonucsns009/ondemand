@@ -3,66 +3,50 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import server from '../../const';
 function editservicetax(props) {
     const [service_tax, setService_Tax] = useState([]);
-    const [fix_tax_amt, setFix_Tax_Amt] = useState([]);
-    const [fix_tax_amterror, setFix_Tax_AmtError] = useState("");
-    const [percent_tax_amt, setPercent_Tax_Amt] = useState([]);
-    const [percent_tax_amterror, setPercent_Tax_AmtError] = useState("");
+    const [fix_tax_amt, setFix_Tax_Amt] = useState("");
+    const [fix_tax_amterror, setFix_Tax_AmtError] = useState(false);
+    const [percent_tax_amt, setPercent_Tax_Amt] = useState("");
+    const [percent_tax_amterror, setPercent_Tax_AmtError] = useState(false);
+
     //var check="test";
     // useEffect(()=>{
     // },[]);
     
-    const [items, setItems] = useState([]);
+    //const [items, setItems] = useState([]);
     const params = useParams();
     console.warn(params.id);
     const navigate = useNavigate();
     
     useEffect(() => {
     getServiceTax();
-    });
+    },[]);
 
     const getServiceTax = async() => {
-        let result = await fetch(`${server}api/v1/servicetax/${params.id}`);
+        let result = await fetch(`${server}api/v1/admin/${params.id}`);
         result = await result.json();
-        setService_Tax(result[0].service_tax);
+       // setService_Tax(result[0].service_tax);
         setFix_Tax_Amt(result[0].fix_tax_amt);
         setPercent_Tax_Amt(result[0].percent_tax_amt);
         setService_Tax(result);
     }
-        //console.warn(service_tax);
-        // const servicetax_delete = async(id) => {
-        //     let servicetax_status="3";
-        //     // alert("Do You Want to delete", id);
-        //     await fetch (`${server}api/v1/servicetax/${id}`, {
-              
-        //       method: 'DELETE',
-        //                 body: JSON.stringify({ servicetax_status}),
-        //                 headers: {
-        //                     'Content-Type': 'Application/json'
-        //                 }
-        //                 }).then((result)=>{
-        //         result.json().then((resp)=>{
-        //         console.warn(resp);
-        //         getServiceTax();
-        //       })
-        //     })
-        //   }
+        
 
         const handleSubmit = async(e) =>
         {
                 e.preventDefault();
-            // const {...data} =values;
+            
             if(fix_tax_amt==='')
             {
                 setFix_Tax_AmtError('Service Tax is required');
                 
-            } else if (!/^[A-Za-z]+/.test(fix_tax_amt.trim())) {
-                setFix_Tax_AmtError('Enter a valid name');
+            } else if (!/^[0-9]+/.test(fix_tax_amt)) {
+                setFix_Tax_AmtError('Enter a valid number');
             }
             else
             {
     
                 setFix_Tax_AmtError(false)
-                let result = await fetch(`${server}api/v1/servicetax/${params.id}`, {
+                let result = await fetch(`${server}api/v1/admin/updateTax/${params.id}`, {
                     method: 'PUT',
                     body: JSON.stringify({ fix_tax_amt, percent_tax_amt }),
                     headers: {
@@ -93,41 +77,41 @@ function editservicetax(props) {
             </div>
           </div>
       </div>
-          <div className="card-body">   
-            <div className="row form-group">
-            <table className='table table-hover'>
-                <tr>
-                  <th>Sr No</th>
-                  <th>Fix Tax Amount</th>
-                  <th>Percent Tax Amount</th>
-                  <th>Action</th>
-                </tr>
-                {
-                service_tax.map((item, index) => {
-                  
-                    return(
-                        <tr key={index}>
-                        <td>{cnt++}</td>
-                        <td>{item.fix_tax_amt}</td>
-                        <td>{item.percent_tax_amt}</td>
-                        <td>
-                        <Link to={"/editservicetax/"+item.admin_id}><button className='btn btn-primary' >
-                                <i className='fa fa-edit'></i> </button></Link> <br/><br/> 
-                                {/* <button className='btn btn-primary' onClick={()=>servicetax_delete(item.service_id)}>
-                                <i className='fa fa-trash'></i> </button> */}
-                        </td> 
-                    </tr>
-                    )
-                  })
-                }
-                </table>
+       
+            <div className="card-body">
+            <form onSubmit={handleSubmit}>
+            <div className="row form-group">  
+                <div className="col-sm-2">
+                   Fix Tax Amount:-
+                </div>
+                <div className='col-sm-3'>
+                  <input type="number" value={fix_tax_amt} onChange={(e)=>setFix_Tax_Amt(e.target.value)} className='form-control'/>
+                  {fix_tax_amterror&& <div className="error-msg" style={{color:"red"}}>{fix_tax_amterror}</div>}
+                </div>
             </div>
-          </div>
-      </div>
-      </div>
+            <div className="row form-group">     
+              <div className='col-sm-2'>Percent Tax Amount :- </div>
+                <div className='col-sm-3'>
+                  <input type="number" value={percent_tax_amt} onChange={(e)=>setPercent_Tax_Amt(e.target.value)} className='form-control'/>
+                  {percent_tax_amterror&& <div className="error-msg" style={{color:"red"}}>{percent_tax_amterror}</div>}
+                </div>
+              </div>
+          
+          <div className="row form-group"> 
+             <div className='col-sm-2'>
+             </div>    
+             <div className='col-sm-6'>
+                <button type='submit'  onClick={handleSubmit} className='btn btn-primary'>Update</button>
+             </div>
+            </div>
+           </form>
+           </div>
+         </div>
+       </div> 
       </div>
     </div>
-    </div>
+ </div>
+    
   );
 }
 

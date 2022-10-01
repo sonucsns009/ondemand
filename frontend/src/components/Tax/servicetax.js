@@ -24,25 +24,25 @@ function servicetax(props) {
         setServiceTax(result);
         }
 
-        console.warn(servicetax);
-        const servicetax_delete = async(id) => {
-            let servicetax_status="3";
-            // alert("Do You Want to delete", id);
-            await fetch (`${server}api/v1/servicetax/${id}`, {
+        //console.warn(servicetax);
+        // const servicetax_delete = async(id) => {
+        //     let servicetax_status="3";
+        //     // alert("Do You Want to delete", id);
+        //     await fetch (`${server}api/v1/servicetax/${id}`, {
               
-              method: 'DELETE',
-                        body: JSON.stringify({ servicetax_status}),
-                        headers: {
-                            'Content-Type': 'Application/json'
-                        }
-                        }).then((result)=>{
-                result.json().then((resp)=>{
-                console.warn(resp);
-                getServiceTax();
-              })
-            })
-          }
-         let cnt=0;
+        //       method: 'DELETE',
+        //                 body: JSON.stringify({ servicetax_status}),
+        //                 headers: {
+        //                     'Content-Type': 'Application/json'
+        //                 }
+        //                 }).then((result)=>{
+        //         result.json().then((resp)=>{
+        //         console.warn(resp);
+        //         getServiceTax();
+        //       })
+        //     })
+        //   }
+         let cnt=1;
   return (
     <div>
        <div className='col-sm-10 offset-sm-2'>
