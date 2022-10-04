@@ -15,6 +15,7 @@ var request = function (request) {
   this.request_status = request.request_status
     ? request.request_status
     : "pending";
+  this.request_date = new Date();
   this.added_date = new Date();
   this.updated_date = new Date();
 };
@@ -39,6 +40,21 @@ request.findById = function (id, result) {
       if (err) {
         console.log("error: ", err);
         result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
+request.updateRequestStatus = function (id, request, result) {
+  dbConn.query(
+    "UPDATE ond_user_request SET request_status=?,updated_date WHERE request_id  = ?",
+    [request.request_status, request, updated_date, id],
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
       } else {
         result(null, res);
       }

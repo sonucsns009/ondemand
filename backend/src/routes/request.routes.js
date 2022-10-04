@@ -8,4 +8,6 @@ routes.get("/", requestControllers.findAll);
 
 routes.get("/:id", requestControllers.findById);
 
+routes.put("/updateRequestStatus/:id", requestControllers.updateRequestStatus);
+
 module.exports = routes;
