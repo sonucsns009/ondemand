@@ -21,15 +21,18 @@ var request = function (request) {
 };
 
 request.findAll = function (result) {
-  dbConn.query("Select * from ond_user_request ", function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-    } else {
-      console.log("ond_service_category : ", res);
-      result(null, res);
+  dbConn.query(
+    "Select * from ond_user_request,ond_users,ond_services,ond_service_packages where ond_users.user_id=ond_user_request.user_id and ond_services.service_id= ond_user_request.service_id and ond_service_packages.package_id= ond_user_request.package_id  ",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        console.log("ond_service_category : ", res);
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
 request.findById = function (id, result) {
