@@ -28,7 +28,7 @@ request.findAll = function (result) {
         console.log("error: ", err);
         result(null, err);
       } else {
-        console.log("ond_service_category : ", res);
+        console.log("ond_user_request : ", res);
         result(null, res);
       }
     }
