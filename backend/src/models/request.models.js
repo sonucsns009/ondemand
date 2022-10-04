@@ -62,4 +62,19 @@ request.updateRequestStatus = function (id, request, result) {
   );
 };
 
+request.requestView = function (id, result) {
+  dbConn.query(
+    "Select * from ond_user_request,ond_users,ond_services,ond_service_packages where ond_users.user_id=ond_user_request.user_id and ond_services.service_id= ond_user_request.service_id and ond_service_packages.package_id= ond_user_request.package_id and request_id=? ",
+    id,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    }
+  );
+};
+
 module.exports = request;

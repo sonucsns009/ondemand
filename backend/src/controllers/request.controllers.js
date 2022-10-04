@@ -35,3 +35,10 @@ exports.updateRequestStatus = function (req, res) {
     );
   }
 };
+
+exports.requestView = function (req, res) {
+  request.requestView(req.params.id, function (err, request) {
+    if (err) res.send(err);
+    res.json(request);
+  });
+};
