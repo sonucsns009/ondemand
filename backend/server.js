@@ -10,12 +10,53 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // multer
 const multer = require("multer");
-const usersUpload = multer({ dest: "uploads/users" });
-const servicesUpload = multer({ dest: "uploads/services_img" });
-const mainCategoryUpload = multer({ dest: "uploads/mainCategory" });
-const mainSubCategoryUpload = multer({ dest: "uploads/mainsubCategory" });
-const bannerUpload = multer({ dest: "uploads/banner" });
-const bannerDetailsUpload = multer({ dest: "uploads/bannerDetails" });
+var usersImages = multer.diskStorage({
+  destination: "uploads/usersImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const usersUpload = multer({ storage: usersImages });
+
+var servicesImages = multer.diskStorage({
+  destination: "uploads/servicesImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const servicesUpload = multer({ storage: servicesImages });
+
+var mainCategoryImages = multer.diskStorage({
+  destination: "uploads/mainCategoryImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const mainCategoryUpload = multer({ storage: mainCategoryImages });
+
+var mainsubCategoryImages = multer.diskStorage({
+  destination: "uploads/mainsubCategoryImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const mainSubCategoryUpload = multer({ storage: mainsubCategoryImages });
+
+var bannerImages = multer.diskStorage({
+  destination: "uploads/bannerImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const bannerUpload = multer({ storage: bannerImages });
+var bannerDetailsImages = multer.diskStorage({
+  destination: "uploads/bannerDetailsImg",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const bannerDetailsUpload = multer({ storage: bannerDetailsImages });
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -73,7 +114,10 @@ app.post(
 function usersUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  // res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
 }
 
 //  services
@@ -86,7 +130,10 @@ app.post(
 function servicesUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
+  // res.json({ message: "Successfully upload file" });
 }
 
 //  main category
@@ -99,7 +146,9 @@ app.post(
 function mainCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
 }
 
 //  main sub category
@@ -112,7 +161,10 @@ app.post(
 function mainSubCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  // res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
 }
 
 // bannerUpload
@@ -125,7 +177,10 @@ app.post(
 function bannerUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  // res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
 }
 
 // banner Details Upload
@@ -138,7 +193,10 @@ app.post(
 function bannerDetailsUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully upload file" });
+  // res.json({ message: "Successfully upload file" });
+  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+
+  res.json({ imagePath: fileurl });
 }
 
 // file upload ends
