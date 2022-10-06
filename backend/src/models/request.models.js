@@ -52,8 +52,8 @@ request.findById = function (id, result) {
 
 request.updateRequestStatus = function (id, request, result) {
   dbConn.query(
-    "UPDATE ond_user_request SET request_status=?,updated_date WHERE request_id  = ?",
-    [request.request_status, request, updated_date, id],
+    "UPDATE ond_user_request SET request_status=?,updated_date=? WHERE request_id  = ?",
+    [request.request_status, request.updated_date, id],
     function (err, res) {
       if (err) {
         console.log("error: ", err);
