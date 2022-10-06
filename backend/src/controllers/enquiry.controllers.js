@@ -4,7 +4,6 @@ const enquiry = require("../models/enquiry.models");
 
 exports.findAll = function (req, res) {
   enquiry.findAll(function (err, enquiry) {
-    console.log("controller");
     if (err) res.send(err);
     res.send(enquiry);
   });
