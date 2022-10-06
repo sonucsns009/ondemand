@@ -5,4 +5,6 @@ const requestDetailsControllers = require("../controllers/requestDetails.control
 
 routes.get("/", requestDetailsControllers.findAll);
 
+routes.get("/request/:id", requestDetailsControllers.findById);
+
 module.exports = routes;

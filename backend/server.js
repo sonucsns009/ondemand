@@ -46,6 +46,7 @@ const serviceSubCategoryRoutes = require("./src/routes/serviceSubCategory.routes
 const bannerRoutes = require("./src/routes/banner.routes");
 const bannerDetailsRoutes = require("./src/routes/bannerDetails.routes");
 const requestRoutes = require("./src/routes/request.routes");
+const requestDetailsRoutes = require("./src/routes/requestDetail.routes");
 
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/users", usersRoutes);
@@ -58,6 +59,7 @@ app.use("/api/v1/serviceSubCategory", serviceSubCategoryRoutes);
 app.use("/api/v1/banner", bannerRoutes);
 app.use("/api/v1/bannerDetails", bannerDetailsRoutes);
 app.use("/api/v1/request", requestRoutes);
+app.use("/api/v1/requestDetail", requestDetailsRoutes);
 
 // file upload starts
 
