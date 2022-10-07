@@ -14,7 +14,7 @@ var request = function (request) {
   this.final_amt = request.final_amt;
   this.request_status = request.request_status
     ? request.request_status
-    : "pending";
+    : "Pending";
   this.request_date = new Date();
   this.added_date = new Date();
   this.updated_date = new Date();
