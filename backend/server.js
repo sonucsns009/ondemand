@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 // create express app
 const app = express();
 
@@ -16,7 +17,16 @@ var usersImages = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const usersUpload = multer({ storage: usersImages });
+const usersUpload = multer({
+  storage: usersImages,
+  fileFilter: function (req, file, cb) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return cb(new Error("Only images are allowed"));
+    }
+    cb(null, true);
+  },
+});
 
 var servicesImages = multer.diskStorage({
   destination: "uploads/servicesImg",
@@ -24,7 +34,16 @@ var servicesImages = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const servicesUpload = multer({ storage: servicesImages });
+const servicesUpload = multer({
+  storage: servicesImages,
+  fileFilter: function (req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return callback(new Error("Only images are allowed"));
+    }
+    callback(null, true);
+  },
+});
 
 var mainCategoryImages = multer.diskStorage({
   destination: "uploads/mainCategoryImg",
@@ -32,7 +51,16 @@ var mainCategoryImages = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const mainCategoryUpload = multer({ storage: mainCategoryImages });
+const mainCategoryUpload = multer({
+  storage: mainCategoryImages,
+  fileFilter: function (req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return callback(new Error("Only images are allowed"));
+    }
+    callback(null, true);
+  },
+});
 
 var mainsubCategoryImages = multer.diskStorage({
   destination: "uploads/mainsubCategoryImg",
@@ -41,7 +69,16 @@ var mainsubCategoryImages = multer.diskStorage({
   },
 });
 
-const mainSubCategoryUpload = multer({ storage: mainsubCategoryImages });
+const mainSubCategoryUpload = multer({
+  storage: mainsubCategoryImages,
+  fileFilter: function (req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return callback(new Error("Only images are allowed"));
+    }
+    callback(null, true);
+  },
+});
 
 var bannerImages = multer.diskStorage({
   destination: "uploads/bannerImg",
@@ -56,7 +93,16 @@ var bannerDetailsImages = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const bannerDetailsUpload = multer({ storage: bannerDetailsImages });
+const bannerDetailsUpload = multer({
+  storage: bannerDetailsImages,
+  fileFilter: function (req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return callback(new Error("Only images are allowed"));
+    }
+    callback(null, true);
+  },
+});
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -119,7 +165,7 @@ function usersUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
   // res.json({ message: "Successfully upload file" });
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
 }
@@ -134,7 +180,7 @@ app.post(
 function servicesUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
   // res.json({ message: "Successfully upload file" });
@@ -150,7 +196,7 @@ app.post(
 function mainCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
 }
@@ -166,7 +212,7 @@ function mainSubCategoryUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
   // res.json({ message: "Successfully upload file" });
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
 }
@@ -182,7 +228,7 @@ function bannerUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
   // res.json({ message: "Successfully upload file" });
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
 }
@@ -198,7 +244,7 @@ function bannerDetailsUploadFiles(req, res) {
   console.log(req.body);
   console.log(req.files);
   // res.json({ message: "Successfully upload file" });
-  let fileurl = req.files[0].destination + "/" + req.files[0].filename;
+  let fileurl = req.files[0].filename;
 
   res.json({ imagePath: fileurl });
 }
