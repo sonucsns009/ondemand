@@ -6,6 +6,9 @@ const requestControllers = require("../controllers/request.controllers");
 // all requests
 routes.get("/", requestControllers.findAll);
 
+// request create
+// routes.post('/',requestControllers.create)
+
 // request by id
 routes.get("/:id", requestControllers.findById);
 

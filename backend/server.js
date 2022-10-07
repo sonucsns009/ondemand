@@ -89,6 +89,7 @@ const bannerDetailsRoutes = require("./src/routes/bannerDetails.routes");
 const requestRoutes = require("./src/routes/request.routes");
 const requestDetailsRoutes = require("./src/routes/requestDetail.routes");
 const enquiryRoutes = require("./src/routes/enquiry.routes");
+const countryRoutes = require("./src/routes/country.routes");
 
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/users", usersRoutes);
@@ -103,6 +104,7 @@ app.use("/api/v1/bannerDetails", bannerDetailsRoutes);
 app.use("/api/v1/request", requestRoutes);
 app.use("/api/v1/requestDetail", requestDetailsRoutes);
 app.use("/api/v1/enquiry", enquiryRoutes);
+app.use("/api/v1/country", countryRoutes);
 
 // file upload starts
 
