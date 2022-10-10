@@ -6,9 +6,9 @@ const About = () => {
 
   return (
     <>
-      <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-          <div class="section-header">
+      <section id="about" className="about">
+        <div className="container" data-aos="fade-up">
+          <div className="section-header">
             <h2>About Us</h2>
             <p>
               Aperiam dolorum et et wuia molestias qui eveniet numquam nihil
@@ -17,12 +17,12 @@ const About = () => {
             </p>
           </div>
 
-          <div class="row gy-4">
-            <div class="col-lg-6">
+          <div className="row gy-4">
+            <div className="col-lg-6">
               <h3>Voluptatem dignissimos provident quasi corporis</h3>
               <img
                 src=" assets/img/about.jpg"
-                class="img-fluid rounded-4 mb-4"
+                className="img-fluid rounded-4 mb-4"
                 alt=""
               />
               <p>
@@ -39,26 +39,26 @@ const About = () => {
                 sit. Accusantium sed ut omnis beatae neque deleniti repellendus.
               </p>
             </div>
-            <div class="col-lg-6">
-              <div class="content ps-0 ps-lg-5">
-                <p class="fst-italic">
+            <div className="col-lg-6">
+              <div className="content ps-0 ps-lg-5">
+                <p className="fst-italic">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <ul>
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat.
+                    <i className="bi bi-check-circle-fill"></i> Ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
                   </li>
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Duis aute irure
+                    <i className="bi bi-check-circle-fill"></i> Duis aute irure
                     dolor in reprehenderit in voluptate velit.
                   </li>
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate trideta storacalaperda mastiro
-                    dolore eu fugiat nulla pariatur.
+                    <i className="bi bi-check-circle-fill"></i> Ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    dolor in reprehenderit in voluptate trideta storacalaperda
+                    mastiro dolore eu fugiat nulla pariatur.
                   </li>
                 </ul>
                 <p>
@@ -68,15 +68,15 @@ const About = () => {
                   occaecat cupidatat non proident
                 </p>
 
-                <div class="position-relative mt-4">
+                <div className="position-relative mt-4">
                   <img
                     src="assets/img/about-2.jpg"
-                    class="img-fluid rounded-4"
+                    className="img-fluid rounded-4"
                     alt=""
                   />
                   <a
                     href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                    class="glightbox play-btn"
+                    className="glightbox play-btn"
                   ></a>
                 </div>
               </div>

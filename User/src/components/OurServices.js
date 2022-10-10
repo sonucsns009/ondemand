@@ -16,9 +16,9 @@ const OurServices = () => {
   };
 
   return (
-    <section id="services" class="portfolio sections-bg">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
+    <section id="services" className="portfolio sections-bg">
+      <div className="container" data-aos="fade-up">
+        <div className="section-header">
           <h2>Our Services</h2>
           <p>
             Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum
@@ -27,26 +27,30 @@ const OurServices = () => {
         </div>
 
         <div
-          class="portfolio-isotope"
+          className="portfolio-isotope"
           data-portfolio-filter="*"
           data-portfolio-layout="masonry"
           data-portfolio-sort="original-order"
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <div class="row gy-4 portfolio-container">
+          <div className="row gy-4 portfolio-container">
             {data.map((val) => {
               return (
-                <div class="col-xl-4 col-md-6 portfolio-item filter-product">
-                  <div class="portfolio-wrap">
+                <div className="col-xl-4 col-md-6 portfolio-item filter-product">
+                  <div className="portfolio-wrap">
                     <Link
                       to={`/mainsubservices/${val.category_id}`}
                       data-gallery="portfolio-gallery-app"
-                      class="glightbox"
+                      className="glightbox"
                     >
-                      <img src={val.category_image} class="img-fluid" alt="" />
+                      <img
+                        src={val.category_image}
+                        className="img-fluid"
+                        alt=""
+                      />
                     </Link>
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h4>
                         <Link
                           to={`/mainsubservices/${val.category_id}`}

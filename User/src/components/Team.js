@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Team = () => {
   return (
@@ -28,18 +29,18 @@ const Team = () => {
                 <h4>Walter White</h4>
                 <span>Web Development</span>
                 <div className="social">
-                  <a href="">
+                  <Link to="/">
                     <i className="bi bi-twitter"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-facebook"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-instagram"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-linkedin"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -58,18 +59,18 @@ const Team = () => {
                 <h4>Sarah Jhinson</h4>
                 <span>Marketing</span>
                 <div className="social">
-                  <a href="">
+                  <Link to="/">
                     <i className="bi bi-twitter"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-facebook"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-instagram"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-linkedin"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -88,18 +89,18 @@ const Team = () => {
                 <h4>William Anderson</h4>
                 <span>Content</span>
                 <div className="social">
-                  <a href="">
+                  <Link to="/">
                     <i className="bi bi-twitter"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-facebook"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-instagram"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-linkedin"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -118,18 +119,18 @@ const Team = () => {
                 <h4>Amanda Jepson</h4>
                 <span>Accountant</span>
                 <div className="social">
-                  <a href="">
+                  <Link to="/">
                     <i className="bi bi-twitter"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-facebook"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-instagram"></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link to="/">
                     <i className="bi bi-linkedin"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer id="footer" class="footer">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-info">
-            <a href="index.html" class="logo d-flex align-items-center">
+    <footer id="footer" className="footer">
+      <div className="container">
+        <div className="row gy-4">
+          <div className="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" className="logo d-flex align-items-center">
               <span>OnDemand</span>
             </a>
             <p>
@@ -18,23 +18,23 @@ const Footer = () => {
               iaculis eu non diam phasellus.
             </p>
 
-            <div class="social-links d-flex mt-4">
-              <a href="#" class="twitter">
-                <i class="bi bi-twitter"></i>
+            <div className="social-links d-flex mt-4">
+              <a href="#" className="twitter">
+                <i className="bi bi-twitter"></i>
               </a>
-              <a href="#" class="facebook">
-                <i class="bi bi-facebook"></i>
+              <a href="#" className="facebook">
+                <i className="bi bi-facebook"></i>
               </a>
-              <a href="#" class="instagram">
-                <i class="bi bi-instagram"></i>
+              <a href="#" className="instagram">
+                <i className="bi bi-instagram"></i>
               </a>
-              <a href="#" class="linkedin">
-                <i class="bi bi-linkedin"></i>
+              <a href="#" className="linkedin">
+                <i className="bi bi-linkedin"></i>
               </a>
             </div>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
+          <div className="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
               <li>
@@ -56,7 +56,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
+          <div className="col-lg-2 col-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li>
@@ -77,7 +77,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <div className="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
               A108 Adam Street <br />
@@ -94,15 +94,15 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="container mt-4">
-        <div class="copyright">
+      <div className="container mt-4">
+        <div className="copyright">
           &copy; Copyright{" "}
           <strong>
             <span>OnDemand</span>
           </strong>
           . All Rights Reserved
         </div>
-        <div class="credits">
+        <div className="credits">
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>

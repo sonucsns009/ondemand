@@ -4,6 +4,12 @@ import server from "../Const";
 import StatsCounter from "./StatsCounter";
 import PureCounter from "@srexi/purecounterjs";
 import { Link } from "react-router-dom";
+import OurServices from "./OurServices";
+import About from "./About";
+import Portfolio from "./Portfolio";
+import Team from "./Team";
+import Testimonials from "./Testimonials";
+import Contact from "./Contact";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
@@ -21,30 +27,30 @@ const HeroSection = () => {
 
   return (
     <>
-      <section id="hero" class="hero">
-        <div class="container position-relative">
-          <div class="row gy-5" data-aos="fade-in">
+      <section id="hero" className="hero">
+        <div className="container position-relative">
+          <div className="row gy-5" data-aos="fade-in">
             <Banner />
           </div>
         </div>
-        <div class="icon-boxes position-relative">
-          <div class="container position-relative">
-            <div class="row gy-4 mt-5">
+        <div className="icon-boxes position-relative">
+          <div className="container position-relative">
+            <div className="row gy-4 mt-5">
               {data.map((val) => {
                 return (
                   <div
-                    class="col-xl-3 col-md-6"
+                    className="col-xl-3 col-md-6"
                     data-aos="fade-up"
                     data-aos-delay="100"
                   >
-                    <div class="icon-box">
-                      <div class="icon">
-                        <i class="bi bi-easel"></i>
+                    <div className="icon-box">
+                      <div className="icon">
+                        <i className="bi bi-easel"></i>
                       </div>
-                      <h4 class="title">
+                      <h4 className="title">
                         <Link
                           to={`/mainsubservices/${val.category_id}`}
-                          class="stretched-link"
+                          className="stretched-link"
                         >
                           {val.category_name}
                         </Link>
@@ -58,6 +64,12 @@ const HeroSection = () => {
         </div>
       </section>
       <StatsCounter />
+      <OurServices />
+      <About />
+      <Portfolio />
+      <Team />
+      <Testimonials />
+      <Contact />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import Testimonials from "./Testimonials";
 
 const Portfolio = () => {
   return (
@@ -114,6 +115,7 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+      <Testimonials />
     </>
   );
 };

@@ -59,7 +59,7 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 30px 0;
   overflow: hidden;
 }
 
@@ -1864,7 +1864,9 @@ section {
 
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .php-email-form textarea,
+.contact .php-email-form input[type=password],
+.contact .php-email-form select {
   padding: 12px 15px;
 }
 
@@ -2843,4 +2845,15 @@ section {
 
 .carousel-item h5 {
   color: white;
+}
+
+
+.SwipSlid img {
+  height: 400px;
+  max-height: 100%;
+}
+
+.infoContainer img {
+  height: 20rem;
+
 }

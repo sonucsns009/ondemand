@@ -1,4 +1,7 @@
 import React from "react";
+// import Swiper from "Swiper/";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const Testimonials = () => {
   return (
@@ -13,13 +16,20 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div
+          {/* <div
             className="slides-3 swiper"
             data-aos="fade-up"
             data-aos-delay="100"
+          > */}
+
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={3}
+            onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
           >
             <div className="swiper-wrapper">
-              <div className="swiper-slide">
+              <SwiperSlide>
                 <div className="testimonial-wrap">
                   <div className="testimonial-item">
                     <div className="d-flex align-items-center">
@@ -50,9 +60,9 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
 
-              <div className="swiper-slide">
+              <SwiperSlide>
                 <div className="testimonial-wrap">
                   <div className="testimonial-item">
                     <div className="d-flex align-items-center">
@@ -83,9 +93,9 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
 
-              <div className="swiper-slide">
+              <SwiperSlide>
                 <div className="testimonial-wrap">
                   <div className="testimonial-item">
                     <div className="d-flex align-items-center">
@@ -115,9 +125,9 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
 
-              <div className="swiper-slide">
+              <SwiperSlide>
                 <div className="testimonial-wrap">
                   <div className="testimonial-item">
                     <div className="d-flex align-items-center">
@@ -147,9 +157,9 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
 
-              <div className="swiper-slide">
+              <SwiperSlide>
                 <div className="testimonial-wrap">
                   <div className="testimonial-item">
                     <div className="d-flex align-items-center">
@@ -180,10 +190,11 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
             </div>
             <div className="swiper-pagination"></div>
-          </div>
+            {/* </div> */}
+          </Swiper>
         </div>
       </section>
     </>

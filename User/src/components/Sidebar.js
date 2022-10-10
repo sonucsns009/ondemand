@@ -21,7 +21,8 @@ const Sidebar = () => {
         <br></br>
         <br></br>
         <br></br>
-        <div class="sidebar">
+        <div className="sidebar">
+          <h3>Services</h3>
           <ul>
             {data.map((val) => {
               return (
