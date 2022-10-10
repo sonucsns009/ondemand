@@ -43,7 +43,26 @@ function AddBanner(props) {
 
     // const [company_email,setCompany_Email]=useState("");
     // const [companyemailerror,setCompanyEmailError]=useState(false);
-   
+
+    const handleFileInput = (e) => 
+    {
+        // handle validations
+        let img=e.target.files[0];
+        console.warn("imAAGE------->"+e.target.files[0]);
+        const formData = new FormData();
+        formData.append("files", img);
+
+        axios
+            .post(`${server}api/v1/banner/upload_files`, formData)
+            .then(response =>{
+                console.log(response);
+                let imgUrl =  response.data.imagePath;
+                setBanner_Image(imgUrl);
+                return response.json();
+                
+            })
+            .catch((err) => console.log("File Upload Error"));
+     }
 
     const handleSubmit = (e, values) => 
     {
@@ -150,7 +169,7 @@ function AddBanner(props) {
                                 <div className="row form-group">     
                                     <div className='col-sm-3 '>Banner Image :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="file" value={banner_image} onChange={(e)=>setBanner_Image(e.target.value)} className='form-control'/>
+                                        <input type="file" onChange={handleFileInput} className='form-control'/>
                                         {/* {banner_imageerror&& <div className="error-msg" style={{color:"red"}}>{banner_imageerror}</div>} */}
                                     </div>
                                 </div>
@@ -175,9 +194,9 @@ function AddBanner(props) {
                                                     className='form-control'
                                                     name="status"
                                                     onChange={(e)=>setBanner_Status(e.target.value)}>
-                                                    <option>Select Status</option>
-                                                    <option value="active">active</option>
-                                                    <option value="inactive">inactive</option>
+                                                    <option disabled selected value>Select Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -185,10 +204,10 @@ function AddBanner(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-8'>
                                     
                                         </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
                                         className='btn btn-primary'>Add </button>

@@ -17,7 +17,7 @@ function Login() {
          // fetchBusinesses();
            navigate("/dashboard");
         }
-    }, [])
+    })
 
     const handleSubmit = (e) =>{
       e.preventDefault();
@@ -58,6 +58,8 @@ function Login() {
                   setPasswordError(false)
                   localStorage.setItem('user', JSON.stringify(respone));
                   navigate("/dashboard"); 
+         window.location.reload();
+
                   return respone.json();
                 }
                 else {

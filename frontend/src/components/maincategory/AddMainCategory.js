@@ -7,6 +7,7 @@ function AddMainCategory(props) {
     const [category_nameerror, setcategory_nameError] = useState(false);
 
     const [category_image,setcategory_image]=useState("");
+    const [category_imageerror, setCategory_ImageError] = useState(false);
     //const [companyemailerror,setCompanyEmailError]=useState(false);
 
     const [cat_status,setcat_status]=useState("");
@@ -17,7 +18,27 @@ function AddMainCategory(props) {
     // const [company_email,setCompany_Email]=useState("");
     // const [companyemailerror,setCompanyEmailError]=useState(false);
    
+    const handleFileInput = (e) => 
+    {
+        // handle validations
+        let img=e.target.files[0];
+        console.warn("imAAGE------->"+e.target.files[0]);
+        const formData = new FormData();
+        formData.append("files", img);
 
+        axios
+            .post(`${server}api/v1/mainCategory/upload_files`, formData)
+            .then(response =>{
+                console.log(response);
+                let imgUrl =  response.data.imagePath;
+                setcategory_image(imgUrl);
+                return response.json();
+                
+                
+            })
+            .catch((err) => console.log("File Upload Error"));
+     }
+    
     const handleSubmit = (e, values) => 
     {
             e.preventDefault();
@@ -29,10 +50,15 @@ function AddMainCategory(props) {
         } else if (!/^[A-Za-z]+/.test(category_name.trim())) {
             setcategory_nameError('Enter a valid name');
         }
+        if(category_image==='')
+        {
+            setCategory_ImageError('Please choose the category image');
+        }
         else
         {
 
             setcategory_nameError(false)
+            
             axios.post(`${server}api/v1/mainCategory`, 
             { category_name, category_image, cat_status,
             method: "Post",
@@ -83,7 +109,8 @@ function AddMainCategory(props) {
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Category Image :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="file" onChange={(e)=>setcategory_image(e.target.value)} className='form-control'/>
+                                        <input type="file" onChange={handleFileInput} className='form-control'/>
+                                        {category_imageerror&& <div className="error-msg" style={{color:"red"}}>{category_imageerror}</div>}
                                     </div>
                                 </div>
                                 <div className="row form-group">     
@@ -93,9 +120,9 @@ function AddMainCategory(props) {
                                                     className='form-control'
                                                     name="cat_status"
                                                     onChange={(e)=>setcat_status(e.target.value)}>
-                                                    <option>Select cat status</option>
-                                                    <option value="active">active</option>
-                                                    <option value="inactive">inactive</option>
+                                                    <option disabled selected value> Select Category Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -103,10 +130,10 @@ function AddMainCategory(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-8'>
                                     
                                     </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
                                         className='btn btn-primary'>Add </button>

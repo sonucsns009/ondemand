@@ -108,7 +108,8 @@ function AddServicePackages(props) {
                                 Service Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                <select className="form-control"  onChange={(e)=>setService_Id(e.target.value)}>Select Category
+                                <select className="form-control"  onChange={(e)=>setService_Id(e.target.value)}>
+                                    <option disabled selected value>Select Category</option>
                                     {
                                         servicepackages.map((item, index) => {
                                         //cnt++;
@@ -158,9 +159,9 @@ function AddServicePackages(props) {
                                                     className='form-control'
                                                     name="p_status"
                                                     onChange={(e)=>setP_Status(e.target.value)}>
-                                                    <option>Select Status</option>
-                                                    <option value="1">active</option>
-                                                    <option value="2">inactive</option>
+                                                    <option disabled selected value>Select Status</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -168,10 +169,10 @@ function AddServicePackages(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-8'>
                                     
                                     </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
                                         className='btn btn-primary'>Add </button>

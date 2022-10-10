@@ -79,7 +79,7 @@ function Mainsubcategory(props) {
                             <td>{item.sub_status}</td>
                             <td>
                               <Link to={"/editmainsubcategory/" + item.subcategory_id}><button className='btn btn-primary' >
-                                <i className='fa fa-edit'></i> </button></Link> |
+                                <i className='fa fa-edit'></i> </button></Link>&nbsp;
                               <button className='btn btn-primary' onClick={() => subcategory_delete(item.subcategory_id)}>
                                 <i className='fa fa-trash'></i> </button>
                             </td>

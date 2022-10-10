@@ -8,7 +8,8 @@ import Sidebar from './Sidebar';
 import Maincategory from './components/maincategory/Maincategory';
 import AddMainCategory from './components/maincategory/AddMainCategory';
 
-import Dashboard from './components/admin/Dashboard';
+// import Dashboard from './components/Dashboard';
+import Dashboard from './Dashboard';
 import PrivateComponent from './PrivateComponent';
 import EditMainCategory from './components/maincategory/EditMainCategory';
 
@@ -30,6 +31,8 @@ import AddBannerDetails from './components/BannerDetails/AddBannerdetails';
 import EditBannerDetails from './components/BannerDetails/EditBannerdetails';
 import ServiceTax from './components/Tax/servicetax';
 import EditServiceTax from './components/Tax/editservicetax';
+import Request from './components/service Request/request';
+import RequestView from './components/service Request/requestview';
 function App() {
   const auth = localStorage.getItem('user');
   return (
@@ -63,6 +66,8 @@ function App() {
           <Route path="/editbannerdetails/:id" element={<EditBannerDetails/>}/>
           <Route path="/servicetax" element={<ServiceTax/>}/>
           <Route path="/editservicetax/:id" element={<EditServiceTax/>}/>
+          <Route path="/request" element={<Request/>}/>
+          <Route path="/requestview/:id" element={<RequestView/>}/>
         </Route>
        
         </Routes>

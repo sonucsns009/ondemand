@@ -12,9 +12,9 @@ function Dashboard() {
       };
       //const auth = localStorage.getItem('user');
 
-    return (<>
-       
-        <div className='col-sm-9 offset-sm-3'>
+    return (
+    <>
+       <div className='col-sm-9 offset-sm-3'>
             <div className="page-body"><br/>
                 <div class="row">
                     <div class="col-lg-6 col-xl-3 xl-30">
@@ -32,7 +32,7 @@ function Dashboard() {
                                     </div>
                                     <div>
 									    <div>
-                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL LEADS</strong></span>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>MAIN CATEGORY</strong></span>
                                             <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50
                                                 {/* {
                                                     lead.map((item, index)=>{
@@ -60,7 +60,7 @@ function Dashboard() {
                                     </div>
                                     <div>
 									    <div>
-                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL CUSTOMERS</strong></span>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>SUB CATEGORY</strong></span>
                                             <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50</h3>
                                             </div>
 
@@ -79,7 +79,7 @@ function Dashboard() {
                                     </div>
                                     <div>
 									    <div>
-                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL COMPANY</strong></span>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>REQUEST STATUS</strong></span>
                                             <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50</h3>
                                             </div>
 
@@ -144,14 +144,14 @@ function Dashboard() {
 
                     <div class="col-lg-6 col-xl-4 xl-30">
                         <div class="card o-hidden widget-cards">
-                            <div class="bg-warning card-body" >
+                            <div class="bg-primary card-body" >
                                 <div class="media static-top-widget row">
                                     <div class="de-customer-icon">  
                                         <img src="./uploads/flaticon/dashboard.png" style={mystyle} alt="dashboard-logo"/>
                                     </div>
                                     <div>
 									    <div>
-                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL CALLS</strong></span>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL REQUEST</strong></span>
                                             <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50</h3>
                                             {/* <Link to="/calllist"><button  className='btn btn-outline-warning'>Call List</button></Link> */}
                                             </div>
@@ -161,6 +161,47 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-6 col-xl-4 xl-30">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-secondary card-body" >
+                                <div class="media static-top-widget row">
+                                    <div class="de-customer-icon">  
+                                        <img src="./uploads/flaticon/dashboard.png" style={mystyle} alt="dashboard-logo"/>
+                                    </div>
+                                    <div>
+									    <div>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL REVENUE</strong></span>
+                                            <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50</h3>
+                                            {/* <Link to="/calllist"><button  className='btn btn-outline-warning'>Call List</button></Link> */}
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-xl-4 xl-30">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-warning card-body" >
+                                <div class="media static-top-widget row">
+                                    <div class="de-customer-icon">  
+                                        <img src="./uploads/flaticon/dashboard.png" style={mystyle} alt="dashboard-logo"/>
+                                    </div>
+                                    <div>
+									    <div>
+                                            <span className="m-0" style={{color: '#ffffff'}}><strong>TOTAL EARNING</strong></span>
+                                            <h3 className="mb-0" style={{color: '#ffffff'}}><span className="counter" />50</h3>
+                                            {/* <Link to="/calllist"><button  className='btn btn-outline-warning'>Call List</button></Link> */}
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

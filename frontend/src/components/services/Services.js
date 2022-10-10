@@ -79,9 +79,12 @@ function Services(props) {
                         <td>{item.subcategory_name}</td>
                         <td>{item.service_name}</td>
                         <td>{item.service_desc}</td>
-                        <td>{item.service_image}</td> 
-                        <td>{item.service_price}</td>
-                        <td>{item.service_discount}</td>
+                        <td>
+                          <img src={item.service_image} alt={item.service_name} />
+                          
+                        </td> 
+                        <td>{item.price}</td>
+                        <td>{item.discount}</td>
                         <td>{item.coupon_code}</td>
                         <td>{item.service_status}</td>  
                         <td>

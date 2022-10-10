@@ -119,7 +119,8 @@ function EditServicePackages(props) {
                                 Service Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                <select className="form-control" value={service_id} onChange={(e)=>setService_id(e.target.value)}>Select Service
+                                <select className="form-control" value={service_id} onChange={(e)=>setService_id(e.target.value)}>
+                                    <option disabled selected value>Select Service</option>
                                     {
                                         service.map((item, index) => {
                                         //cnt++;
@@ -166,9 +167,9 @@ function EditServicePackages(props) {
                                                     name="status"
                                                     value={p_status}
                                                     onChange={(e)=>setP_Status(e.target.value)}>
-                                                    <option>Select Status</option>
-                                                    <option value="Active">active</option>
-                                                    <option value="Inactive">inactive</option>
+                                                    <option disabled selected value>Select Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -176,13 +177,13 @@ function EditServicePackages(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-7'>
                                     
                                     </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
-                                        className='btn btn-primary'>Add </button>
+                                        className='btn btn-primary'>Update</button>
                                     </div>
                                 </div>
                             </form>

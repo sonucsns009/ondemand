@@ -66,8 +66,6 @@ function servicetax(props) {
                   <th>Sr No</th>
                   <th>Fix Tax Amount</th>
                   <th>Percent Tax Amount</th>
-                  <th>Tax Type</th>
-
                   <th>Action</th>
                 </tr>
                 {
@@ -78,8 +76,6 @@ function servicetax(props) {
                         <td>{cnt++}</td>
                         <td>{item.fix_tax_amt}</td>
                         <td>{item.percent_tax_amt}</td>
-                        <td>{item.tax_type}</td>
-
                         <td>
                         <Link to={"/editservicetax/"+item.admin_id}><button className='btn btn-primary' >
                                 <i className='fa fa-edit'></i> </button></Link> <br/><br/> 

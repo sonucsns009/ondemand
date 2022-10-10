@@ -37,45 +37,45 @@ function Maincategory(props) {
     return (
         <>
 <div className='col-sm-10 offset-sm-2'>
-<div className="page-body">
-<div className="container-fluid"><br/>   
+ <div className="page-body">
+  <div className="container-fluid"><br/>   
     <div className="card tab2-card">
-        <div className="card-header">
-          <h5>Manage Main Category</h5>
+      <div className="card-header">
+       <h5>Manage Main Category</h5>
         <div className="card-header-right">
-            <div className="row">
-                <div className="col-lg-12">
-                    <Link className="sidebar-header btn btn-primary" to="/addmaincategory">Add Main Category</Link>
-                </div>
-                
-              </div>
+          <div className="row">
+            <div className="col-lg-12">
+               <Link className="sidebar-header btn btn-primary" to="/addmaincategory">Add Main Category</Link>
+            </div>
+           </div>
           </div>	
         </div>
-        <div className="card-body">   
-                         
+      <div className="card-body">   
         <div className="row form-group">     
-            <table className='table table-hover'>
-                <tr>
-                  <th>Sr No</th>
-                  <th>Category Name</th>
-                  <th>Image</th>
-                  {/* <th>Comapny Contact</th> */}
-                  <th>cat_Status</th>
-                  <th>Action</th>
-                </tr>
-                {
-                maincategory.map((item, index) => {
+          <table className='table table-hover'>
+            <tr>
+               <th>Sr No</th>
+               <th>Category Name</th>
+               <th>Image</th>
+           {/* <th>Comapny Contact</th> */}
+               <th>Category Status</th>
+               <th>Action</th>
+            </tr>
+               {
+                 maincategory.map((item, index) => {
                   cnt++;
                     return(
                         <tr key={index}>
                         <td>{cnt}</td>
                         <td>{item.category_name}</td>
                         <td>{item.category_image}</td> 
+                        {/* <td><img src={"D:/React/React Project/frontend/backend/uploads/mainCategoryImg/"+item.category_image} alt="dfskghk" /></td>  */}
+
                         {/* <td>{item.company_contact}</td> */}
                         <td>{item.cat_status}</td>
                         <td>
                         <Link to={"/editmaincategory/"+item.category_id }><button className='btn btn-primary' >
-                                <i className='fa fa-edit'></i> </button></Link> | 
+                                <i className='fa fa-edit'></i> </button></Link>&nbsp;
                                 <button className='btn btn-primary' onClick={()=>category_delete(item.category_id)}>
                                 <i className='fa fa-trash'></i> </button>
                         </td> 

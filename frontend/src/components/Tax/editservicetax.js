@@ -7,8 +7,6 @@ function editservicetax(props) {
     const [fix_tax_amterror, setFix_Tax_AmtError] = useState("");
     const [percent_tax_amt, setPercent_Tax_Amt] = useState("");
     const [percent_tax_amterror, setPercent_Tax_AmtError] = useState("");
-    const [tax_type,setTax_type] = useState("");
-
        
     const [items, setItems] = useState([]);
     const params = useParams();
@@ -24,27 +22,9 @@ function editservicetax(props) {
         result = await result.json();
         setFix_Tax_Amt(result[0].fix_tax_amt);
         setPercent_Tax_Amt(result[0].percent_tax_amt);
-        setTax_type(result[0].tax_type);
         setService_Tax(result);
     }
        
-    const handleSubmitTax = async(e,value) =>{
-      e.preventDefault();
-        
-        let result = await fetch(`${server}api/v1/admin/update/taxType/${params.id}`, {
-            method: 'PUT',
-            body: JSON.stringify({ tax_type }),
-            headers: {
-                'Content-Type': 'Application/json'
-            }
-            });
-            result = await result.json();
-            if (result) {
-                navigate('/serviceTax');
-            }
-         
-
-    }
 
         const handleSubmit = async(e, values) =>
         {
@@ -125,14 +105,14 @@ function editservicetax(props) {
           </div>
           <div className="col-sm-6">
           <div className="card-body">   
-          <form onSubmit={handleSubmitTax}>
+          <form onSubmit={handleSubmit}>
             <div className="row form-group">
             <div className='col-sm-4'>Tax Type :-</div>
              <div className='col-sm-6'>
-             <select className="form-control" value={tax_type} onChange={(e)=>setTax_type(e.target.value)} >Select Tax Amount
-             <option disabled selected value>Select Tax Type</option>
-              <option value="fix tax">Fix Tax Amount</option>
-              <option value="percent tax">Percent Tax Amount</option>
+             <select className="form-control" onChange={(e)=>setFix_Tax_Amt(e.target.value)} value="Select Tax Amount">Select Tax Amount
+             <option disabled txt value>Select Tax Type</option>
+              <option>Fix Tax Amount</option>
+              <option>Percent Tax Amount</option>
               </select>
              </div>
             </div>
@@ -151,7 +131,7 @@ function editservicetax(props) {
              <div className='col-sm-5'>
             </div>    
              <div className='col-sm-6'>
-               <button type='submit' onClick={handleSubmitTax} className='btn btn-primary'>UPDATE</button>
+               <button type='submit' onClick={handleSubmit} className='btn btn-primary'>UPDATE</button>
              </div>
              </div>
           

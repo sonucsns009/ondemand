@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
+import axios from 'axios';
 import server from '../../const';
 function EditBannerDetails(props) {
     const [banner_id, setBanner_Id]= useState("");
@@ -58,6 +59,26 @@ function EditBannerDetails(props) {
 
     // const [company_email,setCompany_Email]=useState("");
     // const [companyemailerror,setCompanyEmailError]=useState(false);
+    
+    const handleFileInput = (e) => 
+    {
+        // handle validations
+        let img=e.target.files[0];
+        console.warn("imAAGE------->"+e.target.files[0]);
+        const formData = new FormData();
+        formData.append("files", img);
+
+        axios
+            .post(`${server}api/v1/bannerDetails/upload_files`, formData)
+            .then(respone =>{
+                console.log(respone);
+                setBanner_Detail_Image(respone);
+                return respone.json();
+                
+            })
+            .catch((err) => alert("File Upload Error"));
+     }
+    
     const handleSubmit = async  (e) =>
     {
             e.preventDefault();
@@ -159,7 +180,7 @@ function EditBannerDetails(props) {
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Banner Image :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="file"  className='form-control'/>
+                                        <input type="file" onChange={handleFileInput} className='form-control'/>
                                     </div>
                                 </div>
                                  
@@ -186,9 +207,9 @@ function EditBannerDetails(props) {
                                                     name="banner_detail_status"
                                                     value={banner_detail_status}
                                                     onChange={(e)=>setBanner_Detail_Status(e.target.value)}>
-                                                    <option>Select Status</option>
-                                                    <option value="active">active</option>
-                                                    <option value="inactive">inactive</option>
+                                                    <option disabled selected value>Select Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -196,13 +217,13 @@ function EditBannerDetails(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-7'>
                                     
                                     </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
-                                        className='btn btn-primary'>Add </button>
+                                        className='btn btn-primary'>Update</button>
                                     </div>
                                 </div>
                             </form>

@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {  useParams,useNavigate,Link } from "react-router-dom";
+import axios from 'axios';
 import server from '../../const';
 function EditServices(props) {
     const [category_id, setCategory_Id]= useState("");
@@ -71,6 +72,26 @@ function EditServices(props) {
 
     // const [company_email,setCompany_Email]=useState("");
     // const [companyemailerror,setCompanyEmailError]=useState(false);
+    
+    const handleFileInput = (e) => 
+    {
+        // handle validations
+        let img=e.target.files[0];
+        console.warn("imAAGE------->"+e.target.files[0]);
+        const formData = new FormData();
+        formData.append("files", img);
+
+        axios
+            .post(`${server}api/v1/services/upload_files`, formData)
+            .then(respone =>{
+                console.log(respone);
+                setService_image(respone);
+                return respone.json();
+                
+            })
+            .catch((err) => alert("File Upload Error"));
+     }
+    
     const handleSubmit = async(e) =>
     {
             e.preventDefault();
@@ -127,7 +148,8 @@ function EditServices(props) {
                                 Category Name:-
                                 </div>   
                                 <div className="col-sm-6">
-                                    <select className="form-control" value={category_id}  onChange={(e)=>getMainSubCategory(e.target.value)}>Select Category
+                                    <select className="form-control" value={category_id}  onChange={(e)=>getMainSubCategory(e.target.value)}>
+                                        <option disabled selected value>Select Category</option>
                                     {
                                         maincategory.map((item, index) => {
                                         //cnt++;
@@ -176,7 +198,7 @@ function EditServices(props) {
                                 <div className="row form-group">     
                                     <div className='col-sm-3'>Service Image :- </div>
                                     <div className='col-sm-6'>
-                                        <input type="file"  className='form-control'/>
+                                        <input type="file" onChange={handleFileInput} className='form-control'/>
                                     </div>
                                 </div>
                                 <div className="row form-group">     
@@ -209,9 +231,9 @@ function EditServices(props) {
                                                     name="service_status"
                                                     value={service_status}
                                                     onChange={(e)=>setservice_status(e.target.value)}>
-                                                    <option>Select service_status</option>
-                                                    <option value="Active">active</option>
-                                                    <option value="Inactive">inactive</option>
+                                                    <option disabled selected value>Select service status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
                                     </div>
                                 </div>
@@ -219,13 +241,13 @@ function EditServices(props) {
                                 
                                
                                 <div className="row form-group"> 
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-8'>
                                     
                                     </div>    
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-1'>
                                         <button type='submit' 
                                         onClick={handleSubmit}
-                                        className='btn btn-primary'>Add </button>
+                                        className='btn btn-primary'>Update</button>
                                     </div>
                                 </div>
                             </form>
