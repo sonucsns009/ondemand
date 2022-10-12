@@ -2,7 +2,7 @@ import PureCounter from "@srexi/purecounterjs";
 import StatsCounter from "./StatsCounter";
 
 const About = () => {
-  const counter1 = new PureCounter();
+  const counter = new PureCounter();
 
   return (
     <>

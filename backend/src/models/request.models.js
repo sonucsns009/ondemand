@@ -35,6 +35,19 @@ request.findAll = function (result) {
   );
 };
 
+request.create = function (newrequest, result) {
+  // console.log(newrequest);
+  dbConn.query("INSERT INTO ond_admin set ?", newrequest, function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      console.log(res.insertId);
+      result(null, res.insertId);
+    }
+  });
+};
+
 request.findById = function (id, result) {
   dbConn.query(
     "Select * from ond_user_request where request_id=? ",

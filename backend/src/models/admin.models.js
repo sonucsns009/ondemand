@@ -39,10 +39,23 @@ Admin.findAll = function (result) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("ond_admin : ", res);
       result(null, res);
     }
   });
+};
+
+Admin.findTax = function (result) {
+  dbConn.query(
+    "Select fix_tax_amt,percent_tax_amt,tax_type from ond_admin",
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    }
+  );
 };
 
 Admin.findById = function (id, result) {
